@@ -24,4 +24,30 @@ class ProductController extends Controller
         $model = new Product();
         return response()->json(['status'=>'success','data'=>$model->getAllProduct()]);
     }
+    public function uploadImage(Request $req)
+    {
+        
+        if ($req->hasFile('image')) {
+            $file = $req->file('image');
+            //print_r($req->file('image'));
+            print_r('Tên Files: ' . $file->getClientOriginalName());
+            
+
+            //Lấy Đuôi File
+            print_r('Đuôi file: ' . $file->getClientOriginalExtension());
+           
+
+            //Lấy đường dẫn tạm thời của file
+            print_r('Đường dẫn tạm: ' . $file->getRealPath());
+            
+
+            //Lấy kích cỡ của file đơn vị tính theo bytes
+            print_r('Kích cỡ file: ' . $file->getSize());
+            
+             $file->move('img', $file->getClientOriginalName());
+           
+             
+        }
+        return "true";
+    }
 }

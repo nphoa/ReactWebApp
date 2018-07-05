@@ -34,3 +34,5 @@ Route::get('publishers','PublisherController@getAll')->middleware('cors');
 Route::get('releaseCompanys','ReleaseCompanyController@getAll')->middleware('cors');
 
 Route::get('categoriesV2','CategoryController@allV2')->middleware('cors');
+
+Route::post('uploadImage','ProductController@uploadImage')->middleware('cors');
