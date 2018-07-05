@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import WOW from "wow.js";
 import {Link} from 'react-router-dom';
+
 class PlanAddComponent extends Component {
   constructor(props) {
     super(props);

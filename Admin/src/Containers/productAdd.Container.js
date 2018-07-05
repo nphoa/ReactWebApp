@@ -9,7 +9,8 @@ const mapStateToProps = (state) => {
     categories:state.categories,
     authors:state.authors,
     publishers:state.publishers,
-    releaseCompanys:state.releaseCompany
+    releaseCompanys:state.releaseCompany,
+    formAddField:state.form.productAdd
   }
 }
 const mapDispatchToProps = (dispatch,props) => {
