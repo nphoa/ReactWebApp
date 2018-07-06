@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import {Field,reduxForm} from 'redux-form';
 import axios from 'axios';
+import apiCaller from '../API/apiCaller';
+import * as urls from '../API/URL';
+import {Redirect,Link} from 'react-router-dom';
+import swal from 'sweetalert';
+import ImageUploadAndReviewComponent from '../Components/ImageUploadAndReview.Component';
+
 const required = value => (value || typeof value === 'number' ? undefined : 'Required')
-
-
+const requiredSelect = value => (typeof value === 'number' || value > 0 ? undefined : 'Required Select')
 
 
 
@@ -12,7 +17,8 @@ class ProductAddComponent extends Component {
     super(props);
     this.state = {
         idCategoryChange:1,
-        selectedFile:''
+        selectedFile:'',
+        redirectProduct:false
     };
   }
   componentDidMount(){
@@ -36,7 +42,7 @@ class ProductAddComponent extends Component {
     if(cate != undefined) {
         result  = cate.listChild.map((item,index)=>{
             return (
-                <option value={item.category_id} key={index}>{item.category_name}</option>
+                <option value={item.category_id} key={index+1}>{item.category_name}</option>
             )
         });
     }
@@ -54,7 +60,7 @@ class ProductAddComponent extends Component {
     if(authors != undefined) {
       result  = authors.map((item,index)=>{
         return (
-            <option value={item.id} key={index}>{item.name}</option>
+            <option value={item.id} key={index+1}>{item.name}</option>
         )
       });
     }
@@ -65,7 +71,7 @@ class ProductAddComponent extends Component {
     if(publishers!=null){
       result  = publishers.map((item,index)=>{
         return (
-            <option value={item.id} key={index}>{item.name}</option>
+            <option value={item.id} key={index+1}>{item.name}</option>
         )
       });
     }
@@ -76,23 +82,27 @@ class ProductAddComponent extends Component {
      if(releaseCompanys!=null){
       result  = releaseCompanys.map((item,index)=>{
         return (
-            <option value={item.id} key={index}>{item.name}</option>
+            <option value={item.id} key={index+1}>{item.name}</option>
         )
       });
      }
     return result;
   }
   submit = () => {
-    alert('xong');
-    console.log(this.props.formAddField.values);
-
-    var formData = new FormData(); // Currently empty
-    formData.append('username', 'Chris');
-    var obj = {
-      image:this.state.selectedFile,
-      nam:'nph'
-    }
-    console.log(obj);
+    let values = this.props.formAddField.values;
+    let fd = new FormData();
+    fd.set('product',JSON.stringify(values));
+    fd.set('image',this.state.selectedFile);
+    apiCaller(urls.SAVE_PRODUCT,'POST',fd).then((res)=>{
+      if(res.data.data){
+        swal("Success!", "Thêm sản phẩm thành công!", "success");
+        this.state.redirectProduct = true;
+        this.setState({
+          redirectProduct:this.state.redirectProduct
+        });
+      }
+    });
+    console.log(values);
   }
   renderField = ({input,label,type,meta:{ touched, error, warning}}) => {
     return (
@@ -101,9 +111,18 @@ class ProductAddComponent extends Component {
         {touched &&
           ((error && <span style={{color:'red'}}>{error}</span>))}
       </div>
-
     )
-   
+  }
+  renderFieldSelect = ({input,children,meta:{ touched, error, warning}}) => {
+    return (
+      <div>
+        <select {...input}  className="form-control">
+        {children}
+        </select>
+        {touched &&
+          ((error && <span style={{color:'red'}}>{error}</span>))}
+      </div>
+    )
   }
   fileSelectedHandler = (event) => {
     this.state.selectedFile = event.target.files[0];
@@ -111,17 +130,17 @@ class ProductAddComponent extends Component {
       selectedFile:this.state.selectedFile
     });
   }
-  submitImage = () => {
-    const fd = new FormData();
-    fd.append('image',this.state.selectedFile);
-   
-    // console.log(fd);
-    // axios.post('http://localhost:8000/api/uploadImage',fd).then(res=>{
-    //     console.log(res.data);
-    // });
+  getFile = (file) => {
+      this.state.selectedFile = file;
+      this.setState({
+        selectedFile:this.state.selectedFile
+      });
   }
   render() {
     const { pristine, reset, submitting,valid,handleSubmit } = this.props;
+    if(this.state.redirectProduct){
+      return <Redirect to="/product"/>
+    }
     return (
         <div className="panel panel-widget forms-panel">
         <div className="progressbar-heading general-heading">
@@ -148,11 +167,8 @@ class ProductAddComponent extends Component {
               <div className="form-group"> 
                 <label className="col-sm-2 control-label" for="exampleInputFile">Product image</label> 
                 <div className="col-sm-8">
-                    <form onSubmit={this.submitImage}>
-                    <input type="file" id="product_image" onChange={this.fileSelectedHandler}/> 
-                    <p className="help-block">Upload hình ảnh sản phẩm</p>
-                    <button type="submit">Submit Image</button>
-                    </form>
+
+                    <ImageUploadAndReviewComponent getFile = {this.getFile}/>
                 </div>
                 
               </div>
@@ -166,7 +182,8 @@ class ProductAddComponent extends Component {
                   </select>
                 </div>
                 <div className="col-sm-4">
-                <Field name="category_id" component="select" className="form-control" placeholder="Chọn danh mục theo loại">
+                <Field name="category_id" component={this.renderFieldSelect} validate={[requiredSelect]}>
+                  <option value={0}>Please choose category detail !</option>
                   {this.showListCategoryChild(this.state.idCategoryChange,this.props.categories)}
                 </Field>
  
@@ -183,7 +200,8 @@ class ProductAddComponent extends Component {
             <div className="form-group">
             <label htmlFor="selector1" className="col-sm-2 control-label">Company release</label>
             <div className="col-sm-8">
-            <Field name="id_release_Company" component="select" className="form-control" placeholder="">
+            <Field name="id_release_Company" component={this.renderFieldSelect} validate={[requiredSelect]}>
+              <option value={0}>Please choose release company !</option>
               {this.showListReleaseCompany(this.props.releaseCompanys)}
             </Field>
            
@@ -193,7 +211,8 @@ class ProductAddComponent extends Component {
             <div className="form-group">
               <label htmlFor="selector1" className="col-sm-2 control-label">Publisher</label>
               <div className="col-sm-8">
-                <Field name="id_publisher" component="select" className="form-control" placeholder="">
+                <Field name="id_publisher" component={this.renderFieldSelect} validate={[requiredSelect]}>
+                  <option value={0} key={0}>Please choose publisher !</option>
                   {this.showListPublisher(this.props.publishers)}
                 </Field>
               </div>
@@ -202,7 +221,8 @@ class ProductAddComponent extends Component {
             <div className="form-group">
               <label htmlFor="selector1" className="col-sm-2 control-label">Author</label>
               <div className="col-sm-8">
-                <Field name="id_author" component="select" className="form-control" placeholder="">
+                <Field name="id_author" component={this.renderFieldSelect} validate={[requiredSelect]}>
+                  <option value={0} key={0}>Please choose author !</option>
                   {this.showListAuthor(this.props.authors)}
                 </Field>
               </div>
@@ -233,21 +253,30 @@ class ProductAddComponent extends Component {
         <div className="form-group">
             <label htmlFor="disabledinput" className="col-sm-2 control-label">Cover type</label>
             <div className="col-sm-8">
-            <Field name="productCoverType" type="number" component={this.renderField} validate={[required]}/>
+            <Field name="productCoverType" type="text" component={this.renderField} validate={[required]}/>
             </div>
         </div>
 
         <div className="form-group">
-            <label htmlFor="txtarea1" className="col-sm-2 control-label">Mô tả ngắn</label>
-            <div className="col-sm-8"><textarea name="txtarea1" id="txtarea1" cols={50} rows={4} className="form-control1"  /></div>
+            <label htmlFor="txtarea1" className="col-sm-2 control-label">Short description </label>
+            <div className="col-sm-8">
+            <Field className="form-control" name="product_content" type="input" component="textarea" cols={40} rows={3}/>
+            </div>
         </div>
         
         <div className="form-group">
-            <label htmlFor="txtarea1" className="col-sm-2 control-label">Mô tả chi tiết</label>
-            <div className="col-sm-8"><textarea name="txtarea1" id="txtarea1" cols={50} rows={4} className="form-control1"  /></div>
+            <label htmlFor="txtarea1" className="col-sm-2 control-label">Detail description</label>
+            <div className="col-sm-8">
+              <Field className="form-control" name="product_detail" type="input" component="textarea" cols={50} rows={4}/>
+              </div>
         </div>
-            
-            <button type="submit" disabled={submitting}  class="btn btn-info hvr-grow-rotate" style={{marginLeft: '690px',width:'100px'}}>Submit</button>
+
+      
+            <div>
+            <Link to="/product" class="btn btn-info hvr-grow-rotate" style={{width:'100px',marginLeft:'163px'}}>Back</Link>
+            <button type="submit" disabled={submitting}  class="btn btn-info hvr-grow-rotate" style={{marginLeft: '30px',width:'100px'}}>Submit</button>
+            </div>
+           
             </form>
           </div>
         </div>

@@ -3,6 +3,7 @@ import Dashboard from '../src/Pages/Dashboard';
 import NotFound from '../src/Pages/NotFound';
 import ProductPage from '../src/Pages/Product.Page';
 import ProductAddPage from '../src/Pages/productAdd.Page';
+import AddImageDetailComponent from '../src/Components/AddImageDetail.Component';
 const routers = [
 	{
 		path: '/',
@@ -18,6 +19,11 @@ const routers = [
 		path: '/product/add',
 		exact: true,
 		main: () => <ProductAddPage />
+	},
+	{
+		path: '/product/addImageDetailByProduct/:id',
+		exact: true,
+		main: ({history,match}) => <AddImageDetailComponent history = {history} match = {match} />
 	},
 	// {
 	// 	path: '/plan',

@@ -14,16 +14,17 @@ class ProductsComponent extends Component {
     result = products.map((item,index)=>{
       return (
           <tr  key={index}>
-            <th scope="row">{item.product_id}</th>
+            <th scope="row" style={{width:'6%'}}>{item.product_id}</th>
             <td>
               <img style={{width:'50px',height:'50px'}} src={item.product_image}  />
             </td>
             <td>{item.product_code}</td>
             <td>{item.product_name}</td>
             <td>{item.product_price_base}</td>
-            <td style={{width:'15%'}}>
+            <td style={{width:'30%'}}>
                 <button className="btn btn-warning hvr-grow-rotate">Edit</button>
-                <button style={{marginLeft:'5px'}} className="btn btn-info hvr-grow-rotate">Delete</button>
+                <button style={{marginLeft:'5px',marginRight:'7px'}} className="btn btn-info hvr-grow-rotate">Delete</button>
+                <Link to={`/product/addImageDetailByProduct/${item.product_id}`} className="btn btn-warning hvr-grow-rotate">Add image</Link>
             </td>
           </tr>
       )
