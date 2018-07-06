@@ -10,6 +10,7 @@ use App\Author;
 use App\ReleaseCompany;
 use DB;
 use App\ProductImage;
+use File;
 class Product extends Model
 {
     protected $table='m_products';
@@ -102,5 +103,53 @@ class Product extends Model
         }
         return $result;
        
+    }
+    public function saveProduct($file,$product)
+    {
+        $result = null;
+        DB::beginTransaction();
+        try {
+            //Insert table m_products
+            $queryList = [
+                'product_code'      => $product['productCode'],
+                'product_name'      => $product['productName'],
+                'category_id'       => $product['category_id'],
+                'product_price_base'=> $product['productPrice'],
+                'product_content'   => $product['product_content'],
+                'product_detail'    => $product['product_detail'],
+                'IsDelete'          => 0,
+                'IsPublic'          => 1,  
+                'created_at'        => DB::raw('now()'),
+                'updated_at'        =>  DB::raw('now()') 
+            ];
+            if(File::exists($file)){
+                $queryList['product_image'] = $file->getClientOriginalName();
+            }
+            $idProductAfterInsert = DB::table('m_products')->insertGetId($queryList); 
+
+            //Insert table m_product_details
+            DB::table('m_product_details')->insert([
+                'id_product'          => $idProductAfterInsert,
+                'id_release_Company'  => $product['id_release_Company'],
+                'id_publisher'        => $product['id_publisher'],
+                'id_author'           => $product['id_author'],
+                'size'                => $product['productSize'],
+                'page_number'         => $product['productNumberPage'],
+                'release_date'        => $product['productReleaseDate'],
+                'covor_type'          => $product['productCoverType'],   
+                'created_at'          => DB::raw('now()'),
+                'updated_at'          => DB::raw('now()')
+            ]);
+            DB::commit();
+            
+            //Upload image
+            $file->move('img/'.$product['productCode'], $file->getClientOriginalName());
+
+            $result = true;
+        } catch (Exception $e) {
+            DB::rollBack();
+            $result = false;
+        }
+        return $result;
     }
 }

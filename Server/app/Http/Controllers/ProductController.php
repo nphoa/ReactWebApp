@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Product;
 use Illuminate\Http\Request;
-
+use File;
 class ProductController extends Controller
 {
     public function getProductByIdCategory(Request $req)
@@ -49,5 +49,18 @@ class ProductController extends Controller
              
         }
         return "true";
+    }
+    public function saveProduct(Request $req)
+    {
+        
+         $file = $req->file('image');
+         $product = json_decode($req->get('product'), true);
+         $model = new Product();
+         $result = $model->saveProduct($file,$product);
+         // if(File::exists($file)){
+         //    print_r($file);
+         // }
+         return response()->json(['status'=>'success','data'=>$result]);
+         
     }
 }
