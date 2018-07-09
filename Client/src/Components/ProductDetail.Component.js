@@ -58,7 +58,7 @@ class ProductDetailComponent extends Component {
         if(item.image_type==='Detail'){
           return (
             <div className="product-view" key={index}>
-              <img src={item.image_name}  />
+              <img style={{width:'100px',height:'200px'}} src={item.image_name}  />
             </div>
           );
         }
@@ -72,10 +72,10 @@ class ProductDetailComponent extends Component {
     let result = null;
     if (lstImage != null && lstImage.length > 0) {
       result = lstImage.map((item, index) => {
-        if(item.image_type === 'Zoom'){
+        if(item.image_type === 'Detail'){
           return (
             <div className="product-view" key={index}>
-              <img src={item.image_name} />
+              <img style={{width:'600px',height:'700px'}} src={item.image_name} />
             </div>
           );
         }
