@@ -7,6 +7,7 @@ import {Redirect,Link} from 'react-router-dom';
 import swal from 'sweetalert';
 import ImageUploadAndReviewComponent from '../Components/ImageUploadAndReview.Component';
 
+
 const required = value => (value || typeof value === 'number' ? undefined : 'Required')
 const requiredSelect = value => (typeof value === 'number' || value > 0 ? undefined : 'Required Select')
 
@@ -18,10 +19,15 @@ class ProductAddComponent extends Component {
     this.state = {
         idCategoryChange:1,
         selectedFile:'',
-        redirectProduct:false
+        redirectProduct:false,
+        productEdit:null,
     };
   }
+  componentWillMount(){
+    console.log(this.props.match);
+  }
   componentDidMount(){
+    this.getProductById((this.props.match.params.id != undefined) ? this.props.match.params.id : undefined);
     this.props.getAllCategory();
     this.props.getAllAuthor();
     this.props.getAllPublisher();
@@ -35,6 +41,18 @@ class ProductAddComponent extends Component {
         )
     });
     return result;
+  }
+   getProductById(idProduct = 0){
+   
+    apiCaller(`${urls.GET_PRODUCT_BY_ID}/?idProduct=${idProduct}`,'GET').then(res=>{
+      
+        this.state.productEdit = res.data.data[0];
+        this.setState({
+        productEdit:res.data.data[0]
+      });
+    });
+    
+    
   }
   showListCategoryChild = (idParent,categories) => {
     let result = null;
@@ -93,6 +111,7 @@ class ProductAddComponent extends Component {
     let fd = new FormData();
     fd.set('product',JSON.stringify(values));
     fd.set('image',this.state.selectedFile);
+    console.log(fd.getAll('image'));
     apiCaller(urls.SAVE_PRODUCT,'POST',fd).then((res)=>{
       if(res.data.data){
         swal("Success!", "Thêm sản phẩm thành công!", "success");
@@ -104,10 +123,10 @@ class ProductAddComponent extends Component {
     });
     console.log(values);
   }
-  renderField = ({input,label,type,meta:{ touched, error, warning}}) => {
+  renderField = ({input,value,type,meta:{ touched, error, warning}}) => {
     return (
       <div>
-        <input {...input} type={type}  className="form-control"/>
+        <input {...input} type={type}  className="form-control" value={this.state.productEdit[input.name]}/>
         {touched &&
           ((error && <span style={{color:'red'}}>{error}</span>))}
       </div>
@@ -140,7 +159,10 @@ class ProductAddComponent extends Component {
     const { pristine, reset, submitting,valid,handleSubmit } = this.props;
     if(this.state.redirectProduct){
       return <Redirect to="/product"/>
-    }
+    } 
+    if(this.state.productEdit != null || this.state.productEdit != undefined){
+      console.log(this.state.productEdit.product_code);
+    
     return (
         <div className="panel panel-widget forms-panel">
         <div className="progressbar-heading general-heading">
@@ -153,7 +175,7 @@ class ProductAddComponent extends Component {
               <div className="form-group">
                 <label className="col-sm-2 control-label">Product code</label>
                 <div className="col-sm-8">
-                    <Field name="productCode" type="text" component={this.renderField} validate={[required]}/>
+                    <Field name="product_code" type="text" component={this.renderField} validate={[required]} value={`asdasdsa`} />
                 </div>
               </div>
 
@@ -282,6 +304,12 @@ class ProductAddComponent extends Component {
         </div>
       </div>
     );
+  }else{
+    return (
+      <div>Loading data....</div>
+    );
+  }
+
   }
 }
 

@@ -16,9 +16,9 @@ const routers = [
 		main: () => <ProductPage />
 	},
 	{
-		path: '/product/add',
+		path: '/product/add/:id?',
 		exact: true,
-		main: () => <ProductAddPage />
+		main: ({history,match}) => <ProductAddPage history = {history} match = {match}/>
 	},
 	{
 		path: '/product/addImageDetailByProduct/:id',

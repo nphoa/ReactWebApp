@@ -1,22 +1,42 @@
 import React, { Component } from "react";
 import '../demo.css';
 import ImageUploadAndReviewComponent from '../Components/ImageUploadAndReview.Component';
-import {Link} from 'react-router-dom';
+import {Link,Redirect} from 'react-router-dom';
+import callApi from "../API/apiCaller";
+import * as urls from '../API/URL';
+import swal from 'sweetalert';
 class AddImageDetailComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
         idImage:1,
         lstImage:[1],
-        lstImageSubmit:[]
+        lstImageSubmit:[],
+        redirectProduct:false
     };
   }
   
   componentWillMount(){
-      console.log(this.state.lstImage);
+     
   }
-  submit = () => {
-      alert('1');
+  submit = (event) => {
+      event.preventDefault();
+      var lstSubmit = (this.state.lstImageSubmit);
+      var fd = new FormData();
+      fd.set('idProduct',JSON.stringify(this.props.match.params.id));
+      lstSubmit.forEach(item => {
+         fd.append(`image[]`,item);
+      });
+      callApi(urls.SAVE_PRODUCT_IMAGES,'POST',fd).then(res=>{
+        console.log(res);
+        if(res.data.data){
+          swal("Success!", "Thêm images thành công!", "success");
+          this.state.redirectProduct = true;
+          this.setState({
+            redirectProduct:this.state.redirectProduct
+          });
+        }
+      });
   }
   mapImage = () => {
     let result = null;
@@ -36,14 +56,13 @@ class AddImageDetailComponent extends Component {
     return result;
   }
   getFile = (file)=>{
-    console.log(file);
     let {lstImageSubmit} = this.state;
     lstImageSubmit.push(file);
+    
     this.state.lstImageSubmit = lstImageSubmit;
     this.setState({
         lstImageSubmit : this.state.lstImageSubmit
     });
-    console.log(lstImageSubmit);
   }
   addImage = () => {
       let {lstImage} = this.state;
@@ -59,6 +78,9 @@ class AddImageDetailComponent extends Component {
       //alert(1);
   }
   render() {
+    if(this.state.redirectProduct){
+      return <Redirect to="/product"/>
+    }
     return (
         
         <div className="panel panel-widget forms-panel">
@@ -69,12 +91,12 @@ class AddImageDetailComponent extends Component {
         
           <div className="form-three widget-shadow">
           <button type="button" onClick={this.addImage}  class="btn btn-warning hvr-grow-rotate" style={{marginLeft: '30px',width:'100px'}}>Add image</button>
-            <form className="form-horizontal" onSubmit={this.submit}>
+            <form className="form-horizontal" onSubmit={this.submit} ref="formSubmit">
 
             {this.mapImage()}
 
             
-          
+            
             
          
        

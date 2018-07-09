@@ -48,7 +48,9 @@ class ImageUploadAndReviewComponent extends Component {
     return (
       <div className="previewComponent">
           <input className="fileInput" 
-            type="file" 
+            type="file"
+            name="iamges[]"
+            multiple 
             onChange={(e)=>this.handleImageChange(e)} />
       
         

@@ -7,6 +7,7 @@ export default function callApi(endpoint,method='GET',body){
 		data:body,
 		headers: {
 		   "Content-Type": "application/x-www-form-urlencoded",
+		   //'Content-Type':false,
 		   'Access-Control-Allow-Origin': '*',
 		
 		   

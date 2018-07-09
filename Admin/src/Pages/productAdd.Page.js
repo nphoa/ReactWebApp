@@ -4,7 +4,7 @@ import ProductAddContainer from '../Containers/productAdd.Container';
 class ProductAddPage extends Component {
   render() {
     return (
-       <ProductAddContainer/>
+       <ProductAddContainer history = {this.props.history} match = {this.props.match}/>
       
    
       

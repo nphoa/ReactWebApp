@@ -12,7 +12,6 @@ function* getAllAuthor(){
     yield callApi(`${urls.GET_ALL_AUTHOR}`,'GET').then((res)=>{
         data = res.data.data;
     });
-    console.log(data);
     yield put(actions.getAllAuthor_Success(data));
     
 }

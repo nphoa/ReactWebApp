@@ -22,7 +22,7 @@ class ProductsComponent extends Component {
             <td>{item.product_name}</td>
             <td>{item.product_price_base}</td>
             <td style={{width:'30%'}}>
-                <button className="btn btn-warning hvr-grow-rotate">Edit</button>
+                <Link to={`/product/add/${item.product_id}`} className="btn btn-warning hvr-grow-rotate">Edit</Link>
                 <button style={{marginLeft:'5px',marginRight:'7px'}} className="btn btn-info hvr-grow-rotate">Delete</button>
                 <Link to={`/product/addImageDetailByProduct/${item.product_id}`} className="btn btn-warning hvr-grow-rotate">Add image</Link>
             </td>
