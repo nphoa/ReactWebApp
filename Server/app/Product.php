@@ -41,6 +41,7 @@ class Product extends Model
     {
         $result = null;
         try {
+            if($id  != 0){
             $product = DB::table('m_products')
                     ->where('m_products.product_id','=',$id)
                     ->leftJoin('m_product_details','m_products.product_id','=','m_product_details.id_product')
@@ -66,6 +67,7 @@ class Product extends Model
             }
             $product[0]->productImage =  $productImage;
             $result =  $product;
+        }
         } catch (Exception $e) {
             $result = $e;
         }
@@ -149,6 +151,31 @@ class Product extends Model
         } catch (Exception $e) {
             DB::rollBack();
             $result = false;
+        }
+        return $result;
+    }
+    public function saveProductImages($idProduct,$file)
+    {
+        $result = true;
+        try {
+            $product = Product::where('product_id',$idProduct)->first();
+            if($product != null && count($file) > 0){
+                foreach ($file as $item) {
+                    DB::table('m_product_images')->insert([
+                        'id_product'  => $product->product_id,
+                        'image_type'  => 'Detail',
+                        'image_name'  => $item->getClientOriginalName(),  
+                        'created_at'  => DB::raw('now()'),
+                        'updated_at'  => DB::raw('now()')
+                    ]);
+                    $item->move('img/'.$product->product_code, $item->getClientOriginalName());
+                }
+              }else{
+                  $result = false;
+              }
+          
+        } catch (Exception $e) {
+             $result = false;
         }
         return $result;
     }
