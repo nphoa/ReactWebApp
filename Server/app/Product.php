@@ -48,9 +48,14 @@ class Product extends Model
                     ->leftJoin('m_authors','m_product_details.id_author','=','m_authors.id')
                     ->leftJoin('m_publishers','m_product_details.id_publisher','=','m_publishers.id')
                     ->leftJoin('m_release_companys','m_product_details.id_release_Company','=','m_release_companys.id')
+                    ->leftJoin('m_categories','m_products.category_id','=','m_categories.category_id')
                     ->select(
                         'm_products.*',
                         'm_authors.name as author',
+                        'm_product_details.id_author as id_author',
+                        'm_product_details.id_publisher as id_publisher',
+                        'm_product_details.id_release_Company as id_release_Company',
+                        'm_categories.category_parrent_id as category_parent_id',
                         'm_publishers.name as publisher',
                         'm_release_companys.name as release_company',
                         'm_product_details.size as size',
@@ -58,14 +63,14 @@ class Product extends Model
                         'm_product_details.covor_type as covor_type',
                          'm_product_details.release_date as release_date'
                     )
-                    ->get();
-            $product[0]->product_image = URL::to('/img').'/'.$product[0]->product_code.'/'.$product[0]->product_image;
+                    ->first();
+            $product->product_image = URL::to('/img').'/'.$product->product_code.'/'.$product->product_image;
 
             $productImage = Product::where('product_id',$id)->first()->product_images_relationship;
             foreach ($productImage as $item) {
-                $item->image_name = URL::to('/img').'/'.$product[0]->product_code.'/'.$item->image_name;
+                $item->image_name = URL::to('/img').'/'.$product->product_code.'/'.$item->image_name;
             }
-            $product[0]->productImage =  $productImage;
+            $product->productImage =  $productImage;
             $result =  $product;
         }
         } catch (Exception $e) {
@@ -108,15 +113,16 @@ class Product extends Model
     }
     public function saveProduct($file,$product)
     {
+        $objProduct = (object)$product;
         $result = null;
         DB::beginTransaction();
         try {
             //Insert table m_products
             $queryList = [
-                'product_code'      => $product['productCode'],
-                'product_name'      => $product['productName'],
+                'product_code'      => $product['product_code'],
+                'product_name'      => $product['product_name'],
                 'category_id'       => $product['category_id'],
-                'product_price_base'=> $product['productPrice'],
+                'product_price_base'=> $product['product_price_base'],
                 'product_content'   => $product['product_content'],
                 'product_detail'    => $product['product_detail'],
                 'IsDelete'          => 0,
@@ -127,26 +133,41 @@ class Product extends Model
             if(File::exists($file)){
                 $queryList['product_image'] = $file->getClientOriginalName();
             }
-            $idProductAfterInsert = DB::table('m_products')->insertGetId($queryList); 
 
-            //Insert table m_product_details
-            DB::table('m_product_details')->insert([
-                'id_product'          => $idProductAfterInsert,
+            $queryListProductDetail = [
                 'id_release_Company'  => $product['id_release_Company'],
                 'id_publisher'        => $product['id_publisher'],
                 'id_author'           => $product['id_author'],
-                'size'                => $product['productSize'],
-                'page_number'         => $product['productNumberPage'],
-                'release_date'        => $product['productReleaseDate'],
-                'covor_type'          => $product['productCoverType'],   
+                'size'                => $product['size'],
+                'page_number'         => $product['page_number'],
+                'release_date'        => $product['release_date'],
+                'covor_type'          => $product['covor_type'],   
                 'created_at'          => DB::raw('now()'),
                 'updated_at'          => DB::raw('now()')
-            ]);
-            DB::commit();
-            
+            ];
+            if($objProduct->product_id==0){
+                //Add New
+                //Insert table m_product
+                $idProductAfterInsert = DB::table('m_products')->insertGetId($queryList);
+                //Insert table m_product_details
+                $queryListProductDetail['id_product'] = $idProductAfterInsert;
+                DB::table('m_product_details')->insert($queryListProductDetail); 
+            }else{
+                //Edit
+                //Save table m_product
+                DB::table('m_products')
+                        ->where('product_id', $objProduct->product_id)
+                        ->update($queryList);
+                //Save table m_product_details  
+                DB::table('m_product_details')
+                        ->where('id_product', $objProduct->product_id)
+                        ->update($queryListProductDetail);
+            }
             //Upload image
-            $file->move('img/'.$product['productCode'], $file->getClientOriginalName());
-
+            if(File::exists($file)){
+                 $file->move('img/'.$product['productCode'], $file->getClientOriginalName());
+            }
+            DB::commit();
             $result = true;
         } catch (Exception $e) {
             DB::rollBack();
