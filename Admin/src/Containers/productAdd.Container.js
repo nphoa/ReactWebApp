@@ -6,6 +6,7 @@ import * as actions from '../Actions/index';
 
 const mapStateToProps = (state) => {
   return{
+    productEdit:state.product.productEdit,
     categories:state.categories,
     authors:state.authors,
     publishers:state.publishers,
@@ -27,6 +28,9 @@ const mapDispatchToProps = (dispatch,props) => {
       getAllReleaseCompany:()=>{
         dispatch(actions.getAllReleaseCompany());
       },
+      getProductById:(id)=>{
+        dispatch(actions.getProductById(id));
+      }
      
     }
 }

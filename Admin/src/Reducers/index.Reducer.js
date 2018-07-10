@@ -7,7 +7,7 @@ import releaseCompanyReducer from './releaseCompany.Reducer';
 import {reducer as formReducer} from 'redux-form';
 const appReducers = combineReducers({
 	form:formReducer,
-	products:productReducer,
+	product:productReducer,
 	categories:categoryReducer,
 	authors:authorReducer,
 	publishers:publisherReducer,

@@ -21,4 +21,20 @@ export function* watchGetAllProduct(){
     yield takeEvery(types.GET_ALL_PRODUCT,getAllProduct);
 }
 
-
+function* getProductById(action){
+    // console.log(action);
+     let data = null;
+     yield callApi(`${urls.GET_PRODUCT_BY_ID}/?idProduct=${action.id}`,'GET').then((res)=>{
+       if(res.data.data != null){
+            data = res.data.data;
+       };
+       
+     });
+     yield put(actions.getProductById_Success(data));
+     
+ }
+ 
+ 
+ export function* watchGetProductById(){
+     yield takeEvery(types.GET_PRODUCT_BY_ID,getProductById);
+ }

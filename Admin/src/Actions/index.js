@@ -65,3 +65,17 @@ export const getAllReleaseCompany_Success = (releaseCompanys) => {
 		releaseCompanys:releaseCompanys
 	}
 }
+
+export const getProductById = (id) => {
+	return {
+		type:types.GET_PRODUCT_BY_ID,
+		id:id
+	}
+}
+
+export const getProductById_Success = (product) => {
+	return {
+		type:types.GET_PRODUCT_BY_ID_SUCCESS,
+		product:product
+	}
+}

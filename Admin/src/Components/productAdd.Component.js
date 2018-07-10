@@ -6,7 +6,7 @@ import * as urls from '../API/URL';
 import {Redirect,Link} from 'react-router-dom';
 import swal from 'sweetalert';
 import ImageUploadAndReviewComponent from '../Components/ImageUploadAndReview.Component';
-
+import {connect} from 'react-redux';
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required')
 const requiredSelect = value => (typeof value === 'number' || value > 0 ? undefined : 'Required Select')
@@ -19,15 +19,14 @@ class ProductAddComponent extends Component {
     this.state = {
         idCategoryChange:1,
         selectedFile:'',
-        redirectProduct:false,
-        productEdit:null,
+        redirectProduct:false
     };
   }
   componentWillMount(){
     console.log(this.props.match);
   }
   componentDidMount(){
-    this.getProductById((this.props.match.params.id != undefined) ? this.props.match.params.id : undefined);
+    this.props.getProductById((this.props.match.params.id != undefined) ? this.props.match.params.id : 0);
     this.props.getAllCategory();
     this.props.getAllAuthor();
     this.props.getAllPublisher();
@@ -42,18 +41,18 @@ class ProductAddComponent extends Component {
     });
     return result;
   }
-   getProductById(idProduct = 0){
+  //  getProductById(idProduct = 0){
    
-    apiCaller(`${urls.GET_PRODUCT_BY_ID}/?idProduct=${idProduct}`,'GET').then(res=>{
+  //   apiCaller(`${urls.GET_PRODUCT_BY_ID}/?idProduct=${idProduct}`,'GET').then(res=>{
       
-        this.state.productEdit = res.data.data[0];
-        this.setState({
-        productEdit:res.data.data[0]
-      });
-    });
+  //       this.state.productEdit = res.data.data[0];
+  //       this.setState({
+  //       productEdit:res.data.data[0]
+  //     });
+  //   });
     
     
-  }
+  // }
   showListCategoryChild = (idParent,categories) => {
     let result = null;
     let cate = categories.find(item => item.category_id == idParent);
@@ -111,7 +110,6 @@ class ProductAddComponent extends Component {
     let fd = new FormData();
     fd.set('product',JSON.stringify(values));
     fd.set('image',this.state.selectedFile);
-    console.log(fd.getAll('image'));
     apiCaller(urls.SAVE_PRODUCT,'POST',fd).then((res)=>{
       if(res.data.data){
         swal("Success!", "Thêm sản phẩm thành công!", "success");
@@ -121,12 +119,12 @@ class ProductAddComponent extends Component {
         });
       }
     });
-    console.log(values);
+   
   }
-  renderField = ({input,value,type,meta:{ touched, error, warning}}) => {
+  renderField = ({input,type,meta:{ touched, error, warning}}) => {
     return (
       <div>
-        <input {...input} type={type}  className="form-control" value={this.state.productEdit[input.name]}/>
+        <input {...input} type={type}  className="form-control" />
         {touched &&
           ((error && <span style={{color:'red'}}>{error}</span>))}
       </div>
@@ -160,13 +158,14 @@ class ProductAddComponent extends Component {
     if(this.state.redirectProduct){
       return <Redirect to="/product"/>
     } 
-    if(this.state.productEdit != null || this.state.productEdit != undefined){
-      console.log(this.state.productEdit.product_code);
+    if(this.props.productEdit == null || this.props.productEdit == undefined){
+      return (<div>Loading page ...</div>)
+    }
     
     return (
         <div className="panel panel-widget forms-panel">
         <div className="progressbar-heading general-heading">
-          <h4>Add new book:</h4>
+          <h4>{(this.props.match.params.id != undefined) ? 'Edit book' : 'Add new book'}</h4>
         </div>
         <div className="forms">
           <div className="form-three widget-shadow">
@@ -175,14 +174,14 @@ class ProductAddComponent extends Component {
               <div className="form-group">
                 <label className="col-sm-2 control-label">Product code</label>
                 <div className="col-sm-8">
-                    <Field name="product_code" type="text" component={this.renderField} validate={[required]} value={`asdasdsa`} />
+                    <Field name="product_code" type="text" component={this.renderField} validate={[required]}  />
                 </div>
               </div>
 
               <div className="form-group">
                 <label className="col-sm-2 control-label">Product name</label>
                 <div className="col-sm-8">
-                <Field name="productName" type="text" component={this.renderField} validate={[required]}/>
+                <Field name="product_name" type="text" component={this.renderField} validate={[required]}/>
                 </div>
               </div>
           
@@ -199,9 +198,11 @@ class ProductAddComponent extends Component {
               <div className="form-group">
                 <label htmlFor="selector1" className="col-sm-2 control-label">Chọn loại sách</label>
                 <div className="col-sm-4">
-                  <select onChange={this.onChangeCategory} name="selector1" id="selector1" className="form-control1" placeholder="Chọn thể loại">
+                 
+                  <Field onChange={this.onChangeCategory} name="category_parent_id" component={this.renderFieldSelect} >
+                    <option value={0}>Please choose category !</option>
                     {this.showListCategory(this.props.categories)}
-                  </select>
+                  </Field>
                 </div>
                 <div className="col-sm-4">
                 <Field name="category_id" component={this.renderFieldSelect} validate={[requiredSelect]}>
@@ -215,7 +216,7 @@ class ProductAddComponent extends Component {
               <div className="form-group">
               <label htmlFor="disabledinput" className="col-sm-2 control-label">Product price</label>
               <div className="col-sm-8">
-                <Field name="productPrice" type="number" component={this.renderField} validate={[required]}/>
+                <Field name="product_price_base" type="number" component={this.renderField} validate={[required]}/>
                 </div>
             </div>
               
@@ -253,7 +254,7 @@ class ProductAddComponent extends Component {
             <div className="form-group">
                 <label htmlFor="disabledinput" className="col-sm-2 control-label">Size</label>
                 <div className="col-sm-8">
-                  <Field name="productSize" type="text" component={this.renderField} validate={[required]}/>
+                  <Field name="size" type="text" component={this.renderField} validate={[required]}/>
                 </div>
             </div>
 
@@ -261,21 +262,21 @@ class ProductAddComponent extends Component {
             <div className="form-group">
             <label htmlFor="disabledinput" className="col-sm-2 control-label">Page number</label>
             <div className="col-sm-8">
-              <Field name="productNumberPage" type="number" component={this.renderField} validate={[required]}/>
+              <Field name="page_number" type="number" component={this.renderField} validate={[required]}/>
             </div>
           </div>
 
           <div className="form-group">
           <label htmlFor="disabledinput" className="col-sm-2 control-label">Release Date </label>
           <div className="col-sm-8">
-          <Field name="productReleaseDate" type="date" component={this.renderField} validate={[required]}/>
+          <Field name="release_date" type="date" component={this.renderField} validate={[required]}/>
           </div>
         </div>
 
         <div className="form-group">
             <label htmlFor="disabledinput" className="col-sm-2 control-label">Cover type</label>
             <div className="col-sm-8">
-            <Field name="productCoverType" type="text" component={this.renderField} validate={[required]}/>
+            <Field name="covor_type" type="text" component={this.renderField} validate={[required]}/>
             </div>
         </div>
 
@@ -304,19 +305,23 @@ class ProductAddComponent extends Component {
         </div>
       </div>
     );
-  }else{
-    return (
-      <div>Loading data....</div>
-    );
   }
 
   }
-}
 
 
 
-const RF_productAdd = reduxForm({
+
+var RF_productAdd = reduxForm({
   form:'productAdd',
-})(ProductAddComponent)
+  enableReinitialize :true,
+  
+})(ProductAddComponent);
 
+RF_productAdd = connect(
+  
+  state => ({
+    initialValues: state.product.productEdit
+  })
+)(RF_productAdd);
 export default RF_productAdd;

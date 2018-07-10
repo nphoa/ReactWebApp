@@ -6,7 +6,7 @@ import * as actions from '../Actions/index';
 
 const mapStateToProps = (state) => {
   return{
-    products:state.products
+    products:state.product.products
     
   }
 }

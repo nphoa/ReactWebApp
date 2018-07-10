@@ -1,19 +1,30 @@
 import * as types from '../Constant/ActionType';
 
-var initialState  = [
-
+var initialState  = {
+	products:[],
+	productEdit:{
+		product_id:0
+	}
     
-];
+};
 
 var myReducer = (state = initialState,action) => {
 	switch (action.type) {
 		case types.GET_ALL_PRODUCT_SUCCESS:
-			state = action.products;
-			return [...state];
+			state.products = action.products;
+			return {...state};
+			break;
+		case types.GET_PRODUCT_BY_ID_SUCCESS:
+			if(action.product!= null){
+				state.productEdit = action.product;
+			}else{
+				state.productEdit ={product_id:0};
+			}
+			return {...state};
 			break;
 		default:
 			//console.log(api.getAllProduct());
-			return [...state];
+			return {...state};
 			break;
 	}
 };
