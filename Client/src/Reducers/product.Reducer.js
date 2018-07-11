@@ -15,7 +15,7 @@ var myReducer = (state = initialState,action) => {
 			return Object.assign({},state);
 			break;
 		case types.GET_PRODUCTS_BY_ID_SUCCESS:
-			state.product_detail = action.product[0];
+			state.product_detail = action.product;
 			return Object.assign({},state);
 			break;
 		default:

@@ -25,6 +25,7 @@ function* getProductById(action){
     let data = null;
     yield callApi(`${urls.GET_PRODUCT_BY_ID}/?idProduct=${action.id}`,'GET').then((res)=>{
         data = res.data.data;
+        console.log(data);
     });
     yield put(actions.getProductById_Success(data));
 }
