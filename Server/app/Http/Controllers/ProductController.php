@@ -68,4 +68,9 @@ class ProductController extends Controller
          return response()->json(['status'=>'success','data'=>$result]);
          
     }
+    public function deleteProduct(Request $req)
+    {
+        $model = new Product();
+        return response()->json(['status'=>'success','data'=>$model->deleteProduct($req->get('idProduct'))]);
+    }
 }

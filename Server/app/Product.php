@@ -83,7 +83,7 @@ class Product extends Model
     {
         $result = null;
         try {
-            $product = DB::table('m_products')
+            $product = DB::table('m_products')->where('IsDelete',0)
                     ->leftJoin('m_product_details','m_products.product_id','=','m_product_details.id_product')
                     ->leftJoin('m_authors','m_product_details.id_author','=','m_authors.id')
                     ->leftJoin('m_publishers','m_product_details.id_publisher','=','m_publishers.id')
@@ -165,7 +165,7 @@ class Product extends Model
             }
             //Upload image
             if(File::exists($file)){
-                 $file->move('img/'.$product['productCode'], $file->getClientOriginalName());
+                 $file->move('img/'.$product['product_code'], $file->getClientOriginalName());
             }
             DB::commit();
             $result = true;
@@ -195,6 +195,20 @@ class Product extends Model
                   $result = false;
               }
           
+        } catch (Exception $e) {
+             $result = false;
+        }
+        return $result;
+    }
+    public function deleteProduct($idProduct)
+    {
+        $result = false;
+        try {
+            $rowEffect = DB::table('m_products')
+                        ->where('product_id', $idProduct)
+                        ->update(['IsDelete'=>1]);
+          
+        if($rowEffect == 1){$result=true;}  
         } catch (Exception $e) {
              $result = false;
         }
