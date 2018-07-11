@@ -27,10 +27,24 @@ class ProductAddComponent extends Component {
   }
   componentDidMount(){
     this.props.getProductById((this.props.match.params.id != undefined) ? this.props.match.params.id : 0);
-    this.props.getAllCategory();
-    this.props.getAllAuthor();
-    this.props.getAllPublisher();
-    this.props.getAllReleaseCompany();
+    this.loadAllDataScreen();
+    
+  }
+
+  
+  loadAllDataScreen(){
+    if(this.props.categories.length == 0){
+      this.props.getAllCategory();
+    }
+    if(this.props.authors.length == 0){
+      this.props.getAllAuthor();
+    }
+    if(this.props.publishers.length == 0){
+      this.props.getAllPublisher();
+    }
+    if(this.props.releaseCompanys.length == 0){
+      this.props.getAllReleaseCompany();
+    }
   }
   showListCategory = (categories) => {
     let result = null;
@@ -41,18 +55,6 @@ class ProductAddComponent extends Component {
     });
     return result;
   }
-  //  getProductById(idProduct = 0){
-   
-  //   apiCaller(`${urls.GET_PRODUCT_BY_ID}/?idProduct=${idProduct}`,'GET').then(res=>{
-      
-  //       this.state.productEdit = res.data.data[0];
-  //       this.setState({
-  //       productEdit:res.data.data[0]
-  //     });
-  //   });
-    
-    
-  // }
   showListCategoryChild = (idParent,categories) => {
     let result = null;
     let cate = categories.find(item => item.category_id == idParent);
@@ -66,7 +68,6 @@ class ProductAddComponent extends Component {
     return result;
   }
   onChangeCategory = (event) => {
-    console.log(event.target.value);
     this.state.idCategoryChange = event.target.value;
     this.setState({
         idCategoryChange:this.state.idCategoryChange
@@ -121,10 +122,10 @@ class ProductAddComponent extends Component {
     });
    
   }
-  renderField = ({input,type,meta:{ touched, error, warning}}) => {
+  renderField = ({input,type,IsDisabled,meta:{ touched, error, warning}}) => {
     return (
       <div>
-        <input {...input} type={type}  className="form-control" />
+        <input disabled={IsDisabled} {...input} type={type}  className="form-control" />
         {touched &&
           ((error && <span style={{color:'red'}}>{error}</span>))}
       </div>
@@ -174,7 +175,7 @@ class ProductAddComponent extends Component {
               <div className="form-group">
                 <label className="col-sm-2 control-label">Product code</label>
                 <div className="col-sm-8">
-                    <Field name="product_code" type="text" component={this.renderField} validate={[required]}  />
+                    <Field IsDisabled={(this.props.match.params.id != undefined) ? true : false} name="product_code" type="text" component={this.renderField} validate={[required]}  />
                 </div>
               </div>
 
@@ -189,7 +190,7 @@ class ProductAddComponent extends Component {
                 <label className="col-sm-2 control-label" for="exampleInputFile">Product image</label> 
                 <div className="col-sm-8">
 
-                    <ImageUploadAndReviewComponent getFile = {this.getFile}/>
+                    <ImageUploadAndReviewComponent getFile = {this.getFile} srcImage={this.props.productEdit.product_image}/>
                 </div>
                 
               </div>
@@ -296,7 +297,7 @@ class ProductAddComponent extends Component {
 
       
             <div>
-            <Link to="/product" class="btn btn-info hvr-grow-rotate" style={{width:'100px',marginLeft:'163px'}}>Back</Link>
+            <Link to="/product" onClick={()=>this.props.resetProduct()} class="btn btn-info hvr-grow-rotate" style={{width:'100px',marginLeft:'163px'}}>Back</Link>
             <button type="submit" disabled={submitting}  class="btn btn-info hvr-grow-rotate" style={{marginLeft: '30px',width:'100px'}}>Submit</button>
             </div>
            

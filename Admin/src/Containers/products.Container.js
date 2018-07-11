@@ -14,6 +14,9 @@ const mapDispatchToProps = (dispatch,props) => {
     return {
       getAllProduct:()=>{
         dispatch(actions.getAllProduct());
+      },
+      resetProduct:() =>{
+        dispatch(actions.resetProduct());
       }
      
     }

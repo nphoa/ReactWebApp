@@ -4,6 +4,7 @@ import NotFound from '../src/Pages/NotFound';
 import ProductPage from '../src/Pages/Product.Page';
 import ProductAddPage from '../src/Pages/productAdd.Page';
 import AddImageDetailComponent from '../src/Components/AddImageDetail.Component';
+import CategoryContainer from '../src/Containers/category.Container';
 const routers = [
 	{
 		path: '/',
@@ -24,6 +25,11 @@ const routers = [
 		path: '/product/addImageDetailByProduct/:id',
 		exact: true,
 		main: ({history,match}) => <AddImageDetailComponent history = {history} match = {match} />
+	},
+	{
+		path: '/category',
+		exact: true,
+		main: () => <CategoryContainer />
 	},
 	// {
 	// 	path: '/plan',

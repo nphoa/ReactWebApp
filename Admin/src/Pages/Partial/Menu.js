@@ -18,6 +18,9 @@ class Menu extends Component {
                   <a href="#"><i className="fa fa-cogs nav_icon" />Danh mục <span className="fa arrow" /></a>
                   <ul className="nav nav-second-level collapse">
                     <li>
+                      <Link to ="/category">Danh mục</Link>
+                    </li>
+                    <li>
                       <Link to ="/product">Sách</Link>
                     </li>
                     <li>

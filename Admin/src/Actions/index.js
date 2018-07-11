@@ -79,3 +79,17 @@ export const getProductById_Success = (product) => {
 		product:product
 	}
 }
+
+export const resetProduct = () => {
+	return {
+		type:types.RESET_PRODUCT
+		
+	}
+}
+
+export const deleteProduct = (idProduct) => {
+	return {
+		type:types.DELETE_PRODUCT,
+		idProduct:idProduct
+	}
+}

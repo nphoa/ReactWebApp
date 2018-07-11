@@ -30,8 +30,10 @@ const mapDispatchToProps = (dispatch,props) => {
       },
       getProductById:(id)=>{
         dispatch(actions.getProductById(id));
+      },
+      resetProduct:() =>{
+        dispatch(actions.resetProduct());
       }
-     
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(ProductAddComponent);

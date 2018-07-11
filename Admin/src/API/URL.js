@@ -6,3 +6,4 @@ export const GET_ALL_RELEASECOMPANY = 'http://localhost:8000/api/releaseCompanys
 export const SAVE_PRODUCT = 'http://localhost:8000/api/saveProduct';
 export const SAVE_PRODUCT_IMAGES = 'http://localhost:8000/api/saveProductImages';
 export const GET_PRODUCT_BY_ID = 'http://localhost:8000/api/getProductById';
+export const DELETE_PRODUCT = 'http://localhost:8000/api/deleteProduct';

@@ -43,6 +43,13 @@ class ImageUploadAndReviewComponent extends Component {
         </div>
          
         );
+    }else if(imagePreviewUrl == '' && this.props.srcImage != undefined){
+      $imagePreview = (
+        <div className="imgPreview">
+            <img style={{width:'200px',height:'230px'}} src={this.props.srcImage} />
+        </div>
+         
+      );
     } 
 
     return (

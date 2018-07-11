@@ -17,9 +17,11 @@ var myReducer = (state = initialState,action) => {
 		case types.GET_PRODUCT_BY_ID_SUCCESS:
 			if(action.product!= null){
 				state.productEdit = action.product;
-			}else{
-				state.productEdit ={product_id:0};
 			}
+			return {...state};
+			break;
+		case types.RESET_PRODUCT:
+			state.productEdit ={product_id:0};
 			return {...state};
 			break;
 		default:
