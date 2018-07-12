@@ -3,8 +3,10 @@ import Dashboard from '../src/Pages/Dashboard';
 import NotFound from '../src/Pages/NotFound';
 import ProductPage from '../src/Pages/Product.Page';
 import ProductAddPage from '../src/Pages/productAdd.Page';
-import AddImageDetailComponent from '../src/Components/AddImageDetail.Component';
+import AddImageDetailComponent from '../src/Components/Product/AddImageDetail.Component';
 import CategoryContainer from '../src/Containers/category.Container';
+import CategoryChildrenContainer from '../src/Containers/categoryChildren.Container';
+import CategoryAddContainer from '../src/Containers/categoryAdd.Container';
 const routers = [
 	{
 		path: '/',
@@ -31,36 +33,16 @@ const routers = [
 		exact: true,
 		main: () => <CategoryContainer />
 	},
-	// {
-	// 	path: '/plan',
-	// 	exact: true,
-	// 	main: () => <PlanPage />
-	// },
-	// {
-	// 	path: '/plan/add/:id',
-	// 	exact: true,
-	// 	main: ({history,match}) => <AddPlan history = {history} match = {match}/>
-	// },
-	// {
-	// 	path: '/work',
-	// 	exact: true,
-	// 	main: () => <WorkPage />
-	// },
-	// {
-	// 	path: '/work/add/:id',
-	// 	exact: true,
-	// 	main: ({history,match}) => <AddWork history = {history} match = {match}/>
-	// },
-	// {
-	// 	path: '/news',
-	// 	exact: true,
-	// 	main: () => <NewsPage />
-	// },
-	// {
-	// 	path: '',
-	// 	exact: false,
-	// 	main: () => <NotFound />	
-	// }
+	{
+		path: '/category/children/:idParent',
+		exact: true,
+		main: ({history,match}) => <CategoryChildrenContainer history = {history} match = {match}/>
+	},
+	{
+		path: '/category/add/:idParent/:idCategory?',
+		exact: true,
+		main: ({history,match}) => <CategoryAddContainer history = {history} match = {match}/>
+	},
 
 ];
 

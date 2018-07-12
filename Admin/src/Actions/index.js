@@ -93,3 +93,23 @@ export const deleteProduct = (idProduct) => {
 		idProduct:idProduct
 	}
 }
+
+export const getCategoryById = (id) => {
+	return {
+		type:types.GET_CATEGORY_BY_ID,
+		id:id
+	}
+}
+
+export const getCategoryById_Success = (category) => {
+	return {
+		type:types.GET_CATEGORY_BY_ID_SUCCESS,
+		category:category
+	}
+}
+export const resetCategory = () => {
+	return {
+		type:types.RESET_CATEGORY
+		
+	}
+}

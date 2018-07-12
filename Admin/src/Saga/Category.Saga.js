@@ -22,3 +22,18 @@ export function* watchGetAllCategory(){
 }
 
 
+function* getCategoryById(action){
+    // console.log(action);
+     let data = null;
+     yield callApi(`${urls.GET_CATEGORY_BY_ID}/?idCategory=${action.id}`,'GET').then((res)=>{
+         data = res.data.data;
+     });
+     yield put(actions.getCategoryById_Success(data));
+     
+ }
+ 
+ 
+ export function* watchGetCategoryById(){
+     yield takeEvery(types.GET_CATEGORY_BY_ID,getCategoryById);
+ }
+ 

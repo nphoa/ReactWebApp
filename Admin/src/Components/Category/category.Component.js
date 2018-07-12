@@ -1,32 +1,45 @@
 import React, { Component } from "react";
 import {Link} from 'react-router-dom';
-import * as urls from '../API/URL';
-import apiCaller from '../API/apiCaller';
+import * as urls from '../../API/URL';
+import apiCaller from '../../API/apiCaller';
 import swal from 'sweetalert';
-class ProductsComponent extends Component {
+//import CategoryChildrenModal from '../Components/Modal/categoryChildren.Modal';
+class CategoryComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+        show:false,
+        idParentCategory:0
+    };
+    this.handleClose = this.handleClose.bind(this);
+    this.handleShow = this.handleShow.bind(this);
+  }
+  handleClose(){
+    this.setState({ show: false });
+  }
+  handleShow(idParent){
+    this.setState({ 
+        show: true,
+        idParentCategory: idParent
+    });
   }
   componentDidMount(){
-    this.props.getAllProduct();
+      this.props.getAllCategory();
   }
-  showListProduct = (products) =>{
+  showListCategory = (categories) =>{
     let result = null;
-    result = products.map((item,index)=>{
+    result = categories.map((item,index)=>{
       return (
           <tr  key={index}>
-            <th scope="row" style={{width:'6%'}}>{item.product_id}</th>
+            <th scope="row" style={{width:'6%'}}>{item.category_id}</th>
             <td>
-              <img style={{width:'50px',height:'50px'}} src={item.product_image}  />
+              <Link to={`/category/children/${item.category_id}`}>{item.category_name}</Link>
             </td>
-            <td>{item.product_code}</td>
-            <td>{item.product_name}</td>
-            <td>{item.product_price_base}</td>
+            <td>{item.created_at}</td>
             <td style={{width:'30%'}}>
-                <Link to={`/product/add/${item.product_id}`}  className="btn btn-warning hvr-grow-rotate">Edit</Link>
+                <Link to={`/category/add/0/${item.category_id}`}  className="btn btn-warning hvr-grow-rotate">Edit</Link>
                 <button style={{marginLeft:'5px',marginRight:'7px'}} onClick={() => this.deleteProduct(item.product_id)} className="btn btn-info hvr-grow-rotate">Delete</button>
-                <Link to={`/product/addImageDetailByProduct/${item.product_id}`} className="btn btn-warning hvr-grow-rotate">Add image</Link>
+                <Link to={`/category/add/${item.category_id}`} className="btn btn-warning hvr-grow-rotate">Add category detail</Link>
             </td>
           </tr>
       )
@@ -57,28 +70,28 @@ class ProductsComponent extends Component {
     return (
       <div className="panel panel-widget">
         <div className="tables">
-          <h4>Danh sách sản phẩm:</h4>
+          <h4>Danh sách danh mục:</h4>
           <br/>
-          <Link to="/product/add" onClick={()=>this.props.resetProduct()}  className="btn btn-primary hvr-grow-rotate">Add New</Link>
+          <Link to="/category/add/0"   className="btn btn-primary hvr-grow-rotate">Add New</Link>
           <table className="table">
             <thead>
               <tr>
                 <th>STT</th>
-                <th>Product image</th>
-                <th>Product code</th>
-                <th>Product name</th>
-                <th>Product price</th>
+                <th>Category name</th>
+                <th>Created at</th>
                 <th>Custom</th>
               </tr>
             </thead>
             <tbody>
-              {this.showListProduct(this.props.products)}
+              {this.showListCategory(this.props.categories)}
             </tbody>
           </table>
         </div>
+
+       
       </div>
     );
   }
 }
 
-export default ProductsComponent;
+export default CategoryComponent;

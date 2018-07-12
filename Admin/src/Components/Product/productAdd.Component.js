@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import {Field,reduxForm} from 'redux-form';
 import axios from 'axios';
-import apiCaller from '../API/apiCaller';
-import * as urls from '../API/URL';
+import apiCaller from '../../API/apiCaller';
+import * as urls from '../../API/URL';
 import {Redirect,Link} from 'react-router-dom';
 import swal from 'sweetalert';
-import ImageUploadAndReviewComponent from '../Components/ImageUploadAndReview.Component';
+import ImageUploadAndReviewComponent from '../ImageUploadAndReview.Component';
 import {connect} from 'react-redux';
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required')

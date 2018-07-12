@@ -7,3 +7,5 @@ export const SAVE_PRODUCT = 'http://localhost:8000/api/saveProduct';
 export const SAVE_PRODUCT_IMAGES = 'http://localhost:8000/api/saveProductImages';
 export const GET_PRODUCT_BY_ID = 'http://localhost:8000/api/getProductById';
 export const DELETE_PRODUCT = 'http://localhost:8000/api/deleteProduct';
+export const SAVE_CATEGORY = 'http://localhost:8000/api/saveCategory';
+export const GET_CATEGORY_BY_ID = 'http://localhost:8000/api/getCategoryById';

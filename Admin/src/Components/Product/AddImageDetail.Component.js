@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import '../demo.css';
-import ImageUploadAndReviewComponent from '../Components/ImageUploadAndReview.Component';
+import '../../demo.css';
+import ImageUploadAndReviewComponent from '../ImageUploadAndReview.Component';
 import {Link,Redirect} from 'react-router-dom';
-import callApi from "../API/apiCaller";
-import * as urls from '../API/URL';
+import callApi from "../../API/apiCaller";
+import * as urls from '../../API/URL';
 import swal from 'sweetalert';
 class AddImageDetailComponent extends Component {
   constructor(props) {
