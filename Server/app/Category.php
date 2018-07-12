@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use DB;
 class Category extends Model
 {
     protected $table='m_categories';
@@ -25,5 +25,40 @@ class Category extends Model
     		$value['listChild'] = $lstChild;
     	}
     	return $collectionParent;
+    }
+    public function getCategoryById($id)
+    {   $result = null;
+        try {
+            $result = DB::table('m_categories')
+                        ->where('category_id',$id)
+                        ->first();
+        } catch (Exception $e) {
+            $result = $e;
+        }
+        return $result;
+    }
+    public function saveCategory($arrCategory)
+    {
+    
+        $result = false;
+        try {
+            if($arrCategory['category_id'] ==0){
+                //Add new
+                $arrCategory['IsPublic'] = 1;
+                $arrCategory['IsDelete'] = 0;
+                $arrCategory['created_at'] = DB::raw('now()');
+                $arrCategory['updated_at'] = DB::raw('now()');
+                $arrCategory['IsHaveChild'] = ($arrCategory['category_parrent_id'] == 0) ? 1 : 0;
+                DB::table('m_categories')->insert($arrCategory);
+            }else{
+                //Update
+                DB::table('m_categories')->where('category_id',$arrCategory['category_id'])
+                                         ->update($arrCategory);
+            }
+            $result = true;
+        } catch (Exception $e) {
+            $result = $e;
+        }
+        return $result;
     }
 }

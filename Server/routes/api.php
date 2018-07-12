@@ -39,3 +39,6 @@ Route::post('uploadImage','ProductController@uploadImage')->middleware('cors');
 Route::post('saveProduct','ProductController@saveProduct')->middleware('cors');
 Route::post('saveProductImages','ProductController@saveProductImages')->middleware('cors');
 Route::get('deleteProduct','ProductController@deleteProduct')->middleware('cors');
+
+Route::post('saveCategory','CategoryController@saveCategory')->middleware('cors');
+Route::get('getCategoryById','CategoryController@getCategoryById')->middleware('cors');
