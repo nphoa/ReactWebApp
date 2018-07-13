@@ -17,5 +17,17 @@ class Publisher extends Model
    {
    		return Publisher::all();
    }
+   public function getPublisherById($d)
+   {
+   		$result = null;
+        try {
+            $result = DB::table('m_publishers')
+                        ->where('id',$id)
+                        ->first();
+        } catch (Exception $e) {
+            $result = $e;
+        }
+        return $result;
+   }
     
 }

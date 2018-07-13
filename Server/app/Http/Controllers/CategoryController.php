@@ -33,4 +33,15 @@ class CategoryController extends Controller
         return response()->json(['status'=>'success','data'=>$model->saveCategory($arrayCategory)]);
         //print_r()->category_name);
     }
+    public function deleteCategory(Request $req)
+    {
+        $model = new Category();
+        return response()->json(['status'=>'success','data'=>$model->deleteCategory($req->get('idCategory'))]);
+    }
+    public function updateCategoryParent(Request $req)
+    {
+        $model = new Category();
+        //print_r(json_decode($req->get('data')));
+         return response()->json(['status'=>'success','data'=>$model->updateCategoryParent(json_decode($req->get('data')))]);
+    }
 }

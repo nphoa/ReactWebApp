@@ -19,9 +19,9 @@ class Category extends Model
     }
     public function getAllV2()
     {
-    	$collectionParent = Category::where('IsHaveChild',1)->get();
+    	$collectionParent = Category::where(['IsHaveChild'=>1,'IsDelete'=>0])->get();
     	foreach ($collectionParent as $key => $value) {
-    		$lstChild = Category::where('category_parrent_id',$value['category_id'])->get();
+    		$lstChild = Category::where(['category_parrent_id'=>$value['category_id'],'IsDelete'=>0])->get();
     		$value['listChild'] = $lstChild;
     	}
     	return $collectionParent;
@@ -58,6 +58,32 @@ class Category extends Model
             $result = true;
         } catch (Exception $e) {
             $result = $e;
+        }
+        return $result;
+    }
+    public function deleteCategory($idCategory)
+    {
+        $result = false;
+        try {
+            $result = DB::table('m_categories')
+                        ->where('category_id',$idCategory)
+                        ->update(['IsDelete'=>1]);
+            $result = true;             
+        } catch (Exception $e) {
+            $result = false;
+        }
+        return $result;
+    }
+    public function updateCategoryParent($objCategory)
+    {
+        $result = false;
+        try {
+            $result = DB::table('m_categories')
+                        ->where('category_id',$objCategory->idCategory)
+                        ->update(['category_parrent_id'=>$objCategory->idParentCategory]);
+            $result = true;             
+        } catch (Exception $e) {
+            $result = false;
         }
         return $result;
     }

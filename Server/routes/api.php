@@ -42,3 +42,6 @@ Route::get('deleteProduct','ProductController@deleteProduct')->middleware('cors'
 
 Route::post('saveCategory','CategoryController@saveCategory')->middleware('cors');
 Route::get('getCategoryById','CategoryController@getCategoryById')->middleware('cors');
+Route::get('deleteCategory','CategoryController@deleteCategory')->middleware('cors');
+
+Route::post('updateCategoryParent','CategoryController@updateCategoryParent')->middleware('cors');

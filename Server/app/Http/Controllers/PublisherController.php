@@ -11,4 +11,9 @@ class PublisherController extends Controller
     	$model = new Publisher();
     	return response()->json(['status'=>'success','data'=>$model->getAll()]);
     }
+    public function getPublisherById(Request $req)
+    {
+    	$model = new Publisher();
+    	return response()->json(['status'=>'success','data'=>$model->getPublisherById($req->get('idPublisher'))]);
+    }
 }
