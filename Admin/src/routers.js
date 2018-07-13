@@ -7,6 +7,8 @@ import AddImageDetailComponent from '../src/Components/Product/AddImageDetail.Co
 import CategoryContainer from '../src/Containers/category.Container';
 import CategoryChildrenContainer from '../src/Containers/categoryChildren.Container';
 import CategoryAddContainer from '../src/Containers/categoryAdd.Container';
+import PublisherContainer from '../src/Containers/Publisher/publishers.Container';
+import PublisherAddContainer from '../src/Containers/Publisher/publisherAdd.Container';
 const routers = [
 	{
 		path: '/',
@@ -42,6 +44,16 @@ const routers = [
 		path: '/category/add/:idParent/:idCategory?',
 		exact: true,
 		main: ({history,match}) => <CategoryAddContainer history = {history} match = {match}/>
+	},
+	{
+		path: '/publisher',
+		exact: true,
+		main: () => <PublisherContainer />
+	},
+	{
+		path: '/publisher/add/:idPublisher?',
+		exact: true,
+		main: ({history,match}) => <PublisherAddContainer history = {history} match = {match}/>
 	},
 
 ];

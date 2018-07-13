@@ -34,8 +34,7 @@ class ProductAddComponent extends Component {
   
   loadAllDataScreen(){
     if(this.props.categories.length == 0){
-      this.props.getAllCategory();
-    }
+      this.props.getAllCategory();}
     if(this.props.authors.length == 0){
       this.props.getAllAuthor();
     }
@@ -159,7 +158,7 @@ class ProductAddComponent extends Component {
     if(this.state.redirectProduct){
       return <Redirect to="/product"/>
     } 
-    if(this.props.productEdit == null || this.props.productEdit == undefined){
+    if(this.props.productEdit == null || this.props.productEdit == undefined ){
       return (<div>Loading page ...</div>)
     }
     

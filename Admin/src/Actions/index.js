@@ -113,3 +113,10 @@ export const resetCategory = () => {
 		
 	}
 }
+
+export const resetPublisher = () => {
+	return {
+		type:types.RESET_PUBLISHER
+		
+	}
+}

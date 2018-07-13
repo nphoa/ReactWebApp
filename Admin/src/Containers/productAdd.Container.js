@@ -7,9 +7,9 @@ import * as actions from '../Actions/index';
 const mapStateToProps = (state) => {
   return{
     productEdit:state.product.productEdit,
-    categories:state.categories,
+    categories:state.categories.categories,
     authors:state.authors,
-    publishers:state.publishers,
+    publishers:state.publisher.publishers,
     releaseCompanys:state.releaseCompany,
     formAddField:state.form.productAdd
   }

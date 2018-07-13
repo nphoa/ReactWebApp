@@ -24,10 +24,10 @@ class Menu extends Component {
                       <Link to ="/product">Sách</Link>
                     </li>
                     <li>
-                      <Link to ="/plan">Nhà xuất bản</Link>
+                      <Link to ="/publisher">Nhà xuất bản</Link>
                     </li>
                     <li>
-                      <Link to ="/product">Tác giả</Link>
+                      <Link to ="/author">Tác giả</Link>
                     </li>
                   </ul>
                   {/* /nav-second-level */}

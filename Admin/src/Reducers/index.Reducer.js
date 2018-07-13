@@ -10,7 +10,7 @@ const appReducers = combineReducers({
 	product:productReducer,
 	categories:categoryReducer,
 	authors:authorReducer,
-	publishers:publisherReducer,
+	publisher:publisherReducer,
 	releaseCompany:releaseCompanyReducer
 });
 
