@@ -11,7 +11,7 @@
  Target Server Version : 100128
  File Encoding         : 65001
 
- Date: 06/07/2018 17:21:37
+ Date: 13/07/2018 17:24:39
 */
 
 SET NAMES utf8mb4;
@@ -35,6 +35,7 @@ DROP TABLE IF EXISTS `m_authors`;
 CREATE TABLE `m_authors`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
@@ -43,10 +44,10 @@ CREATE TABLE `m_authors`  (
 -- ----------------------------
 -- Records of m_authors
 -- ----------------------------
-INSERT INTO `m_authors` VALUES (1, 'Zoe Mc Key', '2018-06-15 11:19:48', '0000-00-00 00:00:00');
-INSERT INTO `m_authors` VALUES (2, 'Mai Lan Hương, Hà Thanh Uyên', '2018-06-15 11:27:01', '2018-06-15 11:27:04');
-INSERT INTO `m_authors` VALUES (3, 'Ts. Trần Văn Lượng', '2018-06-15 11:30:25', '2018-06-15 11:30:28');
-INSERT INTO `m_authors` VALUES (4, 'Stephenie Meyer', '2018-06-18 10:28:29', '2018-06-18 10:28:32');
+INSERT INTO `m_authors` VALUES (1, 'Zoe Mc Key', NULL, '2018-06-15 11:19:48', '0000-00-00 00:00:00');
+INSERT INTO `m_authors` VALUES (2, 'Mai Lan Hương, Hà Thanh Uyên', NULL, '2018-06-15 11:27:01', '2018-06-15 11:27:04');
+INSERT INTO `m_authors` VALUES (3, 'Ts. Trần Văn Lượng', NULL, '2018-06-15 11:30:25', '2018-06-15 11:30:28');
+INSERT INTO `m_authors` VALUES (4, 'Stephenie Meyer', NULL, '2018-06-18 10:28:29', '2018-06-18 10:28:32');
 
 -- ----------------------------
 -- Table structure for m_brands
@@ -67,7 +68,7 @@ CREATE TABLE `m_brands`  (
 DROP TABLE IF EXISTS `m_categories`;
 CREATE TABLE `m_categories`  (
   `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `category_icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `category_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `category_parrent_id` int(11) NOT NULL,
   `category_sort` int(11) NOT NULL,
@@ -77,32 +78,34 @@ CREATE TABLE `m_categories`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`category_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 59 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 62 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of m_categories
 -- ----------------------------
-INSERT INTO `m_categories` VALUES (1, '', 'Sách thiếu nhi', 0, 1, 1, 1, 0, '2018-06-15 11:36:32', '2018-06-15 11:36:32');
-INSERT INTO `m_categories` VALUES (2, '', 'Sách kỹ năng sống', 0, 2, 1, 1, 0, '2018-06-15 11:36:32', '2018-06-15 11:36:32');
-INSERT INTO `m_categories` VALUES (3, '', 'Sách tiểu thuyết,văn học', 0, 2, 1, 1, 0, '2018-06-15 11:36:32', '2018-06-15 11:36:32');
-INSERT INTO `m_categories` VALUES (4, '', 'Sách kinh tế', 0, 3, 1, 1, 0, '2018-06-15 11:36:32', '2018-06-15 11:36:32');
-INSERT INTO `m_categories` VALUES (5, '', 'Sách học ngoại ngữ', 0, 3, 1, 1, 0, '2018-06-15 11:36:32', '2018-06-15 11:36:32');
-INSERT INTO `m_categories` VALUES (6, '', 'Sách tham khảo', 0, 2, 1, 1, 0, '2018-06-15 11:36:32', '2018-06-15 11:36:32');
-INSERT INTO `m_categories` VALUES (7, '', 'Sách thiếu nhi ( 0-6 tuổi)', 1, 1, 1, 0, 0, '2018-06-15 11:36:32', '2018-06-15 11:36:32');
-INSERT INTO `m_categories` VALUES (45, '', 'Sách thiếu nhi (6-11 tuổi)', 1, 2, 1, 0, 0, '2018-06-15 11:37:14', '2018-06-15 11:37:17');
-INSERT INTO `m_categories` VALUES (46, '', 'Sách thiếu niên (11-15 tuổi)', 1, 2, 1, 0, 0, '2018-06-15 11:38:01', '2018-06-15 11:38:05');
-INSERT INTO `m_categories` VALUES (47, '', 'Sách tư duy, kỹ năng sống', 2, 1, 1, 0, 0, '2018-06-15 11:39:17', '2018-06-15 11:39:20');
-INSERT INTO `m_categories` VALUES (48, '', 'Sách hướng nghiệp', 2, 1, 1, 0, 0, '2018-06-15 11:39:39', '2018-06-15 11:39:43');
-INSERT INTO `m_categories` VALUES (49, '', 'Sách nghệ thuật sống đẹp', 2, 1, 1, 0, 0, '2018-06-15 11:40:10', '2018-06-15 11:40:14');
-INSERT INTO `m_categories` VALUES (50, '', 'Tiểu thuyết tình cảm', 3, 1, 1, 0, 0, '2018-06-15 11:41:01', '2018-06-15 11:41:04');
-INSERT INTO `m_categories` VALUES (51, '', 'Văn học việt nam', 3, 1, 1, 0, 0, '2018-06-15 11:41:23', '2018-06-15 11:41:26');
-INSERT INTO `m_categories` VALUES (52, '', 'Văn học nước ngoài', 3, 1, 1, 0, 0, '2018-06-15 11:41:57', '2018-06-15 11:42:00');
-INSERT INTO `m_categories` VALUES (53, '', 'Truyện ngắn, tản văn', 3, 1, 1, 0, 0, '2018-06-15 11:42:18', '2018-06-15 11:42:21');
-INSERT INTO `m_categories` VALUES (54, '', 'Sách kỹ năng làm việc', 4, 1, 1, 0, 0, '2018-06-15 11:46:05', '2018-06-15 11:46:13');
-INSERT INTO `m_categories` VALUES (55, '', 'Sách lập trình', 0, 1, 1, 1, 0, '2018-07-06 10:51:44', '2018-07-06 10:51:47');
-INSERT INTO `m_categories` VALUES (56, '', 'Lập trình Javascript căn bản', 55, 1, 1, 0, 0, '2018-07-06 10:52:38', '2018-07-06 10:52:41');
-INSERT INTO `m_categories` VALUES (57, '', 'Lập trình React JS', 55, 1, 1, 0, 0, '2018-07-06 13:29:33', '2018-07-06 13:29:37');
-INSERT INTO `m_categories` VALUES (58, '', 'Làm quen với PHP', 55, 1, 1, 0, 0, '2018-07-06 15:48:40', '2018-07-06 15:48:44');
+INSERT INTO `m_categories` VALUES (1, NULL, 'Sách thiếu nhi', 0, 1, 1, 1, 0, '2018-06-15 11:36:32', '2018-06-15 11:36:32');
+INSERT INTO `m_categories` VALUES (2, NULL, 'Sách kỹ năng sống', 0, 2, 1, 1, 0, '2018-06-15 11:36:32', '2018-06-15 11:36:32');
+INSERT INTO `m_categories` VALUES (3, NULL, 'Sách tiểu thuyết,văn học', 0, 2, 1, 1, 0, '2018-06-15 11:36:32', '2018-06-15 11:36:32');
+INSERT INTO `m_categories` VALUES (4, NULL, 'Sách kinh tế', 0, 3, 1, 1, 0, '2018-06-15 11:36:32', '2018-06-15 11:36:32');
+INSERT INTO `m_categories` VALUES (5, NULL, 'Sách học ngoại ngữ', 0, 3, 1, 1, 0, '2018-06-15 11:36:32', '2018-06-15 11:36:32');
+INSERT INTO `m_categories` VALUES (6, NULL, 'Sách tham khảo', 0, 2, 1, 1, 0, '2018-06-15 11:36:32', '2018-06-15 11:36:32');
+INSERT INTO `m_categories` VALUES (7, NULL, 'Sách thiếu nhi ( 0-6 tuổi)', 1, 1, 1, 0, 0, '2018-06-15 11:36:32', '2018-06-15 11:36:32');
+INSERT INTO `m_categories` VALUES (45, NULL, 'Sách thiếu nhi (6-11 tuổi)', 1, 2, 1, 0, 0, '2018-06-15 11:37:14', '2018-06-15 11:37:17');
+INSERT INTO `m_categories` VALUES (46, NULL, 'Sách thiếu niên (11-15 tuổi)', 1, 22, 1, 0, 0, '2018-06-15 11:38:01', '2018-06-15 11:38:05');
+INSERT INTO `m_categories` VALUES (47, NULL, 'Sách tư duy, kỹ năng sống', 2, 1, 1, 0, 0, '2018-06-15 11:39:17', '2018-06-15 11:39:20');
+INSERT INTO `m_categories` VALUES (48, NULL, 'Sách hướng nghiệp', 2, 1, 1, 0, 0, '2018-06-15 11:39:39', '2018-06-15 11:39:43');
+INSERT INTO `m_categories` VALUES (49, NULL, 'Sách nghệ thuật sống đẹp', 2, 1, 1, 0, 0, '2018-06-15 11:40:10', '2018-06-15 11:40:14');
+INSERT INTO `m_categories` VALUES (50, NULL, 'Tiểu thuyết tình cảm', 3, 1, 1, 0, 0, '2018-06-15 11:41:01', '2018-06-15 11:41:04');
+INSERT INTO `m_categories` VALUES (51, NULL, 'Văn học việt nam', 3, 1, 1, 0, 0, '2018-06-15 11:41:23', '2018-06-15 11:41:26');
+INSERT INTO `m_categories` VALUES (52, NULL, 'Văn học nước ngoài', 3, 1, 1, 0, 0, '2018-06-15 11:41:57', '2018-06-15 11:42:00');
+INSERT INTO `m_categories` VALUES (53, NULL, 'Truyện ngắn, tản văn777777', 3, 1, 1, 0, 0, '2018-06-15 11:42:18', '2018-06-15 11:42:21');
+INSERT INTO `m_categories` VALUES (54, NULL, 'Sách kỹ năng làm việc', 4, 1, 1, 0, 0, '2018-06-15 11:46:05', '2018-06-15 11:46:13');
+INSERT INTO `m_categories` VALUES (55, NULL, 'Sách lập trình', 0, 1, 1, 1, 0, '2018-07-06 10:51:44', '2018-07-06 10:51:47');
+INSERT INTO `m_categories` VALUES (56, NULL, 'Lập trình Javascript căn bản', 55, 1, 1, 0, 0, '2018-07-06 10:52:38', '2018-07-06 10:52:41');
+INSERT INTO `m_categories` VALUES (57, NULL, 'Lập trình React JS', 55, 1, 1, 0, 0, '2018-07-06 13:29:33', '2018-07-06 13:29:37');
+INSERT INTO `m_categories` VALUES (58, NULL, 'Làm quen với PHP', 55, 1, 1, 0, 0, '2018-07-06 15:48:40', '2018-07-06 15:48:44');
+INSERT INTO `m_categories` VALUES (60, NULL, 'Sách lập trình căn bản', 0, 2, 1, 1, 0, '2018-07-12 15:27:47', '2018-07-12 15:27:47');
+INSERT INTO `m_categories` VALUES (61, NULL, 'Lập trình C#', 60, 1, 1, 0, 1, '2018-07-12 16:23:23', '2018-07-12 16:23:23');
 
 -- ----------------------------
 -- Table structure for m_categories_detail
@@ -190,18 +193,12 @@ CREATE TABLE `m_product_details`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of m_product_details
 -- ----------------------------
-INSERT INTO `m_product_details` VALUES (1, 4, 1, 1, 1, '13.5 x 20.5 cm', 152, '2018-06-15', 'Bìa mềm', '2018-06-15 11:21:16', '2018-06-15 11:21:18');
-INSERT INTO `m_product_details` VALUES (2, 5, 2, 2, 2, '17 x 24 cm', 384, '2017-07-15', 'Bìa mềm', '2018-06-15 11:27:49', '2018-06-15 11:27:52');
-INSERT INTO `m_product_details` VALUES (3, 6, 3, 3, 3, '17 x 24 cm', 292, '2018-06-14', 'Bìa mềm', '2018-06-15 11:31:05', '2018-06-15 11:31:08');
-INSERT INTO `m_product_details` VALUES (4, 3, 4, 4, 4, '14 x 20 cm', 796, '2018-06-18', 'Bìa mềm', '2018-06-18 10:29:08', '2018-06-18 10:29:11');
-INSERT INTO `m_product_details` VALUES (10, 12, 3, 3, 3, '150x190', 150, '2018-07-20', 'bìa cứng', '2018-07-06 10:54:32', '2018-07-06 10:54:32');
-INSERT INTO `m_product_details` VALUES (11, 13, 3, 3, 4, '170x23', 250, '2018-07-20', 'Bìa mềm', '2018-07-06 13:51:38', '2018-07-06 13:51:38');
-INSERT INTO `m_product_details` VALUES (12, 14, 3, 2, 1, '150x456', 250, '2018-07-06', 'bìa cứng', '2018-07-06 15:49:58', '2018-07-06 15:49:58');
+INSERT INTO `m_product_details` VALUES (14, 16, 2, 4, 4, '13.5 x 20.5 cm', 300, '2018-07-11', 'Bìa mềm', '2018-07-13 14:43:54', '2018-07-13 14:43:54');
 
 -- ----------------------------
 -- Table structure for m_product_images
@@ -215,15 +212,17 @@ CREATE TABLE `m_product_images`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of m_product_images
 -- ----------------------------
-INSERT INTO `m_product_images` VALUES (1, 3, 'Zoom', 'TTVH_01_zoom_01.jpg', '2018-06-18 10:25:10', '2018-06-18 10:25:13');
-INSERT INTO `m_product_images` VALUES (2, 3, 'Detail', 'TTVH_01_detail_01.jpg', '2018-06-18 10:34:46', '2018-06-18 10:34:50');
-INSERT INTO `m_product_images` VALUES (3, 3, 'Zoom', 'TTVH_01_zoom_02.jpg', '2018-06-19 15:56:00', '2018-06-19 15:56:03');
-INSERT INTO `m_product_images` VALUES (4, 3, 'Detail', 'TTVH_01_detail_02.jpg', '2018-06-19 15:56:33', '2018-06-19 15:56:35');
+INSERT INTO `m_product_images` VALUES (4, 3, 'Detail', 'TTVH_01_zoom_02.jpg', '2018-06-19 15:56:33', '2018-06-19 15:56:35');
+INSERT INTO `m_product_images` VALUES (11, 14, 'Detail', 'ProgramingJS.jpg', '2018-07-09 14:47:19', '2018-07-09 14:47:19');
+INSERT INTO `m_product_images` VALUES (12, 15, 'Detail', 'sach-doi-ngan-dung-ngu-dai.png', '2018-07-09 15:08:55', '2018-07-09 15:08:55');
+INSERT INTO `m_product_images` VALUES (13, 15, 'Detail', '9b5e2bac8229beb690ee703cd47c391c.jpg', '2018-07-09 15:08:55', '2018-07-09 15:08:55');
+INSERT INTO `m_product_images` VALUES (14, 3, 'Detail', 'TTVH_01_zoom_01.jpg', '2018-07-09 15:29:02', '2018-07-09 15:29:05');
+INSERT INTO `m_product_images` VALUES (15, 16, 'Detail', 'react-native-cookbook-stan-bershadskiy(www.ebook-dl.com)_Large.jpg', '2018-07-11 13:17:07', '2018-07-11 13:17:07');
 
 -- ----------------------------
 -- Table structure for m_products
@@ -247,20 +246,12 @@ CREATE TABLE `m_products`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`product_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of m_products
 -- ----------------------------
-INSERT INTO `m_products` VALUES (1, 'TN_01', 'Tuổi Thơ Dữ Dội (Bản Mới 2013)', 7, 72500.00, NULL, NULL, NULL, 'Nhắc đến Phùng Quán, người ta sẽ nhớ ngay tới một cây bút lạ kỳ trong nền văn học Việt Nam với một tác phẩm thiếu nhi vô cùng chân thực và xúc động về một thế hệ trẻ anh hùng:', 'Tuổi thơ dữ dội - cuốn truyện xoay quanh cuộc sống chiến đấu và hy sinh của những thiếu niên 13, 14 tuổi trong hàng ngũ Đội thiếu niên trinh sát của trung đoàn Trần Cao Vân. Những Lượm, Mừng, Quỳnh sơn ca, Hòa đen, Bồng da rắn, Vịnh sưa, Tư dát... mỗi người một hoàn cảnh song đều chung quyết tâm, nhiệt huyết và lòng yêu nước, đã tham gia chiến đấu hết mình và hy sinh khi tuổi đời còn rất trẻ.\r\n\r\nĐúng như tên truyện, độc giả sẽ bắt gặp ở đó những chi tiết thực sự dữ dội về cuộc đời thiếu niên bất hạnh, về cuộc chiến tranh chống giặc tàn khốc nhưng ẩn sâu bên trong ta vẫn thấy những tâm hồn trong sáng và vô tư, thấy sự can trường, dũng cảm phi thường của nhân vật. Tất cả những ai đã từng đọc tác phẩm này hầu như đều không ngăn được xúc động và những giọt nước mắt cảm thương, cảm phục. Đây thực sự là một tác phẩm quý trong kho tàng văn học Việt Nam. Một câu chuyện khơi dậy trong mỗi người tình yêu đất nước và niềm trân trọng ký ức tuổi thơ...', NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `m_products` VALUES (2, 'KNS_01', 'Hiểu Người Để Dùng Người', 47, 40000.00, NULL, NULL, NULL, 'Hiểu Người Để Dùng Người', 'Hiểu người để dùng người là một trước tác lí luận, nhận xét đánh giá tài năng, tính cách của nhân vật một cách có hệ thống, cũng là cuốn sách quan trọng dùng để nghiên cứu tư tưởng học thuật, tâm lý học, nhân tài học trong thời kì Ngụy Tấn. Cuốn sách mang tư tưởng của các nho giáo, đạo gia, danh gia, pháp gia, và âm dương gia, Lưu Thiệu đã đem các loại tư tưởng đó hòa trộn lại dùng để phê bình quan sát nhân vật, đối với việc giám định tài năng tính tình của nhân vật đã có sự luận thuật tương đối toàn diện và hệ thống.\r\n\r\nSách bao gồm ba quyển, mười hai thiên. Nội dung chủ yếu bao gồm: Những nguyên tắc cơ bản của việc xem xét và phân biệt nhân tài cùng với phương pháp nhận thức giám định, phân loại các loại hình nhân tài khác nhau cùng với việc thích hợp gánh vác chức vụ, tám loại được mất trong cách ứng xử khôn ngoan, phân tích sự hiếu thắng với khiêm nhường, v.v… Nghệ thuật hiểu biết giám định nhân tài, phương pháp dùng người theo năng lực cùng với việc phân tích tính người được giảng giải trong sách này, đối với con người trong hiện tại, vẫn rất có giá trị lấy đó làm gương.', NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `m_products` VALUES (3, 'TTVH_01', 'Trăng Non (Tái Bản Năm 2018)', 52, 154000.00, NULL, NULL, NULL, 'Trăng non nói về tiểu thuyết ma cà rồng', 'Tiếp theo Chạng vạng, tập sách Trăng non viết về chuyện tình lãng mạn giữa cô gái và người yêu ma cà rồng, với những diễn biến mới đầy kịch tính. Tuy chọn đề tài kinh dị nhưng bút pháp của tác giả rất tinh tế, sâu sắc, đầy tính nhân văn và bay bổng với những chi tiết lãng mạn. Sách là một cuốn tiểu thuyết giả tưởng lãng mạn của nhà văn nữ Stephenie Meyer dành cho bạn đọc yêu thích thể loại văn học kinh dị, nhất là bạn đọc trẻ.', 'TTVH_01_main.jpg', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `m_products` VALUES (4, 'TT_01', 'Khám Phá Tiềm Năng Trong Bạn - Tối Đa Hóa Sự Tự Tin', 54, 41250.00, NULL, NULL, NULL, 'Bạn có cảm thấy rằng dù mình có chăm chỉ đến đâu cũng vẫn chỉ dậm chân tại chỗ? Không hướng đi, không mục đích và mắc kẹt trong một lối mòn cũ rích.', 'Bạn sẽ làm gì nếu bạn biết chính xác cách tận dụng điểm mạnh và giảm tối thiểu điểm yếu của mình? Đã đến lúc bạn phải bứt phá khỏi lối mòn cũ rích kia và nhận ra những thứ giúp Khám phá tiềm năng trong bạn.\r\n\r\nCon đường duy nhất dẫn đến thành công là hiểu chính mình, cả trong lẫn ngoài.\r\n\r\nDựa vào thuyết đa thông minh của giáo sư Howard Gardner, bạn sẽ tìm ra điểm mạnh của mình, những phương thức độc đáo để nâng cao điểm mạnh ấy và cuối cùng là sử dụng chúng để đưa bạn đến thành công rồi bạn sẽ có cuộc sống mình luôn mong muốn.\r\n\r\nTìm hiểu 8+1 loại trí thông minh và những bài nghiên cứu về các phương pháp đã được chứng minh để cải thiện từng loại trí thông minh ấy. Hiểu cách khám phá và phát huy tối đa thế mạnh bẩm sinh trong bạn, cách biến công việc của bạn trở nên chuyên nghiệp, cách chia mục tiêu cuộc đời thành những nhiệm vụ nhỏ và dễ dàng hàng ngày rồi nhiều hơn thế.', 'TT_01_main.jpg', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `m_products` VALUES (5, 'NN_01', 'Giải Thích Ngữ Pháp Tiếng Anh Với Bài Tập Và Đáp Án (Ấn Bản 2017)', 5, 60000.00, NULL, NULL, NULL, 'Sách Giải Thích Ngữ Pháp Tiếng Anh Với Bài Tập Và Đáp Án được biên soạn thành 9 chương, đề cập đến những vấn đề ngữ pháp từ cơ bản đến nâng cao.', 'Nội dung các chương được biên soạn dựa trên ngữ pháp tiiếng Anh hiện đại, giải thích cặn kẽ, rõ ràng các cách dùng và quy luật mà người học cần nắm vững: đồng thời chỉ ra những quy luật khác nhau giữa tiếng anh của người Anh (British English) và tiếng Anh của người Mỹ (American English).\r\n\r\nCuối mỗi phần ngữ pháp đều có bài tập đa dạng để giúp người học nắm vững phần lý thuyết. Hơn nữa, hiện nay hình thức thi trắc nghiệm đang được áp dụng trong các kỳ thi, nên trong sách này chúng tôi biên soạn một số phần bài tập trắc nghiệm để đáp ứng nhu cầu của người học trong tình hình mới.\r\n\r\nHy vọng Giải Thích Ngữ Pháp Tiếng Anh sẽ là một quyển sách thiết thực, đáp ứng yêu cầu học, ôn tập và nâng cao trình độ ngữ pháp cho người học và là quyển sách tham khảo bổ ích dành cho giáo viên.', NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `m_products` VALUES (6, 'TK_01', 'Bí Quyết Giải Toán Siêu Tốc Môn Vật Lí Quyển Thượng', 6, 72000.00, NULL, NULL, NULL, 'Bí Quyết Giải Toán Siêu Tốc Môn Vật Lí Quyển Thượng', 'Bộ sách Bí Quyết Giải Toán Siêu Tốc Môn Vật Lí có thể được xem như một cuốn \"Bách khoa toàn thư về Vật Lí\", nơi mà các em có thể tìm thấy cấu trả lời cho mọi câu hỏi có liên quan đến chương trình Vật Lí phổ thông, giúp các em có thể tự ôn tập và nắm vững kiến thức nhanh nhất, hiệu quả nhất, phục vụ cho Kì thi THPT Quốc Gia.\r\n\r\nBộ sách Bí Quyết Giải Toán Siêu Tốc Môn Vật Lí cũng là một tài liệu quý giá cho học sinh cấp ba, sinh viên học vật lý đại cương và các thầy cô giáo.\r\n\r\nNội dung cuốn sách Bí Quyết Giải Toán Siêu Tốc Môn Vật Lí được biên soạn theo từng dạng bài, từng chương như trong chương trình học trên lớp và định hướng ra đề thi mới nhất của Bộ Giáo dục và Đào tạo. Trong mỗi dạng bài đều đưa ra phương pháp giải tổng quát và công thức độc lạ giúp các em có thể giải rất nhanh. Cuối mỗi dạng bài là các ví dụ mẫu được giải chi tiết với nhiều phương pháp giải độc đáo, mới lạ cho một bài toán.', NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `m_products` VALUES (12, 'PR001', 'Programing JS', 56, 170000.00, NULL, NULL, NULL, 'Demo', 'Demo', 'ProgramingJS.jpg', 0, 1, NULL, '2018-07-06 10:54:32', '2018-07-06 10:54:32');
-INSERT INTO `m_products` VALUES (13, 'PR002', 'Learning React', 57, 175000.00, NULL, NULL, NULL, 'Good', 'Good', 'ReactJS.png', 0, 1, NULL, '2018-07-06 13:51:38', '2018-07-06 13:51:38');
-INSERT INTO `m_products` VALUES (14, 'PR003', 'Learning PHP', 58, 150000.00, NULL, NULL, NULL, 'Demo', 'Demo', 'LearningPHP.jpg', 0, 1, NULL, '2018-07-06 15:49:58', '2018-07-06 15:49:58');
+INSERT INTO `m_products` VALUES (16, 'PR001', 'Programing JS', 57, 175000.00, NULL, NULL, NULL, 'Demo123', 'Demo123456', 'ProgramingJS.jpg', 0, 1, NULL, '2018-07-13 14:43:53', '2018-07-13 14:43:53');
 
 -- ----------------------------
 -- Table structure for m_promotion
@@ -280,6 +271,8 @@ DROP TABLE IF EXISTS `m_publishers`;
 CREATE TABLE `m_publishers`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `sort` int(11) NULL DEFAULT NULL,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
@@ -288,10 +281,10 @@ CREATE TABLE `m_publishers`  (
 -- ----------------------------
 -- Records of m_publishers
 -- ----------------------------
-INSERT INTO `m_publishers` VALUES (1, 'Nhà Xuất Bản Lao Động', '2018-06-15 11:19:22', '2018-06-15 11:19:25');
-INSERT INTO `m_publishers` VALUES (2, 'Nhà Xuất Bản Đà Nẵng', '2018-06-15 11:26:47', '2018-06-15 11:26:49');
-INSERT INTO `m_publishers` VALUES (3, 'Nhà Xuất Bản Đại Học Quốc Gia Hà Nội', '2018-06-15 11:30:10', '2018-06-15 11:30:13');
-INSERT INTO `m_publishers` VALUES (4, 'Nhà xuất bản trẻ', '2018-06-18 10:28:06', '2018-06-18 10:28:09');
+INSERT INTO `m_publishers` VALUES (1, 'Nhà Xuất Bản Lao Động', NULL, 1, '2018-06-15 11:19:22', '2018-06-15 11:19:25');
+INSERT INTO `m_publishers` VALUES (2, 'Nhà Xuất Bản Đà Nẵng', NULL, 2, '2018-06-15 11:26:47', '2018-06-15 11:26:49');
+INSERT INTO `m_publishers` VALUES (3, 'Nhà Xuất Bản Đại Học Quốc Gia Hà Nội', NULL, 3, '2018-06-15 11:30:10', '2018-06-15 11:30:13');
+INSERT INTO `m_publishers` VALUES (4, 'Nhà xuất bản trẻ', NULL, 4, '2018-06-18 10:28:06', '2018-06-18 10:28:09');
 
 -- ----------------------------
 -- Table structure for m_release_companys
@@ -300,6 +293,7 @@ DROP TABLE IF EXISTS `m_release_companys`;
 CREATE TABLE `m_release_companys`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
@@ -308,10 +302,10 @@ CREATE TABLE `m_release_companys`  (
 -- ----------------------------
 -- Records of m_release_companys
 -- ----------------------------
-INSERT INTO `m_release_companys` VALUES (1, 'Pandabooks', '2018-06-15 11:19:06', '2018-06-15 11:19:09');
-INSERT INTO `m_release_companys` VALUES (2, 'Zenbooks', '2018-06-15 11:26:30', '2018-06-15 11:26:33');
-INSERT INTO `m_release_companys` VALUES (3, '	Nhà Sách Hồng Ân', '2018-06-15 11:29:54', '2018-06-15 11:29:58');
-INSERT INTO `m_release_companys` VALUES (4, 'Nhà xuất bản trẻ', '2018-06-18 10:27:34', '2018-06-18 10:27:37');
+INSERT INTO `m_release_companys` VALUES (1, 'Pandabooks', NULL, '2018-06-15 11:19:06', '2018-06-15 11:19:09');
+INSERT INTO `m_release_companys` VALUES (2, 'Zenbooks', NULL, '2018-06-15 11:26:30', '2018-06-15 11:26:33');
+INSERT INTO `m_release_companys` VALUES (3, '	Nhà Sách Hồng Ân', NULL, '2018-06-15 11:29:54', '2018-06-15 11:29:58');
+INSERT INTO `m_release_companys` VALUES (4, 'Nhà xuất bản trẻ', NULL, '2018-06-18 10:27:34', '2018-06-18 10:27:37');
 
 -- ----------------------------
 -- Table structure for m_shipment_types
