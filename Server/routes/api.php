@@ -45,3 +45,18 @@ Route::get('getCategoryById','CategoryController@getCategoryById')->middleware('
 Route::get('deleteCategory','CategoryController@deleteCategory')->middleware('cors');
 
 Route::post('updateCategoryParent','CategoryController@updateCategoryParent')->middleware('cors');
+
+Route::get('getPublisherById','PublisherController@getPublisherById')->middleware('cors');
+Route::post('savePublisher','PublisherController@savePublisher')->middleware('cors');
+Route::get('deletePublisher','PublisherController@deletePublisher')->middleware('cors');
+
+
+
+Route::get('getAuthorById','AuthorController@getAuthorById')->middleware('cors');
+Route::post('saveAuthor','AuthorController@saveAuthor')->middleware('cors');
+Route::get('deleteAuthor','AuthorController@deleteAuthor')->middleware('cors');
+
+
+Route::get('getReleaseCompanyById','ReleaseCompanyController@getReleaseCompanyById')->middleware('cors');
+Route::post('saveReleaseCompany','ReleaseCompanyController@saveReleaseCompany')->middleware('cors');
+Route::get('deleteReleaseCompany','ReleaseCompanyController@deleteReleaseCompany')->middleware('cors');

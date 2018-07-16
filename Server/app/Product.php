@@ -16,7 +16,7 @@ class Product extends Model
     protected $table='m_products';
 
     protected $fillable = [
-        'product_id', 'product_code', 'product_name','category_id',
+        'product_id', 'product_code', 'product_name','category_id','IsDelete',
         'product_price_base','IsPublic','product_content','product_detail'
     ];
     public function product_detail_relationship()
@@ -83,7 +83,7 @@ class Product extends Model
     {
         $result = null;
         try {
-            $product = DB::table('m_products')->where('IsDelete',0)
+            $product = DB::table('m_products')->where('m_products.IsDelete',0)
                     ->leftJoin('m_product_details','m_products.product_id','=','m_product_details.id_product')
                     ->leftJoin('m_authors','m_product_details.id_author','=','m_authors.id')
                     ->leftJoin('m_publishers','m_product_details.id_publisher','=','m_publishers.id')

@@ -11,4 +11,26 @@ class AuthorController extends Controller
     	$model = new Author();
     	return response()->json(['status'=>'success','data'=>$model->getAll()]);
     }
+    public function getAuthorById(Request $req)
+    {
+    	$model = new Author();
+    	return response()->json(['status'=>'success','data'=>$model->getAuthorById($req->get('idAuthor'))]);
+    }
+    public function saveAuthor(Request $req)
+    {
+        $model = new Author();
+        $objAuthor = json_decode($req->get('author'));
+        
+        foreach ($objAuthor as $key => $value) {
+            $arrayAuthor[$key] = $value ;
+        }
+        return response()->json(['status'=>'success','data'=>$model->saveAuthor($arrayAuthor)]);
+
+    }
+
+    public function deleteAuthor(Request $req)
+    {
+        $model = new Author();
+        return response()->json(['status'=>'success','data'=>$model->deleteAuthor($req->get('idAuthor'))]);
+    }
 }

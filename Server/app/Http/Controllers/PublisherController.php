@@ -16,4 +16,21 @@ class PublisherController extends Controller
     	$model = new Publisher();
     	return response()->json(['status'=>'success','data'=>$model->getPublisherById($req->get('idPublisher'))]);
     }
+    public function savePublisher(Request $req)
+    {
+        $model = new Publisher();
+        $objPublisher = json_decode($req->get('publisher'));
+        
+        foreach ($objPublisher as $key => $value) {
+            $arrayPublisher[$key] = $value ;
+        }
+        return response()->json(['status'=>'success','data'=>$model->savePublisher($arrayPublisher)]);
+
+    }
+
+    public function deletePublisher(Request $req)
+    {
+        $model = new Publisher();
+        return response()->json(['status'=>'success','data'=>$model->deletePublisher($req->get('idPublisher'))]);
+    }
 }
