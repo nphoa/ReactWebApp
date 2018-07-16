@@ -2,9 +2,9 @@ import {delay} from 'redux-saga';
 import{all} from 'redux-saga/effects';
 import {watchGetAllProduct,watchGetProductById} from './product.Saga';
 import {watchGetAllCategory,watchGetCategoryById} from './Category.Saga';
-import {watchGetAllAuthor} from './author.Saga';
-import {watchGetAllPublisher} from './publisher.Saga';
-import {watchGetAllReleaseCompany} from './releaseCompany.Saga';
+import {watchGetAllAuthor,watchGetAuthorById} from './author.Saga';
+import {watchGetAllPublisher,watchGetPublisherById} from './publisher.Saga';
+import {watchGetAllReleaseCompany,watchGetReleaseCompanyById} from './releaseCompany.Saga';
 export default function* rootSaga(){
     yield all([
         watchGetCategoryById(),
@@ -13,6 +13,9 @@ export default function* rootSaga(){
         watchGetAllCategory(),
         watchGetAllAuthor(),
         watchGetAllReleaseCompany(),
-        watchGetAllPublisher()
+        watchGetAllPublisher(),
+        watchGetPublisherById(),
+        watchGetAuthorById(),
+        watchGetReleaseCompanyById()
     ]);
 }

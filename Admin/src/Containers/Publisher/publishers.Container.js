@@ -15,6 +15,9 @@ const mapDispatchToProps = (dispatch,props) => {
         getAllPublisher:()=>{
             dispatch(actions.getAllPublisher());
         },
+        resetPublisher:()=>{
+            dispatch(actions.resetPublisher());
+        }
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(PublishersComponent);

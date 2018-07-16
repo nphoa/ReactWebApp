@@ -22,3 +22,17 @@ export function* watchGetAllReleaseCompany(){
 }
 
 
+function* getReleaseCompanyById(action){
+    // console.log(action);
+     let data = null;
+     yield callApi(`${urls.GET_RELEASECOMPANY_BY_ID}/?idReleaseCompany=${action.id}`,'GET').then((res)=>{
+         data = res.data.data;
+     });
+     yield put(actions.getReleaseCompanyById_Success(data));
+     
+ }
+ 
+ 
+ export function* watchGetReleaseCompanyById(){
+     yield takeEvery(types.GET_RELEASE_COMPANY_BY_ID,getReleaseCompanyById);
+ }

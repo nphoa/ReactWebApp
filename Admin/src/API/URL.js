@@ -14,3 +14,12 @@ export const UPDATE_CATEGORY_PARENT = 'http://localhost:8000/api/updateCategoryP
 export const SAVE_PUBLISHER = 'http://localhost:8000/api/savePublisher';
 export const DELETE_PUBLISHER = 'http://localhost:8000/api/deletePublisher';
 export const GET_PUBLISHER_BY_ID = 'http://localhost:8000/api/getPublisherById';
+
+
+export const SAVE_AUTHOR = 'http://localhost:8000/api/saveAuthor';
+export const GET_AUTHOR_BY_ID = 'http://localhost:8000/api/getAuthorById';
+export const DELETE_AUTHOR = 'http://localhost:8000/api/deleteAuthor';
+
+export const SAVE_RELEASECOMPANY= 'http://localhost:8000/api/saveReleaseCompany';
+export const GET_RELEASECOMPANY_BY_ID = 'http://localhost:8000/api/getReleaseCompanyById';
+export const DELETE_RELEASECOMPANY = 'http://localhost:8000/api/deleteReleaseCompany';

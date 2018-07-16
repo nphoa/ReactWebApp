@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import{connect} from 'react-redux';
-import PublishersComponent from '../../Components/Publisher/publishers.Component';
+import PublisherAddComponent from '../../Components/Publisher/publisherAdd.Component';
 import * as actions from '../../Actions/index';
 
 
 const mapStateToProps = (state) => {
   return{
-    publishers:state.publisher.publishers
-    
+    publishers:state.publisher.publishers,
+    formPublisherAddField:state.form.publisherAdd
   }
 }
 const mapDispatchToProps = (dispatch,props) => {
@@ -15,9 +15,12 @@ const mapDispatchToProps = (dispatch,props) => {
         getAllPublisher:()=>{
             dispatch(actions.getAllPublisher());
         },
+        getPublisherById:(id)=>{
+            dispatch(actions.getPublisherById(id));
+        },
         resetPublisher:()=>{
             dispatch(actions.resetPublisher());
         },
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(PublishersComponent);
+export default connect(mapStateToProps,mapDispatchToProps)(PublisherAddComponent);

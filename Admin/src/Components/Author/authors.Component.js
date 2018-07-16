@@ -4,7 +4,7 @@ import * as urls from '../../API/URL';
 import apiCaller from '../../API/apiCaller';
 import swal from 'sweetalert';
 import moment from 'moment';
-class PublishersComponent extends Component {
+class AuthorComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,11 +15,11 @@ class PublishersComponent extends Component {
 
 
   componentDidMount(){
-      this.props.getAllPublisher();
+      this.props.getAllAuthor();
   }
-  showListPublisher = (publishers) =>{
+  showListAuthor = (authors) =>{
     let result = null;
-    result = publishers.map((item,index)=>{
+    result = authors.map((item,index)=>{
       let createDate = moment(item.created_at).format('DD-MM-YYYY');
       return (
           <tr key={index}>
@@ -28,27 +28,27 @@ class PublishersComponent extends Component {
             <td style={{width:'38%'}}>{item.description}</td>
             <td style={{width:'10%'}}>{createDate}</td>
             <td style={{width:'22%'}}>
-                <Link to={`/publisher/add/${item.id}`}  className="btn btn-warning hvr-grow-rotate">Edit</Link>
-                <button style={{marginLeft:'5px',marginRight:'7px'}} onClick={() => this.deletePublisher(item.id)} className="btn btn-info hvr-grow-rotate">Delete</button>
+                <Link to={`/author/add/${item.id}`}  className="btn btn-warning hvr-grow-rotate">Edit</Link>
+                <button style={{marginLeft:'5px',marginRight:'7px'}} onClick={() => this.deleteAuthor(item.id)} className="btn btn-info hvr-grow-rotate">Delete</button>
             </td>
           </tr>
       )
     });
     return result;
   }
-  deletePublisher = (idPublisher) => {
+  deleteAuthor = (idAuthor) => {
     swal({
       title: "Confirm !",
-      text: "Confirm delete this publisher ?",
+      text: "Confirm delete this author ?",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     })
     .then((willDelete) => {
       if (willDelete) {
-        apiCaller(`${urls.DELETE_PUBLISHER}/?idPublisher=${idPublisher}`,'GET').then(res=>{
+        apiCaller(`${urls.DELETE_AUTHOR}/?idAuthor=${idAuthor}`,'GET').then(res=>{
           if(res.data.data){
-            this.props.getAllPublisher();
+            this.props.getAllAuthor();
           }
         });
       } else {
@@ -60,9 +60,9 @@ class PublishersComponent extends Component {
     return (
       <div className="panel panel-widget">
         <div className="tables">
-          <h4>Danh sách nhà xuất bản:</h4>
+          <h4>Danh sách tác giả:</h4>
           <br/>
-          <Link to="/publisher/add" onClick={()=>this.props.resetPublisher}   className="btn btn-primary hvr-grow-rotate">Add New</Link>
+          <Link to="/author/add" onClick={()=>this.props.resetAuthor}   className="btn btn-primary hvr-grow-rotate">Add New</Link>
           <table className="table">
             <thead>
               <tr>
@@ -74,7 +74,7 @@ class PublishersComponent extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.showListPublisher(this.props.publishers)}
+              {this.showListAuthor(this.props.authors)}
             </tbody>
           </table>
         </div>
@@ -85,4 +85,4 @@ class PublishersComponent extends Component {
   }
 }
 
-export default PublishersComponent;
+export default AuthorComponent;

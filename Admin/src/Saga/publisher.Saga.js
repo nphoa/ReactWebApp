@@ -21,4 +21,17 @@ export function* watchGetAllPublisher(){
     yield takeEvery(types.GET_ALL_PUBLISHER,getAllPublisher);
 }
 
-
+function* getPublisherById(action){
+    // console.log(action);
+     let data = null;
+     yield callApi(`${urls.GET_PUBLISHER_BY_ID}/?idPublisher=${action.id}`,'GET').then((res)=>{
+         data = res.data.data;
+     });
+     yield put(actions.getPublisherById_Success(data));
+     
+ }
+ 
+ 
+ export function* watchGetPublisherById(){
+     yield takeEvery(types.GET_PUBLISHER_BY_ID,getPublisherById);
+ }

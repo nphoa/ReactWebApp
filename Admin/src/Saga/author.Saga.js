@@ -22,3 +22,17 @@ export function* watchGetAllAuthor(){
 }
 
 
+function* getAuthorById(action){
+    // console.log(action);
+     let data = null;
+     yield callApi(`${urls.GET_AUTHOR_BY_ID}/?idAuthor=${action.id}`,'GET').then((res)=>{
+         data = res.data.data;
+     });
+     yield put(actions.getAuthorById_Success(data));
+     
+ }
+ 
+ 
+ export function* watchGetAuthorById(){
+     yield takeEvery(types.GET_AUTHOR_BY_ID,getAuthorById);
+ }

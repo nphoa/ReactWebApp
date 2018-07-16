@@ -12,11 +12,11 @@ const requiredSelect = value => (typeof value === 'number' || value > 0 ? undefi
 
 
 
-class PublisherAddComponent extends Component {
+class ReleaseCompanyAddComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        redirectPublisher:false
+        redirectReleaseCompany:false
     };
   }
   
@@ -24,33 +24,20 @@ class PublisherAddComponent extends Component {
     // if(this.props.categories != null &&  this.props.categories.length == 0){
     //     this.props.getAllCategory();
     // }
-    console.log(this.props.match);
-    if(this.props.match.params.idPublisher != undefined){
-        this.props.getPublisherById(this.props.match.params.idPublisher);
+    if(this.props.match.params.idReleaseCompany != undefined){
+        this.props.getReleaseCompanyById(this.props.match.params.idReleaseCompany);
     }
    
   }
 
 
-
-
-  showListCategoryParent = (categories) => {
-    let result = null;
-    result  = categories.map((item,index)=>{
-        return (
-            <option value={item.category_id} key={index}>{item.category_name}</option>
-        )
-    });
-    return result;
-  }
-
   submit = () => {
-    let values = this.props.formPublisherAddField.values;
+    let values = this.props.formReleaseCompanyAddField.values;
     let fd = new FormData();
-    fd.set('publisher',JSON.stringify(values));
-    apiCaller(urls.SAVE_PUBLISHER,'POST',fd).then((res)=>{
+    fd.set('releaseCompany',JSON.stringify(values));
+    apiCaller(urls.SAVE_RELEASECOMPANY,'POST',fd).then((res)=>{
       if(res.data.data){
-        swal("Success!", "Thêm nhà xuất bản thành công!", "success");
+        swal("Success!", "Thêm công ty phát hành thành công!", "success");
         this.setState({
             redirectPublisher:true
         });
@@ -130,16 +117,16 @@ class PublisherAddComponent extends Component {
 
 
 
-var RF_publisherAdd = reduxForm({
-  form:'publisherAdd',
+var RF_releaseCompanyAdd = reduxForm({
+  form:'releaseCompanyAdd',
   enableReinitialize :true,
   
-})(PublisherAddComponent);
+})(ReleaseCompanyAddComponent);
 
-RF_publisherAdd = connect(
+RF_releaseCompanyAdd = connect(
   
   state => ({
-    initialValues: state.publisher.publisherEditing
+    initialValues: state.releaseCompany.releaseCompanyEditing
   })
-)(RF_publisherAdd);
-export default RF_publisherAdd;
+)(RF_releaseCompanyAdd);
+export default RF_releaseCompanyAdd;

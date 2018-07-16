@@ -29,6 +29,9 @@ class Menu extends Component {
                     <li>
                       <Link to ="/author">Tác giả</Link>
                     </li>
+                    <li>
+                      <Link to ="/releaseCompany">Công ty phát hành</Link>
+                    </li>
                   </ul>
                   {/* /nav-second-level */}
                 </li>

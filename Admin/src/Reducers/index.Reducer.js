@@ -9,7 +9,7 @@ const appReducers = combineReducers({
 	form:formReducer,
 	product:productReducer,
 	categories:categoryReducer,
-	authors:authorReducer,
+	author:authorReducer,
 	publisher:publisherReducer,
 	releaseCompany:releaseCompanyReducer
 });

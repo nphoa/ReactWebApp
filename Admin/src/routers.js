@@ -9,6 +9,12 @@ import CategoryChildrenContainer from '../src/Containers/categoryChildren.Contai
 import CategoryAddContainer from '../src/Containers/categoryAdd.Container';
 import PublisherContainer from '../src/Containers/Publisher/publishers.Container';
 import PublisherAddContainer from '../src/Containers/Publisher/publisherAdd.Container';
+
+import AuthorContainer from '../src/Containers/Author/authors.Container';
+import AuthorAddContainer from '../src/Containers/Author/authorAdd.Container';
+
+import ReleaseCompanyContainer from '../src/Containers/ReleaseCompany/releaseCompanys.Container';
+import ReleaseCompanyAddContainer from '../src/Containers/ReleaseCompany/releaseCompanyAdd.Container';
 const routers = [
 	{
 		path: '/',
@@ -55,7 +61,26 @@ const routers = [
 		exact: true,
 		main: ({history,match}) => <PublisherAddContainer history = {history} match = {match}/>
 	},
-
+	{
+		path: '/author',
+		exact: true,
+		main: () => <AuthorContainer />
+	},
+	{
+		path: '/author/add/:idAuthor?',
+		exact: true,
+		main: ({history,match}) => <AuthorAddContainer history = {history} match = {match}/>
+	},
+	{
+		path: '/releaseCompany',
+		exact: true,
+		main: () => <ReleaseCompanyContainer />
+	},
+	{
+		path: '/releaseCompany/add/:idReleaseCompany?',
+		exact: true,
+		main: ({history,match}) => <ReleaseCompanyAddContainer history = {history} match = {match}/>
+	},
 ];
 
 export default routers;

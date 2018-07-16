@@ -12,6 +12,14 @@ var myReducer = (state = initialState,action) => {
 			state.publishers = action.publishers;
 			return {...state};
 			break;
+		case types.GET_PUBLISHER_BY_ID_SUCCESS:
+			state.publisherEditing = action.publisher;
+			return {...state};
+			break;
+		case types.RESET_PUBLISHER:
+			state.publisherEditing = {id:0};
+			return {...state};
+			break;
 		default:
 			//console.log(api.getAllProduct());
 			return {...state};

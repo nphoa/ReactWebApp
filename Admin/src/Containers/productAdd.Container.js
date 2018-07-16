@@ -8,9 +8,9 @@ const mapStateToProps = (state) => {
   return{
     productEdit:state.product.productEdit,
     categories:state.categories.categories,
-    authors:state.authors,
+    authors:state.author.authors,
     publishers:state.publisher.publishers,
-    releaseCompanys:state.releaseCompany,
+    releaseCompanys:state.releaseCompany.releaseCompanys,
     formAddField:state.form.productAdd
   }
 }

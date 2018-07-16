@@ -12,11 +12,11 @@ const requiredSelect = value => (typeof value === 'number' || value > 0 ? undefi
 
 
 
-class PublisherAddComponent extends Component {
+class AuthorAddComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        redirectPublisher:false
+        redirectAuthor:false
     };
   }
   
@@ -24,35 +24,21 @@ class PublisherAddComponent extends Component {
     // if(this.props.categories != null &&  this.props.categories.length == 0){
     //     this.props.getAllCategory();
     // }
-    console.log(this.props.match);
-    if(this.props.match.params.idPublisher != undefined){
-        this.props.getPublisherById(this.props.match.params.idPublisher);
+    if(this.props.match.params.idAuthor != undefined){
+        this.props.getAuthorById(this.props.match.params.idAuthor);
     }
    
   }
 
-
-
-
-  showListCategoryParent = (categories) => {
-    let result = null;
-    result  = categories.map((item,index)=>{
-        return (
-            <option value={item.category_id} key={index}>{item.category_name}</option>
-        )
-    });
-    return result;
-  }
-
   submit = () => {
-    let values = this.props.formPublisherAddField.values;
+    let values = this.props.formAuthorAddField.values;
     let fd = new FormData();
-    fd.set('publisher',JSON.stringify(values));
-    apiCaller(urls.SAVE_PUBLISHER,'POST',fd).then((res)=>{
+    fd.set('author',JSON.stringify(values));
+    apiCaller(urls.SAVE_AUTHOR,'POST',fd).then((res)=>{
       if(res.data.data){
-        swal("Success!", "Thêm nhà xuất bản thành công!", "success");
+        swal("Success!", "Thêm tác giả thành công!", "success");
         this.setState({
-            redirectPublisher:true
+            redirectAuthor:true
         });
       }
     });
@@ -71,17 +57,17 @@ class PublisherAddComponent extends Component {
 
   render() {
     const { pristine, reset, submitting,valid,handleSubmit } = this.props;
-    const {idPublisher} = this.props.match.params;
-    if(this.state.redirectPublisher){
-        return <Redirect to="/publisher"/>
+    const {idAuthor} = this.props.match.params;
+    if(this.state.redirectAuthor){
+        return <Redirect to="/author"/>
     } 
     return (
         <div className="panel panel-widget forms-panel">
         <div className="progressbar-heading general-heading">
           <h4>
-            {(idPublisher != undefined) ? 
-                'Edit publisher' : 
-                'Add new publisher' }
+            {(idAuthor != undefined) ? 
+                'Edit author' : 
+                'Add new author' }
           </h4>
         </div>
         <div className="forms">
@@ -114,7 +100,7 @@ class PublisherAddComponent extends Component {
           
        
             <div>
-            <Link to="/publisher" onClick={()=>this.props.resetPublisher()}  class="btn btn-info hvr-grow-rotate" style={{width:'100px',marginLeft:'163px'}}>Back</Link>
+            <Link to="/author" onClick={()=>this.props.resetAuthor()}  class="btn btn-info hvr-grow-rotate" style={{width:'100px',marginLeft:'163px'}}>Back</Link>
             <button type="submit" disabled={submitting}  class="btn btn-info hvr-grow-rotate" style={{marginLeft: '30px',width:'100px'}}>Submit</button>
             </div>
            
@@ -130,16 +116,16 @@ class PublisherAddComponent extends Component {
 
 
 
-var RF_publisherAdd = reduxForm({
-  form:'publisherAdd',
+var RF_authorAdd = reduxForm({
+  form:'authorAdd',
   enableReinitialize :true,
   
-})(PublisherAddComponent);
+})(AuthorAddComponent);
 
-RF_publisherAdd = connect(
+RF_authorAdd = connect(
   
   state => ({
-    initialValues: state.publisher.publisherEditing
+    initialValues: state.author.authorEditing
   })
-)(RF_publisherAdd);
-export default RF_publisherAdd;
+)(RF_authorAdd);
+export default RF_authorAdd;

@@ -120,3 +120,58 @@ export const resetPublisher = () => {
 		
 	}
 }
+
+export const getPublisherById = (id) => {
+	return {
+		type:types.GET_PUBLISHER_BY_ID,
+		id:id
+	}
+}
+
+export const getPublisherById_Success = (publisher) => {
+	return {
+		type:types.GET_PUBLISHER_BY_ID_SUCCESS,
+		publisher:publisher
+	}
+} 
+
+export const resetAuthor = () => {
+	return {
+		type:types.RESET_AUTHOR
+	}
+}
+
+export const getAuthorById = (id) => {
+	return {
+		type:types.GET_AUTHOR_BY_ID,
+		id:id
+	}
+}
+
+export const getAuthorById_Success = (author) => {
+	return {
+		type:types.GET_AUTHOR_BY_ID_SUCCESS,
+		author:author
+	}
+} 
+
+
+export const resetReleaseCompany = () => {
+	return {
+		type:types.RESET_RELEASE_COMPANY
+	}
+}
+
+export const getReleaseCompanyById = (id) => {
+	return {
+		type:types.GET_RELEASE_COMPANY_BY_ID,
+		id:id
+	}
+}
+
+export const getReleaseCompanyById_Success = (releaseCompany) => {
+	return {
+		type:types.GET_RELEASE_COMPANY_BY_ID_SUCCESS,
+		releaseCompany:releaseCompany
+	}
+} 
