@@ -11,7 +11,7 @@
  Target Server Version : 100128
  File Encoding         : 65001
 
- Date: 13/07/2018 17:24:39
+ Date: 17/07/2018 17:23:04
 */
 
 SET NAMES utf8mb4;
@@ -36,18 +36,28 @@ CREATE TABLE `m_authors`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `sort` int(11) NULL DEFAULT NULL,
+  `IsDelete` int(2) NULL DEFAULT NULL,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of m_authors
 -- ----------------------------
-INSERT INTO `m_authors` VALUES (1, 'Zoe Mc Key', NULL, '2018-06-15 11:19:48', '0000-00-00 00:00:00');
-INSERT INTO `m_authors` VALUES (2, 'Mai Lan Hương, Hà Thanh Uyên', NULL, '2018-06-15 11:27:01', '2018-06-15 11:27:04');
-INSERT INTO `m_authors` VALUES (3, 'Ts. Trần Văn Lượng', NULL, '2018-06-15 11:30:25', '2018-06-15 11:30:28');
-INSERT INTO `m_authors` VALUES (4, 'Stephenie Meyer', NULL, '2018-06-18 10:28:29', '2018-06-18 10:28:32');
+INSERT INTO `m_authors` VALUES (1, 'Zoe Mc Key', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
+INSERT INTO `m_authors` VALUES (2, 'Mai Lan Hương, Hà Thanh Uyên', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
+INSERT INTO `m_authors` VALUES (3, 'Ts. Trần Văn Lượng', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
+INSERT INTO `m_authors` VALUES (4, 'Stephenie Meyer', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
+INSERT INTO `m_authors` VALUES (5, 'demo', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
+INSERT INTO `m_authors` VALUES (6, 'Author 01', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
+INSERT INTO `m_authors` VALUES (7, 'Author 02', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
+INSERT INTO `m_authors` VALUES (8, 'Author 03', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
+INSERT INTO `m_authors` VALUES (9, 'Author 04', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
+INSERT INTO `m_authors` VALUES (10, 'Author 05', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
+INSERT INTO `m_authors` VALUES (11, 'Author 06', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
+INSERT INTO `m_authors` VALUES (12, 'Author 07', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
 
 -- ----------------------------
 -- Table structure for m_brands
@@ -273,18 +283,67 @@ CREATE TABLE `m_publishers`  (
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `sort` int(11) NULL DEFAULT NULL,
+  `IsDelete` int(2) NULL DEFAULT NULL,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 53 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of m_publishers
 -- ----------------------------
-INSERT INTO `m_publishers` VALUES (1, 'Nhà Xuất Bản Lao Động', NULL, 1, '2018-06-15 11:19:22', '2018-06-15 11:19:25');
-INSERT INTO `m_publishers` VALUES (2, 'Nhà Xuất Bản Đà Nẵng', NULL, 2, '2018-06-15 11:26:47', '2018-06-15 11:26:49');
-INSERT INTO `m_publishers` VALUES (3, 'Nhà Xuất Bản Đại Học Quốc Gia Hà Nội', NULL, 3, '2018-06-15 11:30:10', '2018-06-15 11:30:13');
-INSERT INTO `m_publishers` VALUES (4, 'Nhà xuất bản trẻ', NULL, 4, '2018-06-18 10:28:06', '2018-06-18 10:28:09');
+INSERT INTO `m_publishers` VALUES (1, 'Nhà Xuất Bản Lao Động', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (2, 'Nhà Xuất Bản Đà Nẵng', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (3, 'Nhà Xuất Bản Đại Học Quốc Gia Hà Nội', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (4, 'Nhà xuất bản trẻ', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (5, 'demo22222222', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (6, 'demo33333333', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (7, 'demo44444444', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (8, 'demo55555555', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (9, 'demo66666666', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (10, 'demo77777777', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (11, 'demo88888888', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (12, 'demo99999999', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (13, 'demo01', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (14, 'demo02', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (15, 'demo03', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (16, 'demo04', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (17, 'demo05', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (18, 'demo06', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (19, 'demo07', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (20, 'demo08', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (21, 'demo09', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (22, 'demo10', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (23, 'demo11', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (24, 'demo12', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (25, 'demo13', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (26, 'demo14', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (27, 'demo15', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (28, 'demo16', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (29, 'demo17', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (30, 'demo18', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (31, 'demo19', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (32, 'demo20', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (33, 'demo21', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (34, 'demo22', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (35, 'demo23', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (36, 'demo24', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (37, 'demo25', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (38, 'demo26', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (39, 'demo27', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (40, 'demo28', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (41, 'demo29', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (42, 'demo30', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (43, 'demo31', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (44, 'demo32', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (45, 'demo33', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (46, 'demo34', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (47, 'demo35', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (48, 'demo36', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
+INSERT INTO `m_publishers` VALUES (49, 'demo37', 'This is a publisher', 13, 0, '2018-07-17 15:11:50', '2018-07-17 15:11:50');
+INSERT INTO `m_publishers` VALUES (50, 'demo38', 'This is a publisher', 12, 0, '2018-07-17 15:13:38', '2018-07-17 15:13:38');
+INSERT INTO `m_publishers` VALUES (51, 'demo39', 'This is a publisher', 12, 0, '2018-07-17 15:14:18', '2018-07-17 15:14:18');
+INSERT INTO `m_publishers` VALUES (52, 'demo40', 'Demo', 12, 0, '2018-07-17 15:14:45', '2018-07-17 15:14:45');
 
 -- ----------------------------
 -- Table structure for m_release_companys
@@ -294,18 +353,22 @@ CREATE TABLE `m_release_companys`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `IsDelete` int(2) NULL DEFAULT NULL,
+  `sort` int(11) NULL DEFAULT NULL,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of m_release_companys
 -- ----------------------------
-INSERT INTO `m_release_companys` VALUES (1, 'Pandabooks', NULL, '2018-06-15 11:19:06', '2018-06-15 11:19:09');
-INSERT INTO `m_release_companys` VALUES (2, 'Zenbooks', NULL, '2018-06-15 11:26:30', '2018-06-15 11:26:33');
-INSERT INTO `m_release_companys` VALUES (3, '	Nhà Sách Hồng Ân', NULL, '2018-06-15 11:29:54', '2018-06-15 11:29:58');
-INSERT INTO `m_release_companys` VALUES (4, 'Nhà xuất bản trẻ', NULL, '2018-06-18 10:27:34', '2018-06-18 10:27:37');
+INSERT INTO `m_release_companys` VALUES (1, 'Pandabooks', NULL, 0, 1, '2018-06-15 11:19:06', '2018-06-15 11:19:09');
+INSERT INTO `m_release_companys` VALUES (2, 'Zenbooks', NULL, 0, 2, '2018-06-15 11:26:30', '2018-06-15 11:26:33');
+INSERT INTO `m_release_companys` VALUES (3, '	Nhà Sách Hồng Ân', NULL, 0, 3, '2018-06-15 11:29:54', '2018-06-15 11:29:58');
+INSERT INTO `m_release_companys` VALUES (4, 'Nhà xuất bản trẻ', NULL, 0, 4, '2018-06-18 10:27:34', '2018-06-18 10:27:37');
+INSERT INTO `m_release_companys` VALUES (5, 'demo', 'demo', 0, 23, '2018-07-17 09:13:29', '2018-07-17 09:13:29');
+INSERT INTO `m_release_companys` VALUES (6, 'demo123', 'demo123', 1, 3, '2018-07-17 09:15:16', '2018-07-17 09:15:16');
 
 -- ----------------------------
 -- Table structure for m_shipment_types
