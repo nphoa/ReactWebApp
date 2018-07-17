@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 class PublisherController extends Controller
 {
-    public function getAll()
+    public function getAll(Request $req)
     {
     	$model = new Publisher();
-    	return response()->json(['status'=>'success','data'=>$model->getAll()]);
+    	return response()->json(['status'=>'success','data'=>$model->getAll($req->get('currentPage'))]);
     }
     public function getPublisherById(Request $req)
     {

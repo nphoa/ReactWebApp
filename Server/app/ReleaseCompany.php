@@ -15,7 +15,7 @@ class ReleaseCompany extends Model
 
    public function getAll()
    {
-   		return ReleaseCompany::where(['IsDelete'=>0])->get();
+   		return ReleaseCompany::where(['IsDelete'=>0])->orderBy('sort','desc')->get();
    }
 
    public function getReleaseCompanyById($id)
@@ -37,6 +37,7 @@ class ReleaseCompany extends Model
         if($releaseCompany['id'] == 0){
             $releaseCompany['created_at']  = DB::raw('now()');
             $releaseCompany['updated_at']  = DB::raw('now()');
+            $releaseCompany['IsDelete']  = 0;
             DB::table('m_release_companys')->insert($releaseCompany);
         }else{
              DB::table('m_release_companys')->where('id',$releaseCompany['id'])

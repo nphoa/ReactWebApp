@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
-    public function getAll()
+    public function getAll(Request $req)
     {
     	$model = new Author();
-    	return response()->json(['status'=>'success','data'=>$model->getAll()]);
+    	return response()->json(['status'=>'success','data'=>$model->getAll($req->get('currentPage'))]);
     }
     public function getAuthorById(Request $req)
     {

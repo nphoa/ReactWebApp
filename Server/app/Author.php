@@ -13,9 +13,30 @@ class Author extends Model
         'name',
     ];
 
-   public function getAll()
+   public function getAll($currentPage)
    {
-   		return Author::where(['IsDelete'=>0])->get();
+   		//return Author::where(['IsDelete'=>0])->get();
+      $itemPerPage = 4;
+      $countData = DB::table('m_authors')->where(['IsDelete'=>0])->count(); 
+      if($currentPage == 1){
+        $dem = 0;
+      }elseif($countData == (((int)$currentPage * $itemPerPage) - $itemPerPage)) {
+          $currentPage -= 1;
+          $dem = ((int)$currentPage * $itemPerPage) - $itemPerPage;
+      }
+      else{
+        $dem = ((int)$currentPage * $itemPerPage) - $itemPerPage;
+      }
+      
+
+      $authors = Author::where(['IsDelete'=>0])
+                        ->offset($dem)
+                        ->limit($itemPerPage)
+                        ->get();
+                       
+      $countRestData = $countData - ($currentPage * $itemPerPage);
+      $result = ['authors'=>$authors,'countData'=>$countData,'countRestData'=>$countRestData,'currentPage'=>$currentPage];
+      return $result;
    }
     public function getAuthorById($id)
    {
