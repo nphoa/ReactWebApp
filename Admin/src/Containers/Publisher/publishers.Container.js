@@ -6,14 +6,16 @@ import * as actions from '../../Actions/index';
 
 const mapStateToProps = (state) => {
   return{
-    publishers:state.publisher.publishers
-    
+    publishers:state.publisher.publishers,
+    countRestPublishers:state.publisher.countRestPublishers,
+    countData:state.publisher.countData,
+    currentPage:state.publisher.currentPage
   }
 }
 const mapDispatchToProps = (dispatch,props) => {
     return {
-        getAllPublisher:()=>{
-            dispatch(actions.getAllPublisher());
+        getAllPublisher:(currentPage)=>{
+            dispatch(actions.getAllPublisher(currentPage));
         },
         resetPublisher:()=>{
             dispatch(actions.resetPublisher());

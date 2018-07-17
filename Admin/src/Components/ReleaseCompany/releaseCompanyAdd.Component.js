@@ -39,7 +39,7 @@ class ReleaseCompanyAddComponent extends Component {
       if(res.data.data){
         swal("Success!", "Thêm công ty phát hành thành công!", "success");
         this.setState({
-            redirectPublisher:true
+          redirectReleaseCompany:true
         });
       }
     });
@@ -58,17 +58,17 @@ class ReleaseCompanyAddComponent extends Component {
 
   render() {
     const { pristine, reset, submitting,valid,handleSubmit } = this.props;
-    const {idPublisher} = this.props.match.params;
-    if(this.state.redirectPublisher){
-        return <Redirect to="/publisher"/>
+    const {idReleaseCompany} = this.props.match.params;
+    if(this.state.redirectReleaseCompany){
+        return <Redirect to="/releaseCompany"/>
     } 
     return (
         <div className="panel panel-widget forms-panel">
         <div className="progressbar-heading general-heading">
           <h4>
-            {(idPublisher != undefined) ? 
-                'Edit publisher' : 
-                'Add new publisher' }
+            {(idReleaseCompany != undefined) ? 
+                'Edit release company' : 
+                'Add new release company' }
           </h4>
         </div>
         <div className="forms">
@@ -101,7 +101,7 @@ class ReleaseCompanyAddComponent extends Component {
           
        
             <div>
-            <Link to="/publisher" onClick={()=>this.props.resetPublisher()}  class="btn btn-info hvr-grow-rotate" style={{width:'100px',marginLeft:'163px'}}>Back</Link>
+            <Link to="/releaseCompany" onClick={()=>this.props.resetReleaseCompany()}  class="btn btn-info hvr-grow-rotate" style={{width:'100px',marginLeft:'163px'}}>Back</Link>
             <button type="submit" disabled={submitting}  class="btn btn-info hvr-grow-rotate" style={{marginLeft: '30px',width:'100px'}}>Submit</button>
             </div>
            

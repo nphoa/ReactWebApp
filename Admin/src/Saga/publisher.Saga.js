@@ -7,9 +7,9 @@ import * as actions from '../Actions/index';
 
 
 function* getAllPublisher(action){
-   // console.log(action);
+    //console.log(action.currentPage);
     let data = null;
-    yield callApi(`${urls.GET_ALL_PUBLISHER}`,'GET').then((res)=>{
+    yield callApi(`${urls.GET_ALL_PUBLISHER}/?currentPage=${action.currentPage}`,'GET').then((res)=>{
         data = res.data.data;
     });
     yield put(actions.getAllPublisher_Success(data));

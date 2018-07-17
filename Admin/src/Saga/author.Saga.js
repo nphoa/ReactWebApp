@@ -6,10 +6,10 @@ import callApi from '../API/apiCaller';
 import * as actions from '../Actions/index';
 
 
-function* getAllAuthor(){
+function* getAllAuthor(action){
    // console.log(action);
     let data = null;
-    yield callApi(`${urls.GET_ALL_AUTHOR}`,'GET').then((res)=>{
+    yield callApi(`${urls.GET_ALL_AUTHOR}/?currentPage=${action.currentPage}`,'GET').then((res)=>{
         data = res.data.data;
     });
     yield put(actions.getAllAuthor_Success(data));

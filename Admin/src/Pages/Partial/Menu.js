@@ -27,7 +27,7 @@ class Menu extends Component {
                       <Link to ="/publisher">Nhà xuất bản</Link>
                     </li>
                     <li>
-                      <Link to ="/author">Tác giả</Link>
+                      <Link to ="/author/1">Tác giả</Link>
                     </li>
                     <li>
                       <Link to ="/releaseCompany">Công ty phát hành</Link>

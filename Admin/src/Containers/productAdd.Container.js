@@ -22,8 +22,8 @@ const mapDispatchToProps = (dispatch,props) => {
       getAllAuthor:()=>{
         dispatch(actions.getAllAuthor());
       },
-      getAllPublisher:()=>{
-        dispatch(actions.getAllPublisher());
+      getAllPublisher:(numberPage)=>{
+        dispatch(actions.getAllPublisher(numberPage));
       },
       getAllReleaseCompany:()=>{
         dispatch(actions.getAllReleaseCompany());

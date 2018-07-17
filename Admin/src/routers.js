@@ -62,9 +62,9 @@ const routers = [
 		main: ({history,match}) => <PublisherAddContainer history = {history} match = {match}/>
 	},
 	{
-		path: '/author',
+		path: '/author/:currentPage',
 		exact: true,
-		main: () => <AuthorContainer />
+		main: ({history,match}) => <AuthorContainer history = {history} match = {match}/>
 	},
 	{
 		path: '/author/add/:idAuthor?',

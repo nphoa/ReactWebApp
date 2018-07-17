@@ -1,0 +1,1 @@
+export const urlHost = 'http://localhost:8000/api';

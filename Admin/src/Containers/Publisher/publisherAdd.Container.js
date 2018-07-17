@@ -7,7 +7,8 @@ import * as actions from '../../Actions/index';
 const mapStateToProps = (state) => {
   return{
     publishers:state.publisher.publishers,
-    formPublisherAddField:state.form.publisherAdd
+    formPublisherAddField:state.form.publisherAdd,
+    currentPage:state.publisher.currentPage
   }
 }
 const mapDispatchToProps = (dispatch,props) => {

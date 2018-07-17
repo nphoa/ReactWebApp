@@ -27,9 +27,10 @@ export const getAllCategory_Success = (categories) => {
 	}
 }
 
-export const getAllAuthor = () => {
+export const getAllAuthor = (currentPage) => {
 	return {
-		type:types.GET_ALL_AUTHOR
+		type:types.GET_ALL_AUTHOR,
+		currentPage:currentPage
 	}
 }
 
@@ -40,9 +41,10 @@ export const getAllAuthor_Success = (authors) => {
 	}
 }
 
-export const getAllPublisher = () => {
+export const getAllPublisher = (currentPage) => {
 	return {
-		type:types.GET_ALL_PUBLISHER
+		type:types.GET_ALL_PUBLISHER,
+		currentPage:currentPage
 	}
 }
 
@@ -175,3 +177,10 @@ export const getReleaseCompanyById_Success = (releaseCompany) => {
 		releaseCompany:releaseCompany
 	}
 } 
+
+export const paginationAuthor = (numberPage) => {
+	return {
+		type:types.PAGINATION_AUTHOR,
+		numberPage:numberPage
+	}
+}

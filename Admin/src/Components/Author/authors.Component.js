@@ -8,14 +8,22 @@ class AuthorComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        
+      //currentPage:this.props.currentPage,
+      authorsPerPage:4
     };
-
+    this.handleClick = this.handleClick.bind(this);
   }
 
 
+  componentDidUpdate(newProps){
+    //console.log(this.props);
+    //console.log(newProps);
+    if(this.props.match.url != newProps.match.url){
+      this.props.getAllAuthor(this.props.match.params.currentPage);
+    }
+  }
   componentDidMount(){
-      this.props.getAllAuthor();
+      this.props.getAllAuthor(this.props.match.params.currentPage);
   }
   showListAuthor = (authors) =>{
     let result = null;
@@ -56,7 +64,41 @@ class AuthorComponent extends Component {
       }
     });
   }
+  handleClick(event){
+    // this.setState({
+    //   currentPage:event.target.id
+    // });
+    this.props.paginationAuthor(event.target.id);
+    this.props.getAllAuthor(event.target.id);
+   
+}
   render() {
+    const{authors,currentPage,countData} = this.props;
+    if(authors != null && authors.length == 0 ){
+      return(<div>Screen is loading . . .</div>)
+    }
+    //Pagination client logic
+    const {authorsPerPage}  = this.state;
+    // Logic for displaying current todos
+    const indexOfLastTodo = currentPage * authorsPerPage;
+    const indexOfFirstTodo = indexOfLastTodo - authorsPerPage;
+    //const currentTodos = publishers.slice(indexOfFirstTodo, indexOfLastTodo);
+    
+    // Logic for displaying page numbers
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(countData / authorsPerPage); i++) {
+      pageNumbers.push(i);
+    }
+    //Map page numbers to Tag <li> in HTML
+    const renderPageNumbers = pageNumbers.map(number => {
+      return (
+        <li  key={number}  className="page-item">
+          <Link to={`/author/${number}`} className="page-link" id={number}>{number}</Link>
+        </li>
+      );
+    });
+
+
     return (
       <div className="panel panel-widget">
         <div className="tables">
@@ -79,6 +121,11 @@ class AuthorComponent extends Component {
           </table>
         </div>
 
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            {renderPageNumbers}
+          </ul>
+        </nav>
        
       </div>
     );

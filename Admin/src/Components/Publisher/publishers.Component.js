@@ -4,18 +4,20 @@ import * as urls from '../../API/URL';
 import apiCaller from '../../API/apiCaller';
 import swal from 'sweetalert';
 import moment from 'moment';
+import '../../pagination.css';
 class PublishersComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        
+        currentPage:this.props.currentPage,
+        publishersPerPage:10
     };
-
+    this.handleClick = this.handleClick.bind(this);
   }
 
 
   componentDidMount(){
-      this.props.getAllPublisher();
+      this.props.getAllPublisher(this.state.currentPage);
   }
   showListPublisher = (publishers) =>{
     let result = null;
@@ -48,7 +50,8 @@ class PublishersComponent extends Component {
       if (willDelete) {
         apiCaller(`${urls.DELETE_PUBLISHER}/?idPublisher=${idPublisher}`,'GET').then(res=>{
           if(res.data.data){
-            this.props.getAllPublisher();
+            this.props.getAllPublisher(this.state.currentPage);
+            console.log(this.state.currentPage);
           }
         });
       } else {
@@ -56,7 +59,44 @@ class PublishersComponent extends Component {
       }
     });
   }
+  handleClick(event){
+      this.setState({
+        currentPage:event.target.id
+      });
+      this.props.getAllPublisher(event.target.id);
+     
+  }
   render() {
+    const {publishers,countRestPublishers,countData} = this.props;
+    if(publishers != null && publishers.length == 0 ){
+        return(<div>Screen is loading . . .</div>)
+    }
+    const {currentPage,publishersPerPage}  = this.state;
+    // Logic for displaying current todos
+    const indexOfLastTodo = currentPage * publishersPerPage;
+    const indexOfFirstTodo = indexOfLastTodo - publishersPerPage;
+    //const currentTodos = publishers.slice(indexOfFirstTodo, indexOfLastTodo);
+    
+    // Logic for displaying page numbers
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(countData / publishersPerPage); i++) {
+      pageNumbers.push(i);
+    }
+   
+    const renderPageNumbers = pageNumbers.map(number => {
+      return (
+        // <li
+        //   key={number}
+        //   id={number}
+        //   onClick={this.handleClick}
+        // >
+        //   {number}
+        // </li>
+        <li  key={number}  className="page-item"><a className="page-link" id={number} onClick={this.handleClick} href="#"> {number}</a></li>
+      );
+    });
+
+
     return (
       <div className="panel panel-widget">
         <div className="tables">
@@ -74,12 +114,16 @@ class PublishersComponent extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.showListPublisher(this.props.publishers)}
+              {this.showListPublisher(publishers)}
             </tbody>
           </table>
         </div>
-
-       
+      
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+          {renderPageNumbers}
+        </ul>
+      </nav>
       </div>
     );
   }

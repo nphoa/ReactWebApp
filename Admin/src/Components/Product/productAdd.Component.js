@@ -39,7 +39,7 @@ class ProductAddComponent extends Component {
       this.props.getAllAuthor();
     }
     if(this.props.publishers.length == 0){
-      this.props.getAllPublisher();
+      this.props.getAllPublisher(1);
     }
     if(this.props.releaseCompanys.length == 0){
       this.props.getAllReleaseCompany();
