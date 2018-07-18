@@ -6,9 +6,8 @@ import routers from '../../routers';
 import {BrowserRouter as Router,Route,Switch,Redirect} from 'react-router-dom';
 import{connect} from 'react-redux';
 import * as actions from '../../Actions/index';
-import LoginComponent from '../../Components/Login/login.Component';
 
-class Layout extends Component {
+class Main extends Component {
   showContentRoute = (routes) =>{
     var result = null;
     if(routes.length >0){
@@ -26,40 +25,31 @@ class Layout extends Component {
     return result;
   }
   render() {
-    console.log('render');
-      if(!this.props.isLogin){
-        return(
-          <Route path="/" component={LoginComponent}/>
-        )
-      }else{
-        return (
-          <div className="main-content">
-          {/*left-fixed -navigation*/}
-          <Menu/>
-          {/*left-fixed -navigation*/}
-          {/* header-starts */}
-          <Header/>
-          {/* //header-ends */}
-          {/* main content start*/}
-          <div id="page-wrapper">
-            <div className="main-page">
-              {/* four-grids */}
-              <div className="row four-grids">
-                <Switch>
-                  {this.showContentRoute(routers)}
-                </Switch>
-                <div className="clearfix"> </div>
-              </div>
+      return (
+        <div className="main-content">
+        {/*left-fixed -navigation*/}
+        <Menu/>
+        {/*left-fixed -navigation*/}
+        {/* header-starts */}
+        <Header/>
+        {/* //header-ends */}
+        {/* main content start*/}
+        <div id="page-wrapper">
+          <div className="main-page">
+            {/* four-grids */}
+            <div className="row four-grids">
+              <Switch>
+                {this.showContentRoute(routers)}
+              </Switch>
+              <div className="clearfix"> </div>
             </div>
           </div>
-          {/*footer*/}
-          <Footer/>
-          {/*//footer*/}
         </div>
-        );
-      }
-
-     
+        {/*footer*/}
+        <Footer/>
+        {/*//footer*/}
+      </div>
+      );
     }
 
   }
@@ -80,4 +70,4 @@ const mapDispatchToProps = (dispatch,props) => {
       },
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Layout);
+export default connect(mapStateToProps,mapDispatchToProps)(Main);

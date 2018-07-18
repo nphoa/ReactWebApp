@@ -56,7 +56,7 @@ class AuthorComponent extends Component {
       if (willDelete) {
         apiCaller(`${urls.DELETE_AUTHOR}/?idAuthor=${idAuthor}`,'GET').then(res=>{
           if(res.data.data){
-            this.props.getAllAuthor();
+            this.props.getAllAuthor(this.props.match.params.currentPage);
           }
         });
       } else {

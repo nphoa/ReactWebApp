@@ -15,6 +15,7 @@ import AuthorAddContainer from '../src/Containers/Author/authorAdd.Container';
 
 import ReleaseCompanyContainer from '../src/Containers/ReleaseCompany/releaseCompanys.Container';
 import ReleaseCompanyAddContainer from '../src/Containers/ReleaseCompany/releaseCompanyAdd.Container';
+import LoginComponent from '../src/Components/Login/login.Component';
 const routers = [
 	{
 		path: '/',
@@ -23,7 +24,7 @@ const routers = [
 	},
 	{
 		path: '/product',
-		exact: true,
+		exact: false,
 		main: () => <ProductPage />
 	},
 	{
@@ -62,14 +63,14 @@ const routers = [
 		main: ({history,match}) => <PublisherAddContainer history = {history} match = {match}/>
 	},
 	{
-		path: '/author/:currentPage',
-		exact: true,
-		main: ({history,match}) => <AuthorContainer history = {history} match = {match}/>
-	},
-	{
 		path: '/author/add/:idAuthor?',
 		exact: true,
 		main: ({history,match}) => <AuthorAddContainer history = {history} match = {match}/>
+	},
+	{
+		path: '/author/:currentPage',
+		exact: true,
+		main: ({history,match}) => <AuthorContainer history = {history} match = {match}/>
 	},
 	{
 		path: '/releaseCompany',

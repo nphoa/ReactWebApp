@@ -11,9 +11,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch,props) => {
     return {
-        getAllAuthor:()=>{
-            dispatch(actions.getAllAuthor());
-        },
+        // getAllAuthor:()=>{
+        //     dispatch(actions.getAllAuthor());
+        // },
         getAuthorById:(id)=>{
             dispatch(actions.getAuthorById(id));
         },

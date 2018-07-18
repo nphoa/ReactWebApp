@@ -19,7 +19,9 @@ class AuthorAddComponent extends Component {
         redirectAuthor:false
     };
   }
-  
+  componentWillMount(){
+    console.log(this.props.match);
+  }
   componentDidMount(){
     // if(this.props.categories != null &&  this.props.categories.length == 0){
     //     this.props.getAllCategory();
@@ -59,7 +61,7 @@ class AuthorAddComponent extends Component {
     const { pristine, reset, submitting,valid,handleSubmit } = this.props;
     const {idAuthor} = this.props.match.params;
     if(this.state.redirectAuthor){
-        return <Redirect to="/author"/>
+        return <Redirect to="/author/1"/>
     } 
     return (
         <div className="panel panel-widget forms-panel">
@@ -100,7 +102,7 @@ class AuthorAddComponent extends Component {
           
        
             <div>
-            <Link to="/author" onClick={()=>this.props.resetAuthor()}  class="btn btn-info hvr-grow-rotate" style={{width:'100px',marginLeft:'163px'}}>Back</Link>
+            <Link to="/author/1" onClick={()=>this.props.resetAuthor()}  class="btn btn-info hvr-grow-rotate" style={{width:'100px',marginLeft:'163px'}}>Back</Link>
             <button type="submit" disabled={submitting}  class="btn btn-info hvr-grow-rotate" style={{marginLeft: '30px',width:'100px'}}>Submit</button>
             </div>
            
