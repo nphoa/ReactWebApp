@@ -2,7 +2,7 @@ import * as types from '../Constant/ActionType';
 
 var initialState  = {
     userLogin:'',
-    isLogin:true   
+    isLogin:false   
 };
 
 var myReducer = (state = initialState,action) => {

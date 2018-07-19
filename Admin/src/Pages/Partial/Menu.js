@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {  Link } from "react-router-dom";
-
+import '../../Components/custom';
 class Menu extends Component {
   render() {
     return (

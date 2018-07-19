@@ -7,6 +7,7 @@ import {BrowserRouter as Router,Route,Switch,Redirect} from 'react-router-dom';
 import{connect} from 'react-redux';
 import * as actions from '../../Actions/index';
 import LoginComponent from '../../Components/Login/login.Component';
+import Custom from '../../Components/customV2.Component';
 
 class Layout extends Component {
   showContentRoute = (routes) =>{
@@ -25,15 +26,20 @@ class Layout extends Component {
     }
     return result;
   }
+
   render() {
-    console.log('render');
+    
       if(!this.props.isLogin){
+        console.log('render1');
         return(
           <Route path="/" component={LoginComponent}/>
         )
       }else{
+        console.log('render2');
+       
         return (
           <div className="main-content">
+          <Custom/>
           {/*left-fixed -navigation*/}
           <Menu/>
           {/*left-fixed -navigation*/}
