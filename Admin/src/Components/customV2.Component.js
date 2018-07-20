@@ -3,31 +3,14 @@ import * as jQuery from 'jquery';
 
 import toggleClass from '../Components/classie';
 import metisMenu from 'metismenu';
+import Demo from '../Components/custom';
 class Custom extends Component {
 
   componentWillMount(){
    
       
   }
-  demoCss(){
-    var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
-				showLeftPush = document.getElementById( 'showLeftPush' ),
-				body = document.body;
-				
-			showLeftPush.onclick = function() {
-				toggleClass( this, 'active' );
-				toggleClass( body, 'cbp-spmenu-push-toright' );
-				toggleClass( menuLeft, 'cbp-spmenu-open' );
-				disableOther( 'showLeftPush' );
-			};
-			
-
-			function disableOther( button ) {
-				if( button !== 'showLeftPush' ) {
-					toggleClass( showLeftPush, 'disabled' );
-				}
-			}
-  }
+ 
   componentDidMount(){
     jQuery('#side-menu').metisMenu();
 
@@ -56,11 +39,11 @@ class Custom extends Component {
     if (element.is('li')) {
         element.addClass('active');
     }
-    this.demoCss();
+    
   }
   render() {
         return(<div>
-           
+           <Demo/>
         </div>)
         
       }
