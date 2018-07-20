@@ -32,12 +32,13 @@ class LoginComponent extends Component {
       }
   }
   render() {
-    // if(this.props.isLogin){
-    //     return(
-    //         <Redirect to ='/'/>
-    //     )
-    // }
+    if(this.props.isLogin){
+        return(
+            <Redirect to ='/dashboard'/>
+        )
+    }
     return (
+
       <div className="login-bg">
       <div className="login-body">
       <div className="login-heading">

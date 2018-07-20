@@ -8,82 +8,27 @@ import{connect} from 'react-redux';
 import * as actions from '../../Actions/index';
 import LoginComponent from '../../Components/Login/login.Component';
 import Custom from '../../Components/customV2.Component';
-
+import DashboardComponent from '../../Components/Dashboard';
+import LayoutComponent from '../../Components/Layout';
+import TestComponent from '../../Pages/Layout/Test';
 class Layout extends Component {
-  showContentRoute = (routes) =>{
-    var result = null;
-    if(routes.length >0){
-        result = routes.map((route,index)=>{
-            return (
-                <Route
-                    key = {index} 
-                    path={route.path}
-                    exact ={route.exact}
-                    component={route.main}  
-                />
-            );
-        });
-    }
-    return result;
-  }
-
   render() {
-    
-      if(!this.props.isLogin){
-        console.log('render1');
-        return(
-          <Route path="/" component={LoginComponent}/>
-        )
-      }else{
-        console.log('render2');
-       
-        return (
-          <div className="main-content">
-          <Custom/>
-          {/*left-fixed -navigation*/}
-          <Menu/>
-          {/*left-fixed -navigation*/}
-          {/* header-starts */}
-          <Header/>
-          {/* //header-ends */}
-          {/* main content start*/}
-          <div id="page-wrapper">
-            <div className="main-page">
-              {/* four-grids */}
-              <div className="row four-grids">
-                <Switch>
-                  {this.showContentRoute(routers)}
-                </Switch>
-                <div className="clearfix"> </div>
-              </div>
-            </div>
-          </div>
-          {/*footer*/}
-          <Footer/>
-          {/*//footer*/}
+    return(
+      <Router>
+        <div>
+          <Route path='/' component={LayoutComponent} />  
+          <Route path='/login' component={LoginComponent} />
+          <Route path='/dashboard' component={DashboardComponent} />
         </div>
-        );
-      }
-
+      </Router>
+   
+    )
      
     }
 
   }
 
 
-//export default Layout;
+export default Layout;
 
 
-const mapStateToProps = (state) => {
-  return{
-    isLogin:state.login.isLogin
-  }
-}
-const mapDispatchToProps = (dispatch,props) => {
-    return {
-      login:()=>{
-        dispatch(actions.login());
-      },
-    }
-}
-export default connect(mapStateToProps,mapDispatchToProps)(Layout);

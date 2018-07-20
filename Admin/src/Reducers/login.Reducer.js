@@ -11,6 +11,10 @@ var myReducer = (state = initialState,action) => {
 			state.isLogin = true;
 			return {...state};
 			break;
+		case types.LOGOUT:
+			state.isLogin = false;
+			return {...state};
+			break;
 		default:
 			return {...state};
 			break;

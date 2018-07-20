@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-
+import * as actions from '../../Actions/index';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 class Header extends Component {
+  logOut = (event) => {
+    event.preventDefault();
+    this.props.logout();
+  }
   render() {
     return (
         <div className="sticky-header header-section ">
@@ -115,7 +121,7 @@ class Header extends Component {
                 <ul className="dropdown-menu drp-mnu">
                   <li> <a href="#"><i className="fa fa-cog" /> Settings</a> </li> 
                   <li> <a href="#"><i className="fa fa-user" /> Profile</a> </li> 
-                  <li> <a href="#"><i className="fa fa-sign-out" /> Logout</a> </li>
+                  <li> <a href="" onClick={this.logOut}><i className="fa fa-sign-out" /> Logout</a> </li>
                 </ul>
               </li>
             </ul>
@@ -131,4 +137,18 @@ class Header extends Component {
   }
 }
 
-export default Header;
+//export default Header;
+
+const mapStateToProps = (state) => {
+  return{
+    isLogin:state.login.isLogin
+  }
+}
+const mapDispatchToProps = (dispatch,props) => {
+    return {
+      logout:()=>{
+        dispatch(actions.logout())
+      }
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Header);

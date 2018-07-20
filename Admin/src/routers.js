@@ -18,68 +18,51 @@ import ReleaseCompanyAddContainer from '../src/Containers/ReleaseCompany/release
 import LoginComponent from '../src/Components/Login/login.Component';
 const routers = [
 	{
-		path: '/',
-		exact: true,
-		main: () => <Dashboard />	
-	},
-	{
 		path: '/product',
-		exact: false,
 		main: () => <ProductPage />
 	},
 	{
 		path: '/product/add/:id?',
-		exact: true,
 		main: ({history,match}) => <ProductAddPage history = {history} match = {match}/>
 	},
 	{
 		path: '/product/addImageDetailByProduct/:id',
-		exact: true,
 		main: ({history,match}) => <AddImageDetailComponent history = {history} match = {match} />
 	},
 	{
 		path: '/category',
-		exact: true,
 		main: () => <CategoryContainer />
 	},
 	{
 		path: '/category/children/:idParent',
-		exact: true,
 		main: ({history,match}) => <CategoryChildrenContainer history = {history} match = {match}/>
 	},
 	{
 		path: '/category/add/:idParent/:idCategory?',
-		exact: true,
 		main: ({history,match}) => <CategoryAddContainer history = {history} match = {match}/>
 	},
 	{
 		path: '/publisher',
-		exact: true,
 		main: () => <PublisherContainer />
 	},
 	{
 		path: '/publisher/add/:idPublisher?',
-		exact: true,
 		main: ({history,match}) => <PublisherAddContainer history = {history} match = {match}/>
 	},
 	{
 		path: '/author/add/:idAuthor?',
-		exact: true,
 		main: ({history,match}) => <AuthorAddContainer history = {history} match = {match}/>
 	},
 	{
 		path: '/author/:currentPage',
-		exact: true,
 		main: ({history,match}) => <AuthorContainer history = {history} match = {match}/>
 	},
 	{
 		path: '/releaseCompany',
-		exact: true,
 		main: () => <ReleaseCompanyContainer />
 	},
 	{
 		path: '/releaseCompany/add/:idReleaseCompany?',
-		exact: true,
 		main: ({history,match}) => <ReleaseCompanyAddContainer history = {history} match = {match}/>
 	},
 ];

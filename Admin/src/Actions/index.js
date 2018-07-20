@@ -191,3 +191,10 @@ export const login = () => {
 	
 	}
 }
+
+export const logout = () => {
+	return {
+		type:types.LOGOUT,
+	
+	}
+}
