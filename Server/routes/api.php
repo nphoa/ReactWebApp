@@ -60,3 +60,7 @@ Route::get('deleteAuthor','AuthorController@deleteAuthor')->middleware('cors');
 Route::get('getReleaseCompanyById','ReleaseCompanyController@getReleaseCompanyById')->middleware('cors');
 Route::post('saveReleaseCompany','ReleaseCompanyController@saveReleaseCompany')->middleware('cors');
 Route::get('deleteReleaseCompany','ReleaseCompanyController@deleteReleaseCompany')->middleware('cors');
+
+Route::get('users','UserController@getAll')->middleware('cors');
+Route::post('saveUser','UserController@saveUser')->middleware('cors');
+Route::get('getUserById','UserController@getUserById')->middleware('cors');
