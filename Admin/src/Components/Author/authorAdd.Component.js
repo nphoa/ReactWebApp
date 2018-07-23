@@ -102,7 +102,7 @@ class AuthorAddComponent extends Component {
           
        
             <div>
-            <Link to="/author/1" onClick={()=>this.props.resetAuthor()}  class="btn btn-info hvr-grow-rotate" style={{width:'100px',marginLeft:'163px'}}>Back</Link>
+            <Link to="/authors/1" onClick={()=>this.props.resetAuthor()}  class="btn btn-info hvr-grow-rotate" style={{width:'100px',marginLeft:'163px'}}>Back</Link>
             <button type="submit" disabled={submitting}  class="btn btn-info hvr-grow-rotate" style={{marginLeft: '30px',width:'100px'}}>Submit</button>
             </div>
            

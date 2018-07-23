@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import * as jQuery from 'jquery';
-
-import toggleClass from '../Components/classie';
-import metisMenu from 'metismenu';
 import Demo from '../Components/custom';
-class Custom extends Component {
+import metisMenu from 'metismenu';
+class ReloadLibaryComponent extends Component {
 
   componentWillMount(){
    
@@ -54,7 +52,7 @@ class Custom extends Component {
   
 
 
-export default Custom;
+export default ReloadLibaryComponent;
 
 
 

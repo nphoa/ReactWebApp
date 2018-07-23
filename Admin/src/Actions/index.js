@@ -198,3 +198,45 @@ export const logout = () => {
 	
 	}
 }
+
+export const getAllUser = (pageNumber) => {
+	return {
+		type:types.GET_ALL_USER,
+		pageNumber:pageNumber
+	}
+}
+
+export const getAllUser_Success = (data) => {
+	return {
+		type:types.GET_ALL_USER_SUCCESS,
+		data:data
+	}
+}
+
+export const getUserById = (id) => {
+	return {
+		type:types.GET_USER_BY_ID,
+		id:id
+	}
+}
+
+export const getUserById_Success = (user) => {
+	return {
+		type:types.GET_USER_BY_ID_SUCCESS,
+		user:user
+	}
+}
+
+export const deleteUser = (id) => {
+	return {
+		type:types.DELETE_USER,
+		id:id
+	}
+}
+
+export const resetUser = () => {
+	return {
+		type:types.RESET_USER
+		
+	}
+}

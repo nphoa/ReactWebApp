@@ -4,7 +4,7 @@ import Menu from '../Pages/Partial/Menu';
 import Header from '../Pages/Partial/Header';
 import routers from '../routers';
 import {BrowserRouter as Router,Route,Switch,Redirect,Link} from 'react-router-dom';
-import ReloadLibary from '../Components/customV2.Component';
+import ReloadLibary from '../Components/ReloadLibary.Component';
 import {connect} from 'react-redux';
 
 class Dashboard extends Component {
@@ -16,6 +16,7 @@ class Dashboard extends Component {
                 <Route
                     key = {index} 
                     path={route.path}
+                    exact={route.exact}
                     component={route.main}  
                 />
             );

@@ -27,10 +27,13 @@ class Menu extends Component {
                       <Link to ="/publisher">Nhà xuất bản</Link>
                     </li>
                     <li>
-                      <Link to ="/author/1">Tác giả</Link>
+                      <Link to ="/authors/1">Tác giả</Link>
                     </li>
                     <li>
                       <Link to ="/releaseCompany">Công ty phát hành</Link>
+                    </li>
+                    <li>
+                      <Link to ="/users/1">Người dùng</Link>
                     </li>
                   </ul>
                   {/* /nav-second-level */}

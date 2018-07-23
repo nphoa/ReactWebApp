@@ -60,6 +60,7 @@ class PublishersComponent extends Component {
     });
   }
   handleClick(event){
+    event.preventDefault();
       this.setState({
         currentPage:event.target.id
       });
@@ -85,14 +86,7 @@ class PublishersComponent extends Component {
    
     const renderPageNumbers = pageNumbers.map(number => {
       return (
-        // <li
-        //   key={number}
-        //   id={number}
-        //   onClick={this.handleClick}
-        // >
-        //   {number}
-        // </li>
-        <li  key={number}  className="page-item"><a className="page-link" id={number} onClick={this.handleClick} href="#"> {number}</a></li>
+        <li  key={number}  className="page-item"><a className="page-link" id={number} onClick={this.handleClick} href=""> {number}</a></li>
       );
     });
 

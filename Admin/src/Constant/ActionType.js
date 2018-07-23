@@ -44,3 +44,12 @@ export const PAGINATION_AUTHOR = 'PAGINATION_AUTHOR';
 
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
+
+export const GET_ALL_USER = 'GET_ALL_USER';
+export const GET_ALL_USER_SUCCESS = 'GET_ALL_USER_SUCCESS';
+
+export const GET_USER_BY_ID = 'GET_USER_BY_ID';
+export const GET_USER_BY_ID_SUCCESS = 'GET_USER_BY_ID_SUCCESS';
+
+export const DELETE_USER = 'DELETE_USER';
+export const RESET_USER = 'RESET_USER';

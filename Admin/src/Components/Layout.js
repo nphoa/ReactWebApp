@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-
+import * as actions from '../Actions/index';
 
 class Layout extends Component {
-  render() {
-    const isLogin = false;
+    componentWillMount(){
+        this.props.login();
+    }
+    render() {
+    const {isLogin} = this.props;
     if(!isLogin){
         return (
             <Redirect to ='/login'/>
@@ -27,7 +30,9 @@ const mapStateToProps = (state) => {
   }
   const mapDispatchToProps = (dispatch,props) => {
       return {
-      
+        login:()=>{
+            dispatch(actions.login())
+        }
       }
   }
   export default connect(mapStateToProps,mapDispatchToProps)(Layout);

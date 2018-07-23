@@ -4,39 +4,37 @@ import * as urls from '../../API/URL';
 import apiCaller from '../../API/apiCaller';
 import swal from 'sweetalert';
 import moment from 'moment';
-class AuthorComponent extends Component {
+class UsersComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //currentPage:this.props.currentPage,
-      authorsPerPage:4
+      usersPerPage:4
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
 
   componentDidUpdate(newProps){
-    //console.log(this.props);
-    //console.log(newProps);
     if(this.props.match.url != newProps.match.url){
-      this.props.getAllAuthor(this.props.match.params.currentPage);
+      this.props.getAllUser(this.props.match.params.currentPage);
     }
   }
   componentDidMount(){
-      this.props.getAllAuthor(this.props.match.params.currentPage);
+      this.props.getAllUser(this.props.match.params.currentPage);
   }
-  showListAuthor = (authors) =>{
+  showListUser = (users) =>{
     let result = null;
-    result = authors.map((item,index)=>{
+    result = users.map((item,index)=>{
       let createDate = moment(item.created_at).format('DD-MM-YYYY');
       return (
           <tr key={index}>
             <th scope="row" style={{width:'6%'}}>{index + 1}</th>
             <td style={{width:'30%'}}  >{item.name}</td>
-            <td style={{width:'38%'}}>{item.description}</td>
+            <td style={{width:'28%'}}>{item.email}</td>
+            <td style={{width:'10%'}}>{item.sort}</td>
             <td style={{width:'10%'}}>{createDate}</td>
             <td style={{width:'22%'}}>
-                <Link to={`/author/add/${item.id}`}  className="btn btn-warning hvr-grow-rotate">Edit</Link>
+                <Link to={`/user/add/${item.id}`}  className="btn btn-warning hvr-grow-rotate">Edit</Link>
                 <button style={{marginLeft:'5px',marginRight:'7px'}} onClick={() => this.deleteAuthor(item.id)} className="btn btn-info hvr-grow-rotate">Delete</button>
             </td>
           </tr>
@@ -73,27 +71,27 @@ class AuthorComponent extends Component {
    
 }
   render() {
-    const{authors,currentPage,countData} = this.props;
-    if(authors != null && authors.length == 0 ){
+    const{users,currentPage,countData} = this.props;
+    if(users != null && users.length == 0 ){
       return(<div>Screen is loading . . .</div>)
     }
     //Pagination client logic
-    const {authorsPerPage}  = this.state;
+    const {usersPerPage}  = this.state;
     // Logic for displaying current todos
-    const indexOfLastTodo = currentPage * authorsPerPage;
-    const indexOfFirstTodo = indexOfLastTodo - authorsPerPage;
+    const indexOfLastTodo = currentPage * usersPerPage;
+    const indexOfFirstTodo = indexOfLastTodo - usersPerPage;
     //const currentTodos = publishers.slice(indexOfFirstTodo, indexOfLastTodo);
     
     // Logic for displaying page numbers
     const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(countData / authorsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(countData / usersPerPage); i++) {
       pageNumbers.push(i);
     }
     //Map page numbers to Tag <li> in HTML
     const renderPageNumbers = pageNumbers.map(number => {
       return (
         <li  key={number}  className="page-item">
-          <Link to={`/authors/${number}`} className="page-link" id={number}>{number}</Link>
+          <Link to={`/users/${number}`} className="page-link" id={number}>{number}</Link>
         </li>
       );
     });
@@ -102,21 +100,22 @@ class AuthorComponent extends Component {
     return (
       <div className="panel panel-widget">
         <div className="tables">
-          <h4>Danh sách tác giả:</h4>
+          <h4>Danh sách người dùng:</h4>
           <br/>
-          <Link to="/author/add" onClick={()=>this.props.resetAuthor}   className="btn btn-primary hvr-grow-rotate">Add New</Link>
+          <Link to="/user/add" onClick={()=>this.props.resetUser}   className="btn btn-primary hvr-grow-rotate">Add New</Link>
           <table className="table">
             <thead>
               <tr>
                 <th>STT</th>
                 <th>Name</th>
-                <th>Description</th>
+                <th>Email</th>
+                <th>Sort</th>
                 <th>Created at</th>
                 <th>Custom</th>
               </tr>
             </thead>
             <tbody>
-              {this.showListAuthor(this.props.authors)}
+              {this.showListUser(this.props.users)}
             </tbody>
           </table>
         </div>
@@ -132,4 +131,4 @@ class AuthorComponent extends Component {
   }
 }
 
-export default AuthorComponent;
+export default UsersComponent;
