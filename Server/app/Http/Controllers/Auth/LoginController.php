@@ -42,9 +42,10 @@ class LoginController extends Controller
 
     public function login(Request $req)
     {
-        $email = $req->json()->get('email');
-        $password = $req->json()->get('password');
-        if(Auth::attempt(['email'=>$email , 'password'=>$password]))
+        $data = $req->json()->all();
+        //$ema $datail = $req->get('email');
+        //$password = $req->get('password');
+        if(Auth::attempt(['email'=>$data['email'] , 'password'=>$data['password']]))
         {
             return response()->json(['status'=>'success','data'=>Auth::user()]);
         }

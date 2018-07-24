@@ -60,28 +60,40 @@ class User extends Authenticatable
         $result = null;
         DB::beginTransaction();
         try {
-            $idUserAfterInsert = DB::table('users')
-            ->insertGetId([
+            $queryTableUser = [
                 'name'      => $user['name'],
-                'email'     => $user['email'],
-                'password'  => Hash::make($user['password']),
-                'IsDelete'  => 0,
                 'sort'      => $user['sort'],
-                'created_at'          => DB::raw('now()'),
-                'updated_at'          => DB::raw('now()')
-            ]);
-
-            DB::table('m_customers')->insert([
+            ];
+            $queryTableCustomer = [
                 'customer_name'     => $user['name'],
-                'customer_email'    => $user['email'],
                 'customer_phone'    => $user['phone'],
-                'customer_login_id' => $idUserAfterInsert,
                 'customer_address'  => $user['address'],
-                'create_user'          => 1,
-                'update_user'          => 1,
-                'created_at'          => DB::raw('now()'),
-                'updated_at'          => DB::raw('now()')
-            ]); 
+            ];
+            if($user['id'] == 0){
+                //Insert Table User
+                $queryTableUser['email']      = $user['email'];
+                $queryTableUser['password']   = Hash::make($user['password']);
+                $queryTableUser['IsDelete']   = 0;
+                $queryTableUser['created_at'] = DB::raw('now()');
+                $queryTableUser['updated_at'] = DB::raw('now()');
+
+                $idUserAfterInsert = DB::table('users')->insertGetId($queryTableUser);
+                //Insert Table Customer
+                $queryTableCustomer['customer_email']    = $user['email'];
+                $queryTableCustomer['customer_login_id'] = $idUserAfterInsert;
+                $queryTableCustomer['create_user']       = 1;
+                $queryTableCustomer['update_user']       = 1;
+                $queryTableCustomer['created_at']        = DB::raw('now()');
+                $queryTableCustomer['updated_at']        = DB::raw('now()');
+
+                DB::table('m_customers')->insert($queryTableCustomer); 
+            }else{
+                //Update Table User
+                DB::table('users')->where('id',$user['id'])->update($queryTableUser);
+                //Update Table Customer
+                DB::table('m_customers')->where('customer_login_id',$user['id'])->update($queryTableCustomer);
+
+            }
             DB::commit();
             $result = true;
         } catch (Exception $e) {
@@ -107,6 +119,20 @@ class User extends Authenticatable
                     ->first(); 
         } catch (Exception $e) {
              $result = null;
+        }
+        return $result;
+    }
+    public function deleteUser($idUser)
+    {
+        $result = false;
+        try {
+            $rowEffect = DB::table('users')
+                        ->where('id', $idUser)
+                        ->update(['IsDelete'=>1]);
+          
+        if($rowEffect == 1){$result=true;}  
+        } catch (Exception $e) {
+             $result = false;
         }
         return $result;
     }
