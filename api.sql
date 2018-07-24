@@ -11,7 +11,7 @@
  Target Server Version : 100128
  File Encoding         : 65001
 
- Date: 17/07/2018 17:23:04
+ Date: 24/07/2018 17:05:48
 */
 
 SET NAMES utf8mb4;
@@ -41,7 +41,7 @@ CREATE TABLE `m_authors`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of m_authors
@@ -49,15 +49,16 @@ CREATE TABLE `m_authors`  (
 INSERT INTO `m_authors` VALUES (1, 'Zoe Mc Key', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
 INSERT INTO `m_authors` VALUES (2, 'Mai Lan Hương, Hà Thanh Uyên', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
 INSERT INTO `m_authors` VALUES (3, 'Ts. Trần Văn Lượng', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
-INSERT INTO `m_authors` VALUES (4, 'Stephenie Meyer', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
+INSERT INTO `m_authors` VALUES (4, 'Stephenie Meyer12313', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
 INSERT INTO `m_authors` VALUES (5, 'demo', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
 INSERT INTO `m_authors` VALUES (6, 'Author 01', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
 INSERT INTO `m_authors` VALUES (7, 'Author 02', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
-INSERT INTO `m_authors` VALUES (8, 'Author 03', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
-INSERT INTO `m_authors` VALUES (9, 'Author 04', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
-INSERT INTO `m_authors` VALUES (10, 'Author 05', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
-INSERT INTO `m_authors` VALUES (11, 'Author 06', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
-INSERT INTO `m_authors` VALUES (12, 'Author 07', 'This is a author', 1, 0, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
+INSERT INTO `m_authors` VALUES (8, 'Author 03', 'This is a author', 1, 1, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
+INSERT INTO `m_authors` VALUES (9, 'Author 04', 'This is a author', 1, 1, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
+INSERT INTO `m_authors` VALUES (10, 'Author 05', 'This is a author', 1, 1, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
+INSERT INTO `m_authors` VALUES (11, 'Author 06', 'This is a author', 1, 1, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
+INSERT INTO `m_authors` VALUES (12, 'Author 07', 'This is a author', 1, 1, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
+INSERT INTO `m_authors` VALUES (13, 'demo', '123123123', 12, 1, '2018-07-18 09:39:25', '2018-07-18 09:39:25');
 
 -- ----------------------------
 -- Table structure for m_brands
@@ -148,12 +149,17 @@ CREATE TABLE `m_customers`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of m_customers
 -- ----------------------------
 INSERT INTO `m_customers` VALUES (1, 'nphoa', 'nphoa7777@gmail.com', '01223492274', 1, '155/7 XVNT p17 qBT', 1, 1, '2018-07-03 09:03:35', '2018-07-03 09:03:39');
+INSERT INTO `m_customers` VALUES (2, 'Demo7777', 'demo@gmail.com', '12321321313', 3, '123ABCafasdadad', 1, 1, '2018-07-23 16:15:54', '2018-07-23 16:15:54');
+INSERT INTO `m_customers` VALUES (3, 'Demo1', 'demo1@gmail.com', '123', 4, 'ABC', 1, 1, '2018-07-24 10:02:17', '2018-07-24 10:02:17');
+INSERT INTO `m_customers` VALUES (4, 'Demo2', 'demo2@gmail.com', '456', 5, 'XYZ', 1, 1, '2018-07-24 10:02:56', '2018-07-24 10:02:56');
+INSERT INTO `m_customers` VALUES (5, 'Demo3', 'demo3@gmail.com', '456789', 6, 'QWE', 1, 1, '2018-07-24 10:03:19', '2018-07-24 10:03:19');
+INSERT INTO `m_customers` VALUES (6, 'Demo7777123', 'demo4@gmail.com', '123', 7, 'edsadasf123123', 1, 1, '2018-07-24 10:03:38', '2018-07-24 10:03:38');
 
 -- ----------------------------
 -- Table structure for m_news
@@ -577,15 +583,22 @@ CREATE TABLE `users`  (
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sort` int(11) NOT NULL,
+  `IsDelete` int(11) NOT NULL,
   `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'nphoa', 'nphoa7777@gmail.com', '$2y$10$AWgAAhjc3k65Z2qFMs3ubuApPnyJmbyBBgNkAbrLCjVhHsaVVvqYO', NULL, '2018-06-29 07:06:51', '2018-06-29 07:06:51');
+INSERT INTO `users` VALUES (1, 'nphoa', 'nphoa7777@gmail.com', '$2y$10$AWgAAhjc3k65Z2qFMs3ubuApPnyJmbyBBgNkAbrLCjVhHsaVVvqYO', 1, 0, NULL, '2018-06-29 07:06:51', '2018-06-29 07:06:51');
+INSERT INTO `users` VALUES (3, 'Demo7777', 'demo@gmail.com', '$2y$10$DZbJeJQCqyasVfQucLaJX.L6ip.Q/JZs87.zrwbXQaFY3/VSiwVAu', 42, 0, NULL, '2018-07-23 16:15:54', '2018-07-23 16:15:54');
+INSERT INTO `users` VALUES (4, 'Demo1', 'demo1@gmail.com', '$2y$10$UNi1d.9gO9KAjYJy73g.6u0xF3sek5tSRWunsCyIo6YKxluL3gLg6', 123, 1, NULL, '2018-07-24 10:02:17', '2018-07-24 10:02:17');
+INSERT INTO `users` VALUES (5, 'Demo2', 'demo2@gmail.com', '$2y$10$YVFvhwGN3Hr/Jd8L/KboeeZy0IgwDl4eHRjakD0Z95U1EKoP5E5WC', 213, 1, NULL, '2018-07-24 10:02:56', '2018-07-24 10:02:56');
+INSERT INTO `users` VALUES (6, 'Demo3', 'demo3@gmail.com', '$2y$10$8ktRTY7lOfJumwLAQFZcT.ua8uhNKzveBvC25Ccb8VQBtH0FSDuzi', 1234, 1, NULL, '2018-07-24 10:03:18', '2018-07-24 10:03:18');
+INSERT INTO `users` VALUES (7, 'Demo7777123', 'demo4@gmail.com', '$2y$10$ckMpFrdaIvyAFv3g23LuDeDeCGz4BLX4mekttKdn.7O56luy0JUfq', 123, 1, NULL, '2018-07-24 10:03:38', '2018-07-24 10:03:38');
 
 SET FOREIGN_KEY_CHECKS = 1;
