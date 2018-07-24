@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Link} from 'react-router-dom';
+import {Link,Redirect} from 'react-router-dom';
 import * as urls from '../../API/URL';
 import apiCaller from '../../API/apiCaller';
 import swal from 'sweetalert';
@@ -8,7 +8,8 @@ class UsersComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      usersPerPage:4
+      usersPerPage:4,
+      redirectPage:false
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -35,26 +36,26 @@ class UsersComponent extends Component {
             <td style={{width:'10%'}}>{createDate}</td>
             <td style={{width:'22%'}}>
                 <Link to={`/user/add/${item.id}`}  className="btn btn-warning hvr-grow-rotate">Edit</Link>
-                <button style={{marginLeft:'5px',marginRight:'7px'}} onClick={() => this.deleteAuthor(item.id)} className="btn btn-info hvr-grow-rotate">Delete</button>
+                <button style={{marginLeft:'5px',marginRight:'7px'}} onClick={() => this.deleteUser(item.id)} className="btn btn-info hvr-grow-rotate">Delete</button>
             </td>
           </tr>
       )
     });
     return result;
   }
-  deleteAuthor = (idAuthor) => {
+  deleteUser = (idUser) => {
     swal({
       title: "Confirm !",
-      text: "Confirm delete this author ?",
+      text: "Confirm delete this user ?",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     })
     .then((willDelete) => {
       if (willDelete) {
-        apiCaller(`${urls.DELETE_AUTHOR}/?idAuthor=${idAuthor}`,'GET').then(res=>{
+        apiCaller(`${urls.DELETE_USER}/?idUser=${idUser}`,'GET').then(res=>{
           if(res.data.data){
-            this.props.getAllAuthor(this.props.match.params.currentPage);
+            this.props.getAllUser(this.props.match.params.currentPage);
           }
         });
       } else {
@@ -74,6 +75,9 @@ class UsersComponent extends Component {
     const{users,currentPage,countData} = this.props;
     if(users != null && users.length == 0 ){
       return(<div>Screen is loading . . .</div>)
+    }
+    if(this.props.match.params.currentPage != currentPage){
+      return(<Redirect to={`/users/${currentPage}`}/>)
     }
     //Pagination client logic
     const {usersPerPage}  = this.state;

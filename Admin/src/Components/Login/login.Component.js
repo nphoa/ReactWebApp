@@ -21,15 +21,16 @@ class LoginComponent extends Component {
 
   onSubmit = (event) => {
       event.preventDefault();
-      if(this.state.email == 'nphoa7777@gmail.com' && this.state.password == '123456'){
-          let loginUser = {
-              email:this.state.email,
-              password:this.state.password
-          };
-          localStorage.setItem('loginUser',JSON.stringify(loginUser));
-          swal("Success!", "Đăng nhập thành công!", "success");
-          this.props.login();
-      }
+      this.props.login(this.state);
+      // if(this.state.email == 'nphoa7777@gmail.com' && this.state.password == '123456'){
+      //     let loginUser = {
+      //         email:this.state.email,
+      //         password:this.state.password
+      //     };
+      //     localStorage.setItem('loginUser',JSON.stringify(loginUser));
+      //     swal("Success!", "Đăng nhập thành công!", "success");
+      //     this.props.login();
+      // }
   }
   render() {
     if(this.props.isLogin){
@@ -99,8 +100,8 @@ const mapStateToProps = (state) => {
   }
   const mapDispatchToProps = (dispatch,props) => {
       return {
-          login:()=>{
-              dispatch(actions.login())
+          login:(login)=>{
+              dispatch(actions.login(login))
           }
       }
   }

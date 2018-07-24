@@ -5,7 +5,13 @@ import * as actions from '../Actions/index';
 
 class Layout extends Component {
     componentWillMount(){
-        this.props.login();
+       this.checkLogin();
+    }
+    checkLogin = () => {
+        let userLogin =JSON.parse(sessionStorage.getItem('loginUser'));
+        if(userLogin != null || userLogin != undefined){
+            this.props.checkLogin(userLogin);
+        }
     }
     render() {
     const {isLogin} = this.props;
@@ -30,9 +36,9 @@ const mapStateToProps = (state) => {
   }
   const mapDispatchToProps = (dispatch,props) => {
       return {
-        login:()=>{
-            dispatch(actions.login())
-        }
+          checkLogin:(data)=>{
+              dispatch(actions.login_success(data))
+          }
       }
   }
   export default connect(mapStateToProps,mapDispatchToProps)(Layout);

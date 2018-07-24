@@ -185,10 +185,24 @@ export const paginationAuthor = (numberPage) => {
 	}
 }
 
-export const login = () => {
+export const login = (login) => {
 	return {
 		type:types.LOGIN,
-	
+		login:login
+	}
+}
+
+export const check_login = (data) => {
+	return {
+		type:types.CHECK_LOGIN,
+		data:data
+	}
+}
+
+export const login_success = (data) => {
+	return {
+		type:types.LOGIN_SUCCESS,
+		data:data
 	}
 }
 

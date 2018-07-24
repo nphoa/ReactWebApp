@@ -29,3 +29,6 @@ export const DELETE_RELEASECOMPANY    = host.urlHost+'/deleteReleaseCompany';
 export const GET_ALL_USER    = host.urlHost+'/users';
 export const GET_USER_BY_ID    = host.urlHost+'/getUserById';
 export const SAVE_USER    = host.urlHost+'/saveUser';
+export const DELETE_USER    = host.urlHost+'/deleteUser';
+
+export const LOGIN    = host.urlHost+'/login';

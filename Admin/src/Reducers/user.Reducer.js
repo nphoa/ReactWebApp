@@ -15,7 +15,7 @@ var myReducer = (state = initialState,action) => {
 			state.countData = action.data.countData;
 			state.currentPage = action.data.currentPage;
 			return {...state};
-            break;
+			break;
 		case types.GET_USER_BY_ID_SUCCESS:
 			console.log(action);
             state.userEditing = action.user;

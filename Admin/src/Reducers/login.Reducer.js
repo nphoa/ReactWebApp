@@ -7,13 +7,15 @@ var initialState  = {
 
 var myReducer = (state = initialState,action) => {
 	switch (action.type) {
-		case types.LOGIN:
-			let userLogin = localStorage.getItem('loginUser');
-			state.isLogin = (userLogin != null) ? true : false;
+		case types.LOGIN_SUCCESS:
+			if(!sessionStorage.getItem('loginUser')){
+				sessionStorage.setItem('loginUser',JSON.stringify(action.data));
+			}
+			state.isLogin = true;
 			return {...state};
 			break;
 		case types.LOGOUT:
-			localStorage.removeItem('loginUser');
+			sessionStorage.removeItem('loginUser');
 			state.isLogin = false;
 			return {...state};
 			break;

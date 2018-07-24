@@ -43,6 +43,8 @@ export const DELETE_RELEASE_COMPANY = 'DELETE_RELEASE_COMPANY';
 export const PAGINATION_AUTHOR = 'PAGINATION_AUTHOR';
 
 export const LOGIN = 'LOGIN';
+export const CHECK_LOGIN = 'CHECK_LOGIN';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT = 'LOGOUT';
 
 export const GET_ALL_USER = 'GET_ALL_USER';
