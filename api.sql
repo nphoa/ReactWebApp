@@ -11,7 +11,7 @@
  Target Server Version : 100128
  File Encoding         : 65001
 
- Date: 24/07/2018 17:05:48
+ Date: 25/07/2018 17:16:06
 */
 
 SET NAMES utf8mb4;
@@ -149,7 +149,7 @@ CREATE TABLE `m_customers`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of m_customers
@@ -160,6 +160,7 @@ INSERT INTO `m_customers` VALUES (3, 'Demo1', 'demo1@gmail.com', '123', 4, 'ABC'
 INSERT INTO `m_customers` VALUES (4, 'Demo2', 'demo2@gmail.com', '456', 5, 'XYZ', 1, 1, '2018-07-24 10:02:56', '2018-07-24 10:02:56');
 INSERT INTO `m_customers` VALUES (5, 'Demo3', 'demo3@gmail.com', '456789', 6, 'QWE', 1, 1, '2018-07-24 10:03:19', '2018-07-24 10:03:19');
 INSERT INTO `m_customers` VALUES (6, 'Demo7777123', 'demo4@gmail.com', '123', 7, 'edsadasf123123', 1, 1, '2018-07-24 10:03:38', '2018-07-24 10:03:38');
+INSERT INTO `m_customers` VALUES (7, 'Demo 7', 'demo7@gmail.com', '77777777', 8, 'DemoABC', 1, 1, '2018-07-25 11:36:41', '2018-07-25 11:36:41');
 
 -- ----------------------------
 -- Table structure for m_news
@@ -377,6 +378,26 @@ INSERT INTO `m_release_companys` VALUES (5, 'demo', 'demo', 0, 23, '2018-07-17 0
 INSERT INTO `m_release_companys` VALUES (6, 'demo123', 'demo123', 1, 3, '2018-07-17 09:15:16', '2018-07-17 09:15:16');
 
 -- ----------------------------
+-- Table structure for m_roles
+-- ----------------------------
+DROP TABLE IF EXISTS `m_roles`;
+CREATE TABLE `m_roles`  (
+  `id` int(10) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `IsDelete` int(2) NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of m_roles
+-- ----------------------------
+INSERT INTO `m_roles` VALUES (1, 'Admin', 'Admin', 0, '2018-07-25 09:47:28', '2018-07-25 09:47:32');
+INSERT INTO `m_roles` VALUES (2, 'User', 'User', 0, '2018-07-25 09:48:06', '2018-07-25 09:48:09');
+
+-- ----------------------------
 -- Table structure for m_shipment_types
 -- ----------------------------
 DROP TABLE IF EXISTS `m_shipment_types`;
@@ -586,19 +607,21 @@ CREATE TABLE `users`  (
   `sort` int(11) NOT NULL,
   `IsDelete` int(11) NOT NULL,
   `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `roleId` int(2) NOT NULL,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'nphoa', 'nphoa7777@gmail.com', '$2y$10$AWgAAhjc3k65Z2qFMs3ubuApPnyJmbyBBgNkAbrLCjVhHsaVVvqYO', 1, 0, NULL, '2018-06-29 07:06:51', '2018-06-29 07:06:51');
-INSERT INTO `users` VALUES (3, 'Demo7777', 'demo@gmail.com', '$2y$10$DZbJeJQCqyasVfQucLaJX.L6ip.Q/JZs87.zrwbXQaFY3/VSiwVAu', 42, 0, NULL, '2018-07-23 16:15:54', '2018-07-23 16:15:54');
-INSERT INTO `users` VALUES (4, 'Demo1', 'demo1@gmail.com', '$2y$10$UNi1d.9gO9KAjYJy73g.6u0xF3sek5tSRWunsCyIo6YKxluL3gLg6', 123, 1, NULL, '2018-07-24 10:02:17', '2018-07-24 10:02:17');
-INSERT INTO `users` VALUES (5, 'Demo2', 'demo2@gmail.com', '$2y$10$YVFvhwGN3Hr/Jd8L/KboeeZy0IgwDl4eHRjakD0Z95U1EKoP5E5WC', 213, 1, NULL, '2018-07-24 10:02:56', '2018-07-24 10:02:56');
-INSERT INTO `users` VALUES (6, 'Demo3', 'demo3@gmail.com', '$2y$10$8ktRTY7lOfJumwLAQFZcT.ua8uhNKzveBvC25Ccb8VQBtH0FSDuzi', 1234, 1, NULL, '2018-07-24 10:03:18', '2018-07-24 10:03:18');
-INSERT INTO `users` VALUES (7, 'Demo7777123', 'demo4@gmail.com', '$2y$10$ckMpFrdaIvyAFv3g23LuDeDeCGz4BLX4mekttKdn.7O56luy0JUfq', 123, 1, NULL, '2018-07-24 10:03:38', '2018-07-24 10:03:38');
+INSERT INTO `users` VALUES (1, 'nphoa', 'nphoa7777@gmail.com', '$2y$10$AWgAAhjc3k65Z2qFMs3ubuApPnyJmbyBBgNkAbrLCjVhHsaVVvqYO', 1, 0, NULL, 1, '2018-06-29 07:06:51', '2018-06-29 07:06:51');
+INSERT INTO `users` VALUES (3, 'Demo7777', 'demo@gmail.com', '$2y$10$DZbJeJQCqyasVfQucLaJX.L6ip.Q/JZs87.zrwbXQaFY3/VSiwVAu', 42, 0, NULL, 2, '2018-07-23 16:15:54', '2018-07-23 16:15:54');
+INSERT INTO `users` VALUES (4, 'Demo1', 'demo1@gmail.com', '$2y$10$UNi1d.9gO9KAjYJy73g.6u0xF3sek5tSRWunsCyIo6YKxluL3gLg6', 123, 1, NULL, 2, '2018-07-24 10:02:17', '2018-07-24 10:02:17');
+INSERT INTO `users` VALUES (5, 'Demo2', 'demo2@gmail.com', '$2y$10$YVFvhwGN3Hr/Jd8L/KboeeZy0IgwDl4eHRjakD0Z95U1EKoP5E5WC', 213, 1, NULL, 2, '2018-07-24 10:02:56', '2018-07-24 10:02:56');
+INSERT INTO `users` VALUES (6, 'Demo3', 'demo3@gmail.com', '$2y$10$8ktRTY7lOfJumwLAQFZcT.ua8uhNKzveBvC25Ccb8VQBtH0FSDuzi', 1234, 1, NULL, 2, '2018-07-24 10:03:18', '2018-07-24 10:03:18');
+INSERT INTO `users` VALUES (7, 'Demo7777123', 'demo4@gmail.com', '$2y$10$ckMpFrdaIvyAFv3g23LuDeDeCGz4BLX4mekttKdn.7O56luy0JUfq', 123, 1, NULL, 2, '2018-07-24 10:03:38', '2018-07-24 10:03:38');
+INSERT INTO `users` VALUES (8, 'Demo 7', 'demo7@gmail.com', '$2y$10$2IO5xDqKRlO5dG9aHcBtiOrOwqw2GktYWA.qp0g4TkljsAuEUk9r.', 2, 0, NULL, 1, '2018-07-25 11:36:41', '2018-07-25 11:36:41');
 
 SET FOREIGN_KEY_CHECKS = 1;
