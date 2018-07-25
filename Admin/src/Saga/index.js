@@ -7,6 +7,7 @@ import {watchGetAllPublisher,watchGetPublisherById} from './publisher.Saga';
 import {watchGetAllReleaseCompany,watchGetReleaseCompanyById} from './releaseCompany.Saga';
 import {watchGetAllUser,watchGetUserById} from './user.Saga';
 import {watchLogin} from './login.Saga';
+import {watchGetAllRole} from './role.Saga';
 export default function* rootSaga(){
     yield all([
         watchGetCategoryById(),
@@ -21,6 +22,7 @@ export default function* rootSaga(){
         watchGetReleaseCompanyById(),
         watchGetAllUser(),
         watchGetUserById(),
-        watchLogin()
+        watchLogin(),
+        watchGetAllRole()
     ]);
 }

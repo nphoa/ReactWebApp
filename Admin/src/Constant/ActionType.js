@@ -55,3 +55,6 @@ export const GET_USER_BY_ID_SUCCESS = 'GET_USER_BY_ID_SUCCESS';
 
 export const DELETE_USER = 'DELETE_USER';
 export const RESET_USER = 'RESET_USER';
+
+export const GET_ALL_ROLE = 'GET_ALL_ROLE';
+export const GET_ALL_ROLE_SUCCESS = 'GET_ALL_ROLE_SUCCESS';

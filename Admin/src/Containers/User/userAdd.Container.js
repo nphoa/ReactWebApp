@@ -6,7 +6,8 @@ import * as actions from '../../Actions/index';
 
 const mapStateToProps = (state) => {
   return{
-    formUserAddField:state.form.userAdd
+    formUserAddField:state.form.userAdd,
+    roles:state.roles
   }
 }
 const mapDispatchToProps = (dispatch,props) => {
@@ -17,6 +18,9 @@ const mapDispatchToProps = (dispatch,props) => {
         resetUser:()=>{
             dispatch(actions.resetUser());
         },
+        getAllRole:()=>{
+            dispatch(actions.getAllRole());
+        }
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(UserAddComponent);

@@ -20,7 +20,7 @@ import UsersContainer from '../src/Containers/User/users.Container';
 import UserAddContainer from '../src/Containers/User/userAdd.Container';
 const routers = [
 	{
-		path: '/dashboard',
+		path: '/',
 		main: () => <Dashboard />
 	},
 	{

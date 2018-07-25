@@ -7,6 +7,7 @@ import releaseCompanyReducer from './releaseCompany.Reducer';
 import {reducer as formReducer} from 'redux-form';
 import loginReducer from './login.Reducer';
 import userReducer from './user.Reducer';
+import roleReducer from './role.Reducer';
 const appReducers = combineReducers({
 	form:formReducer,
 	product:productReducer,
@@ -15,7 +16,8 @@ const appReducers = combineReducers({
 	publisher:publisherReducer,
 	releaseCompany:releaseCompanyReducer,
 	login:loginReducer,
-	user:userReducer
+	user:userReducer,
+	roles:roleReducer
 });
 
 export default appReducers

@@ -254,3 +254,17 @@ export const resetUser = () => {
 		
 	}
 }
+
+export const getAllRole = () => {
+	return {
+		type:types.GET_ALL_ROLE,
+		
+	}
+}
+
+export const getAllRole_Success = (data) => {
+	return {
+		type:types.GET_ALL_ROLE_SUCCESS,
+		data:data
+	}
+}

@@ -22,13 +22,12 @@ class UserAddComponent extends Component {
     };
     this.Input_password = React.createRef();
   }
-  componentWillMount(){
-    console.log(this.props.match);
-  }
+  
   validateConfirmPassword = (value) => {
     return (value == this.Input_password.current.value) ? undefined : 'Password confirm';
   }
   componentDidMount(){
+    this.props.getAllRole();
     // if(this.props.categories != null &&  this.props.categories.length == 0){
     //     this.props.getAllCategory();
     // }
@@ -63,7 +62,28 @@ class UserAddComponent extends Component {
     )
   }
 
-
+  renderFieldSelect = ({input,children,meta:{ touched, error, warning}}) => {
+    return (
+      <div>
+        <select {...input}  className="form-control">
+        {children}
+        </select>
+        {touched &&
+          ((error && <span style={{color:'red'}}>{error}</span>))}
+      </div>
+    )
+  }
+  showListRole = (roles) => {
+    let result = null;
+     if(roles!=null){
+      result  = roles.map((item,index)=>{
+        return (
+            <option value={item.id} key={index+1}>{item.name}</option>
+        )
+      });
+     }
+    return result;
+  }
   render() {
     const { pristine, reset, submitting,valid,handleSubmit } = this.props;
     const {idUser} = this.props.match.params;
@@ -147,6 +167,16 @@ class UserAddComponent extends Component {
                         </div>
                     </div>
 
+                    <div className="form-group">
+                        <label htmlFor="selector1" className="col-sm-2 control-label">Role</label>
+                        <div className="col-sm-8">
+                            <Field name="roleId" component={this.renderFieldSelect} validate={[requiredSelect]}>
+                            <option value={0}>Please choose user role !</option>
+                            {this.showListRole(this.props.roles)}
+                            </Field>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
              

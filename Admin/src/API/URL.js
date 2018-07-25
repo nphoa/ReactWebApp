@@ -32,3 +32,5 @@ export const SAVE_USER    = host.urlHost+'/saveUser';
 export const DELETE_USER    = host.urlHost+'/deleteUser';
 
 export const LOGIN    = host.urlHost+'/login';
+
+export const GET_ALL_ROLE    = host.urlHost+'/roles';

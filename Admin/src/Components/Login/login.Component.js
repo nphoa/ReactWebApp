@@ -12,13 +12,21 @@ class LoginComponent extends Component {
     };
     
   }
+  componentWillMount(){
+    this.checkLogin();
+  }
   onChange = (event) => {
     this.setState({
         [event.target.name] :event.target.value
     });
 
   }
-
+  checkLogin = () => {
+    let userLogin =JSON.parse(sessionStorage.getItem('loginUser'));
+    if(userLogin != null || userLogin != undefined){
+        this.props.checkLogin(userLogin);
+    }
+  }
   onSubmit = (event) => {
       event.preventDefault();
       this.props.login(this.state);
@@ -35,7 +43,7 @@ class LoginComponent extends Component {
   render() {
     if(this.props.isLogin){
         return(
-            <Redirect to ='/dashboard'/>
+          <Redirect to='/'/>
         )
     }
     return (
@@ -102,6 +110,9 @@ const mapStateToProps = (state) => {
       return {
           login:(login)=>{
               dispatch(actions.login(login))
+          },
+          checkLogin:(data)=>{
+            dispatch(actions.login_success(data))
           }
       }
   }

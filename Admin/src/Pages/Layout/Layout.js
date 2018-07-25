@@ -8,9 +8,8 @@ class Layout extends Component {
     return(
       <Router>
         <div>
-          <Route path='/' exact={true} component={LayoutComponent} />  
+          <Route path='/' exact component={Main} />  
           <Route path='/login' component={LoginComponent} />
-          <Route path='/dashboard' component={Main} />
         </div>
       </Router>
    

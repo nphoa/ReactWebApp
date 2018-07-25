@@ -8,6 +8,10 @@ import ReloadLibary from '../../Components/ReloadLibary.Component';
 import {connect} from 'react-redux';
 
 class Main extends Component {
+  componentWillMount(){
+    alert(1);
+  }
+
   showContentRoute = (routes) =>{
     var result = null;
     if(routes.length >0){
@@ -27,11 +31,11 @@ class Main extends Component {
   render() {
       if(!this.props.isLogin){
            return(
-               <Redirect to ='/login'/>
+            <Redirect from='/' to='/login'/>
            )
       }
       return (
-        <Router>
+       
         <div className="main-content">
         <ReloadLibary/>
         {/*left-fixed -navigation*/}
@@ -56,7 +60,7 @@ class Main extends Component {
         <Footer/>
         {/*//footer*/}
       </div>
-        </Router>
+       
       );
     }
 
