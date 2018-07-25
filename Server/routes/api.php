@@ -65,3 +65,5 @@ Route::get('users','UserController@getAll')->middleware('cors');
 Route::post('saveUser','UserController@saveUser')->middleware('cors');
 Route::get('getUserById','UserController@getUserById')->middleware('cors');
 Route::get('deleteUser','UserController@deleteUser')->middleware('cors');
+
+Route::get('roles','RoleController@getAll')->middleware('cors');

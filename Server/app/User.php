@@ -63,6 +63,7 @@ class User extends Authenticatable
             $queryTableUser = [
                 'name'      => $user['name'],
                 'sort'      => $user['sort'],
+                'roleId'    => $user['roleId'],
             ];
             $queryTableCustomer = [
                 'customer_name'     => $user['name'],

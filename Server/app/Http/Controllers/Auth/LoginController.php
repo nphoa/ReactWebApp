@@ -45,7 +45,7 @@ class LoginController extends Controller
         $data = $req->json()->all();
         //$ema $datail = $req->get('email');
         //$password = $req->get('password');
-        if(Auth::attempt(['email'=>$data['email'] , 'password'=>$data['password']]))
+        if(Auth::attempt(['email'=>$data['email'] , 'password'=>$data['password'],'roleId'=>1]))
         {
             return response()->json(['status'=>'success','data'=>Auth::user()]);
         }
