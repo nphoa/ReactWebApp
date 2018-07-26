@@ -9,7 +9,10 @@ import {connect} from 'react-redux';
 
 class Main extends Component {
   componentWillMount(){
-    alert(1);
+    console.log(this.props.routes);
+  }
+  componentDidUpdate(){
+
   }
 
   showContentRoute = (routes) =>{
@@ -21,7 +24,10 @@ class Main extends Component {
                     key = {index} 
                     path={route.path}
                     exact={route.exact}
-                    component={route.main}  
+                    render={props => (
+                      // pass the sub-routes down to keep nesting
+                      <route.component {...props} routes={route.routes} />
+                    )}  
                 />
             );
         });
@@ -31,11 +37,11 @@ class Main extends Component {
   render() {
       if(!this.props.isLogin){
            return(
-            <Redirect from='/' to='/login'/>
+            <Redirect to='/login'/>
            )
       }
       return (
-       
+        
         <div className="main-content">
         <ReloadLibary/>
         {/*left-fixed -navigation*/}
@@ -50,7 +56,7 @@ class Main extends Component {
             {/* four-grids */}
             <div className="row four-grids">
               <div>
-                {this.showContentRoute(routers)}
+                {this.showContentRoute(this.props.routes)}
               </div>
               <div className="clearfix"> </div>
             </div>
@@ -60,7 +66,7 @@ class Main extends Component {
         <Footer/>
         {/*//footer*/}
       </div>
-       
+     
       );
     }
 
@@ -76,7 +82,7 @@ const mapStateToProps = (state) => {
   }
   const mapDispatchToProps = (dispatch,props) => {
       return {
-      
+        
       }
   }
   export default connect(mapStateToProps,mapDispatchToProps)(Main);

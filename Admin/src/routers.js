@@ -21,12 +21,12 @@ import UserAddContainer from '../src/Containers/User/userAdd.Container';
 const routers = [
 	{
 		path: '/',
+		exact:true,
 		main: () => <Dashboard />
 	},
 	{
 		path: '/product',
-		exact:true,
-		main: () => <ProductPage />
+		main: ({history,match}) => <ProductPage history = {history} match = {match}/>
 	},
 	{
 		path: '/product/add/:id?',

@@ -20,6 +20,9 @@ var myReducer = (state = initialState,action) => {
 			return {...state};
 			break;
 		default:
+			if(sessionStorage.getItem('loginUser')){
+				state.isLogin = true;
+			}
 			return {...state};
 			break;
 	}

@@ -43,7 +43,7 @@ class LoginComponent extends Component {
   render() {
     if(this.props.isLogin){
         return(
-          <Redirect to='/'/>
+          <Redirect push to='/dashboard'/>
         )
     }
     return (
