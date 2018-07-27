@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ProductItemComponent from "../Components/Product_Item.Component";
 import ProductContainer from "../Containers/Products.Container";
-
+import ReloadLibrary from '../Components/ReloadLibrary.Component';
 class ProductsComponent extends Component {
   constructor(props){
       super(props);
@@ -22,7 +22,7 @@ class ProductsComponent extends Component {
   render() {
     return (
       <div>
-   
+        <ReloadLibrary/>
  
         {/* BREADCRUMB */}
         <div id="breadcrumb">

@@ -3,6 +3,7 @@ import BannerImage from "../Pages/Partial/Client/BannerImage";
 import DealProductsComponent from "../Components/Deal_Products.Component";
 import LatestProductsComponent from "../Components/Latest_Products.Component";
 import * as $ from "jquery";
+import ReloadLibrary from '../Components/ReloadLibrary.Component';
 class HomeComponent extends Component {
   componentWillMount() {
     //this.reloadLibary();
@@ -10,26 +11,12 @@ class HomeComponent extends Component {
   componentDidMount() {
 
   }
-  reloadLibary() {
-    let ele = $(document.getElementsByTagName("script"));
-    for (let index = 0; index < ele.length; index++) {
-      if (ele[index].getAttribute("src") == "/Client/js/main.js") {
-        $(ele[index]).remove();
-      }
-    }
-
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = "/Client/js/main.js";
-
-    document.getElementsByTagName("body")[0].appendChild(script);
-  }
   render() {
     return (
       <div>
-       
         {/* HOME */}
         <BannerImage />
+        <ReloadLibrary/>
         {/* /HOME */}
         {/* section */}
         <div className="section">
