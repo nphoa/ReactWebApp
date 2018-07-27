@@ -11,6 +11,7 @@ var myReducer = (state = initialState,action) => {
 			if(!sessionStorage.getItem('loginUser')){
 				sessionStorage.setItem('loginUser',JSON.stringify(action.data));
 			}
+			state.userLogin = JSON.parse(sessionStorage.getItem('loginUser'));
 			state.isLogin = true;
 			return {...state};
 			break;
@@ -22,6 +23,7 @@ var myReducer = (state = initialState,action) => {
 		default:
 			if(sessionStorage.getItem('loginUser')){
 				state.isLogin = true;
+				state.userLogin = JSON.parse(sessionStorage.getItem('loginUser'));
 			}
 			return {...state};
 			break;

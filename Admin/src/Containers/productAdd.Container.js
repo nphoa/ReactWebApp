@@ -19,8 +19,8 @@ const mapDispatchToProps = (dispatch,props) => {
       getAllCategory:()=>{
         dispatch(actions.getAllCategory());
       },
-      getAllAuthor:()=>{
-        dispatch(actions.getAllAuthor());
+      getAllAuthor:(currentPage)=>{
+        dispatch(actions.getAllAuthor(currentPage));
       },
       getAllPublisher:(numberPage)=>{
         dispatch(actions.getAllPublisher(numberPage));

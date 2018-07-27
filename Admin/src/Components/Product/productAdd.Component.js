@@ -36,7 +36,7 @@ class ProductAddComponent extends Component {
     if(this.props.categories.length == 0){
       this.props.getAllCategory();}
     if(this.props.authors.length == 0){
-      this.props.getAllAuthor();
+      this.props.getAllAuthor(1);
     }
     if(this.props.publishers.length == 0){
       this.props.getAllPublisher(1);
