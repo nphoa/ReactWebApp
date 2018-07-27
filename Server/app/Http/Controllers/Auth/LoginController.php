@@ -47,7 +47,13 @@ class LoginController extends Controller
         //$password = $req->get('password');
         if(Auth::attempt(['email'=>$data['email'] , 'password'=>$data['password'],'roleId'=>1]))
         {
-            return response()->json(['status'=>'success','data'=>Auth::user()]);
+            $model = new User();
+            $inforUserLogin = Auth::user();
+            $customer = $model->getUserById($inforUserLogin['id']);
+            $inforUserLogin['phone'] = $customer->phone;
+            $inforUserLogin['address'] = $customer->address;
+
+            return response()->json(['status'=>'success','data'=>$inforUserLogin]);
         }
         return response()->json(['status'=>'fails','data'=>Auth::user()]);
         
