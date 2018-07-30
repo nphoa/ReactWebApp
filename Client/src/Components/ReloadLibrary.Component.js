@@ -1,31 +1,34 @@
 import {slick} from 'slick-carousel';
 import * as $ from 'jquery';
 import React, { Component } from "react";
+import * as zoom from 'jquery-zoom';
 
+var responsiveNav = $('#responsive-nav'),
+catToggle = $('#responsive-nav .category-nav .category-header'),
+catList = $('#responsive-nav .category-nav .category-list'),
+menuToggle = $('#responsive-nav .menu-nav .menu-header'),
+menuList = $('#responsive-nav .menu-nav .menu-list');
 
+catToggle.on('click', function() {
+menuList.removeClass('open');
+catList.toggleClass('open');
+});
+
+menuToggle.on('click', function() {
+catList.removeClass('open');
+menuList.toggleClass('open');
+});
 
 class ReloadLibraryComponent extends Component {
     componentDidMount(){
-       this.load();
+      this.load();
         
     }
+   
     load(){
-        var responsiveNav = $('#responsive-nav'),
-    catToggle = $('#responsive-nav .category-nav .category-header'),
-    catList = $('#responsive-nav .category-nav .category-list'),
-    menuToggle = $('#responsive-nav .menu-nav .menu-header'),
-    menuList = $('#responsive-nav .menu-nav .menu-list');
-
-  catToggle.on('click', function() {
-    menuList.removeClass('open');
-    catList.toggleClass('open');
-  });
-
-  menuToggle.on('click', function() {
-    catList.removeClass('open');
-    menuList.toggleClass('open');
-  });
-
+      //$('#product-main-view').zoom();
+      //$('#product-main-view .product-view').zoom();
+      //console.log($('#product-main-view .product-view'));
   
   $(document).click(function(event) {
     if (!$(event.target).closest(responsiveNav).length) {
@@ -127,6 +130,9 @@ class ReloadLibraryComponent extends Component {
     focusOnSelect: true,
     asNavFor: '#product-main-view',
   });
+
+  //$('#product-main-view .product-view').zoom();
+
     }   
     render() {
         return (

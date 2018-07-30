@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import * as $ from "jquery";
 import * as urls from '../API/URL';
 import callApi from '../API/apiCaller';
+import ReloadLibary from '../Components/ReloadLibrary.Component';
+import {zoom} from 'jquery-zoom';
 class ProductDetailComponent extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +29,6 @@ class ProductDetailComponent extends Component {
     document.getElementsByTagName("body")[0].appendChild(script);
   }
   componentDidMount() {
-    console.log('didmount');
     this.props.getProductById(this.props.match.params.idProduct);
     // callApi(`${urls.GET_PRODUCT_BY_ID}/?idProduct=${this.props.match.params.idProduct}`,'GET').then((res)=>{
     //   this.setState({
@@ -35,6 +36,8 @@ class ProductDetailComponent extends Component {
     //       product: res.data.data[0]
     //     });
     // });
+    //$('#product-main-view .product-view').zoom();
+   
   }
 
 
@@ -87,13 +90,13 @@ class ProductDetailComponent extends Component {
  
   render() {
     const {productDetail} = this.props;    
-    console.log(productDetail);
     if(productDetail == null || productDetail == undefined || Object.keys(productDetail).length === 0){
       return <div>Data is loaded</div>
     }else{
-      this.reloadLibary();
       return (
+        
         <div>
+          
           <div className="section">
             {/* container */}
             <div className="container">
@@ -369,6 +372,7 @@ class ProductDetailComponent extends Component {
             </div>
             {/* /container */}
           </div>
+          <ReloadLibary/>
         </div>
       );
     }
