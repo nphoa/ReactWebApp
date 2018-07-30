@@ -11,7 +11,7 @@
  Target Server Version : 100128
  File Encoding         : 65001
 
- Date: 25/07/2018 17:16:06
+ Date: 30/07/2018 17:21:31
 */
 
 SET NAMES utf8mb4;
@@ -41,7 +41,7 @@ CREATE TABLE `m_authors`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of m_authors
@@ -59,6 +59,8 @@ INSERT INTO `m_authors` VALUES (10, 'Author 05', 'This is a author', 1, 1, '2018
 INSERT INTO `m_authors` VALUES (11, 'Author 06', 'This is a author', 1, 1, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
 INSERT INTO `m_authors` VALUES (12, 'Author 07', 'This is a author', 1, 1, '2018-07-16 15:37:17', '2018-07-16 15:37:17');
 INSERT INTO `m_authors` VALUES (13, 'demo', '123123123', 12, 1, '2018-07-18 09:39:25', '2018-07-18 09:39:25');
+INSERT INTO `m_authors` VALUES (14, 'Meta Wagner', 'Meta Wagner\n', 12, 0, '2018-07-30 15:54:14', '2018-07-30 15:54:14');
+INSERT INTO `m_authors` VALUES (15, 'Sasaki Fumio', 'Demo', 1, 0, '2018-07-30 16:01:54', '2018-07-30 16:01:54');
 
 -- ----------------------------
 -- Table structure for m_brands
@@ -154,7 +156,7 @@ CREATE TABLE `m_customers`  (
 -- ----------------------------
 -- Records of m_customers
 -- ----------------------------
-INSERT INTO `m_customers` VALUES (1, 'nphoa', 'nphoa7777@gmail.com', '01223492274', 1, '155/7 XVNT p17 qBT', 1, 1, '2018-07-03 09:03:35', '2018-07-03 09:03:39');
+INSERT INTO `m_customers` VALUES (1, 'Admin', 'nphoa7777@gmail.com', '01223492274', 1, '155/7 XVNT phường 17, quận Bình Thạnh', 1, 1, '2018-07-03 09:03:35', '2018-07-03 09:03:39');
 INSERT INTO `m_customers` VALUES (2, 'Demo7777', 'demo@gmail.com', '12321321313', 3, '123ABCafasdadad', 1, 1, '2018-07-23 16:15:54', '2018-07-23 16:15:54');
 INSERT INTO `m_customers` VALUES (3, 'Demo1', 'demo1@gmail.com', '123', 4, 'ABC', 1, 1, '2018-07-24 10:02:17', '2018-07-24 10:02:17');
 INSERT INTO `m_customers` VALUES (4, 'Demo2', 'demo2@gmail.com', '456', 5, 'XYZ', 1, 1, '2018-07-24 10:02:56', '2018-07-24 10:02:56');
@@ -210,12 +212,17 @@ CREATE TABLE `m_product_details`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of m_product_details
 -- ----------------------------
 INSERT INTO `m_product_details` VALUES (14, 16, 2, 4, 4, '13.5 x 20.5 cm', 300, '2018-07-11', 'Bìa mềm', '2018-07-13 14:43:54', '2018-07-13 14:43:54');
+INSERT INTO `m_product_details` VALUES (15, 17, 4, 2, 2, '500 x 400', 504, '2018-07-30', 'Bìa cứng', '2018-07-30 15:42:02', '2018-07-30 15:42:02');
+INSERT INTO `m_product_details` VALUES (16, 18, 7, 11, 2, '13.5 x 20.5 cm', 252, '2018-07-31', 'Bìa mềm', '2018-07-30 15:49:00', '2018-07-30 15:49:00');
+INSERT INTO `m_product_details` VALUES (17, 19, 8, 53, 14, '14.5 x 20.5 cm', 312, '2018-07-30', 'Bìa mềm', '2018-07-30 15:56:28', '2018-07-30 15:56:28');
+INSERT INTO `m_product_details` VALUES (18, 20, 9, 53, 7, '12 x 20.5 cm', 248, '2018-07-30', 'Bìa mềm', '2018-07-30 16:00:10', '2018-07-30 16:00:10');
+INSERT INTO `m_product_details` VALUES (19, 21, 10, 1, 15, '13 x 20.5 cm', 294, '2018-07-30', 'Bìa mềm', '2018-07-30 16:04:54', '2018-07-30 16:04:54');
 
 -- ----------------------------
 -- Table structure for m_product_images
@@ -229,7 +236,7 @@ CREATE TABLE `m_product_images`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of m_product_images
@@ -240,6 +247,16 @@ INSERT INTO `m_product_images` VALUES (12, 15, 'Detail', 'sach-doi-ngan-dung-ngu
 INSERT INTO `m_product_images` VALUES (13, 15, 'Detail', '9b5e2bac8229beb690ee703cd47c391c.jpg', '2018-07-09 15:08:55', '2018-07-09 15:08:55');
 INSERT INTO `m_product_images` VALUES (14, 3, 'Detail', 'TTVH_01_zoom_01.jpg', '2018-07-09 15:29:02', '2018-07-09 15:29:05');
 INSERT INTO `m_product_images` VALUES (15, 16, 'Detail', 'react-native-cookbook-stan-bershadskiy(www.ebook-dl.com)_Large.jpg', '2018-07-11 13:17:07', '2018-07-11 13:17:07');
+INSERT INTO `m_product_images` VALUES (16, 16, 'Detail', 'ProgramingJS.jpg', '2018-07-30 12:02:21', '2018-07-30 12:02:24');
+INSERT INTO `m_product_images` VALUES (17, 17, 'Detail', '31d38761a9205394cb818c3f1eccdc37.jpg', '2018-07-30 15:42:34', '2018-07-30 15:42:34');
+INSERT INTO `m_product_images` VALUES (18, 18, 'Detail', 'dungcamtienlen.jpg', '2018-07-30 15:49:15', '2018-07-30 15:49:15');
+INSERT INTO `m_product_images` VALUES (19, 19, 'Detail', 'aicunglanhasangtao01.jpg', '2018-07-30 15:56:46', '2018-07-30 15:56:46');
+INSERT INTO `m_product_images` VALUES (20, 19, 'Detail', 'aicunglanhasangtao.jpg', '2018-07-30 15:56:46', '2018-07-30 15:56:46');
+INSERT INTO `m_product_images` VALUES (21, 20, 'Detail', 'metquaaquanaghetdi.jpg', '2018-07-30 16:00:27', '2018-07-30 16:00:27');
+INSERT INTO `m_product_images` VALUES (22, 21, 'Detail', 'loisongtoigiannguoinhat01.jpg', '2018-07-30 16:05:32', '2018-07-30 16:05:32');
+INSERT INTO `m_product_images` VALUES (23, 21, 'Detail', 'loisongtoigiannguoinhat02.jpg', '2018-07-30 16:05:32', '2018-07-30 16:05:32');
+INSERT INTO `m_product_images` VALUES (24, 21, 'Detail', 'loisongtoigiannguoinhat03.jpg', '2018-07-30 16:05:32', '2018-07-30 16:05:32');
+INSERT INTO `m_product_images` VALUES (25, 21, 'Detail', 'loisongtoigiannguoinhat04.jpg', '2018-07-30 16:05:32', '2018-07-30 16:05:32');
 
 -- ----------------------------
 -- Table structure for m_products
@@ -263,12 +280,17 @@ CREATE TABLE `m_products`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`product_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of m_products
 -- ----------------------------
 INSERT INTO `m_products` VALUES (16, 'PR001', 'Programing JS', 57, 175000.00, NULL, NULL, NULL, 'Demo123', 'Demo123456', 'ProgramingJS.jpg', 0, 1, NULL, '2018-07-13 14:43:53', '2018-07-13 14:43:53');
+INSERT INTO `m_products` VALUES (17, 'KNS001', 'Nghệ Thuật Ngày Thường', 47, 108000.00, NULL, NULL, NULL, 'Với nghiên cứu lý luận, lịch sử văn hóa nghệ thuật thì các công trình “hàn lâm” dài hơi là phần lõi xác định tầm thâm cao của nghiên cứu. ', 'Với nghiên cứu lý luận, lịch sử văn hóa nghệ thuật thì các công trình “hàn lâm” dài hơi là phần lõi xác định tầm thâm cao của nghiên cứu. Với Phan Cẩm Thượng là các công trình uy tín như: Điêu khắc cổ Việt Nam, Đồ họa cổ Việt Nam, Điêu khắc Tây Nguyên, Chùa Dâu – Tứ Pháp, Chùa Bút Tháp v.v…Những công trình này có tính nền tảng để dạy, để học và nghiên cứu tiếp. Vùng đệm là những bài viết có tính nghiên cứu và các bài phê bình, là các sản phẩm báo chí chuyên đề, chuyên ngành. Vùng này hấp dẫn người đọc vì dễ đọc hơn, tác giả được tự do hơn trong việc đưa ra các nhận xét, bình giá, phản ứng tức thời có tính diễn đàn… Mảnh đất trù phú của đời thường nghệ thuật cho phép tác giả gieo những hạt mầm đơn lẻ, đưa ra những phác thảo  để rồi chính mình hay thế hệ sau sẽ gieo cấy cả một cánh đồng, xây cất cả một cấu trúc mới. Vùng ngoại biên còn mênh mông hơn với một nhà nghiên cứu thực thụ bởi đôi khi chiều cao sâu của các công trình khoa học chỉ là sự xoay dọc ra một cách cô đúc dải kiến thức nền rộng rãi ở chiều ngang. Chủ đề, đề tài cứ miên man như phong cảnh vô bến bờ, người đi như du sơn, du thủy. Đi đâu, ngồi đâu, ngâm ngợi, phán xét gì tùy thích. Miễn là gặp tri ân. Phong cách viết lại càng tự  do, tùy hứng người đọc cũng thích thú vị được gần gũi người viết hơn.', '31d38761a9205394cb818c3f1eccdc37.jpg', 0, 1, NULL, '2018-07-30 15:42:02', '2018-07-30 15:42:02');
+INSERT INTO `m_products` VALUES (18, 'KNS002', 'Dũng Cảm Tiến Lên - 7 Bước Thay Đổi Bản Thân', 47, 52800.00, NULL, NULL, NULL, 'Cuốn sách này sẽ giới thiệu và giải thích bản chất của lí thuyết tâm lí học Adler thông qua một câu chuyện...', 'Cuốn sách này sẽ giới thiệu và giải thích bản chất của lí thuyết tâm lí học Adler thông qua một câu chuyện. Chuyện kể về Matsuda Yuji, hiện đang làm việc tại một công ty quảng cáo lớn. Anh đã gặp gỡ một chuyên gia tư vấn có tên là Kara rồi sau đó học được cách tự trưởng thành, trở thành con người mới bằng cách thực hiện “Bảy bước thay đổi bản thân”, với cơ sở là lí thuyết tâm lí học Adler.\n\nQuý độc giả khi đọc cuốn sách này chắc hẳn cũng sẽ gặp được con người mới của bản thân một cách tình cờ thông qua việc thực hiện “Bảy bước thay đổi bản thân” như trên.', 'dungcamtienlen.jpg', 0, 1, NULL, '2018-07-30 15:49:00', '2018-07-30 15:49:00');
+INSERT INTO `m_products` VALUES (19, 'KNS003', 'Ai Cũng Là Nhà Sáng Tạo Đại Tài', 47, 85000.00, NULL, NULL, NULL, 'Có bao giờ bạn nhìn thấy một tác phẩm, ví dụ như một chiếc chăn bông họa tiết ghép vải được treo ở bảo tàng, kí tên “Vô danh” hoặc “Khuyết danh”, có từ khoảng năm 1864?', 'Có bao giờ bạn nhìn thấy một tác phẩm, ví dụ như một chiếc chăn bông họa tiết ghép vải được treo ở bảo tàng, kí tên “Vô danh” hoặc “Khuyết danh”, có từ khoảng năm 1864? Những tác phẩm kiểu như vậy thường của phụ nữ, những người gốc Mỹ-Phi hoặc những người bị gạt ra rìa xã hội. Họ thường không kí tên vào các tác phẩm của mình. Một số phụ nữ sử dụng bút danh nam để tác phẩm của họ được xuất bản hoặc được trưng\nbày trong viện bảo tàng.\n\nThật đáng buồn nếu xét đến việc có bao nhiêu nghệ sĩ nổi tiếng mà ngày nay chúng ta tôn kính đã từng làm việc mệt nhọc trong bóng tối, dù đó là sự lựa chọn của họ hay do hoàn cảnh bắt buộc. Hãy tôn vinh những nữ nghệ sĩ từng sống và sáng tạo hàng thế kỉ qua, đặc biệt những người đã thể hiện sự kiên nhẫn đáng kinh ngạc dù ở thời đó họ không nhận được những lời ca ngợi.', 'aicunglanhasangtao01.jpg', 0, 1, NULL, '2018-07-30 15:56:28', '2018-07-30 15:56:28');
+INSERT INTO `m_products` VALUES (20, 'KNS004', 'Mệt Quá À? Quẳng Hết Đi!', 47, 64500.00, NULL, NULL, NULL, 'BẠN LÀ AI MÀ DÁM GÁNH CẢ THẾ GIỚI NÀY TRÊN VAI???\n\nBạn luôn cố ép mình hoàn thành công việc, theo đuổi hết mục tiêu này đến dự định khác?\n\nBạn luôn thấy mình kém cỏi khi so sánh với đám đông?\n\nBạn thấy mệt và không hạnh phúc?', 'Mệt Quá À? Quẳng Hết Đi!\nBẠN LÀ AI MÀ DÁM GÁNH CẢ THẾ GIỚI NÀY TRÊN VAI???\n\nBạn luôn cố ép mình hoàn thành công việc, theo đuổi hết mục tiêu này đến dự định khác?\n\nBạn luôn thấy mình kém cỏi khi so sánh với đám đông?\n\nBạn thấy mệt và không hạnh phúc?\n\nMệt mỏi chính là liều thuốc độc không giết chết chúng ta ngay lập tức, nhưng dần ăn mòn và hủy hoại toàn bộ cuộc đời chúng ta. Sai lầm lớn nhất của tất cả chúng ta là hùa theo đám đông và sống chết chạy đua với vật chất.\n\n“MỆT QUÁ À? QUẲNG HẾT ĐI!” sẽ giải đáp những tò mò của tất cả mọi người từ trước đến nay:\n\nCăng thẳng, mệt mỏi của ngày nay và hàng nghìn năm trước bản chất giống nhau. Nhưng tại sao ngày nay, cuộc sống lại trở nên nặng nề hơn?\n\nĐa số chúng ta cảm thấy buồn bã một cách mơ hồ, nhưng thực ra chúng đều bắt nguồn từ những nguyên nhân rất rõ ràng.\n\nMệt mỏi thực chất không phải lỗi của bạn, càng không phải lỗi của xã hội. Nó sinh ra do sự chênh lệch giữa giá trị quan mà trí não chúng ta chi phối với giá trị quan của xã hội.\n\nNếu bạn cần một lời giải thích khoa học, rõ ràng và thuyết phục cho những mệt mỏi, căng thẳng và muốn bắt đầu một cuộc sống vui vẻ hơn thì cuốn sách này dành cho bạn.', 'metquaaquanaghetdi.jpg', 0, 1, NULL, '2018-07-30 16:00:10', '2018-07-30 16:00:10');
+INSERT INTO `m_products` VALUES (21, 'KNS005', 'Lối Sống Tối Giản Của Người Nhật (Tái Bản)', 47, 71000.00, NULL, NULL, NULL, 'Lối sống tối giản là cách sống cắt giảm vật dụng xuống còn mức tối thiểu. Và cùng với cuộc sống ít đồ đạc, ta có thể để tâm nhiều hơn tới hạnh phúc, đó chính là chủ đề của cuốn sách này.', 'Lối sống tối giản là cách sống cắt giảm vật dụng xuống còn mức tối thiểu. Và cùng với cuộc sống ít đồ đạc, ta có thể để tâm nhiều hơn tới hạnh phúc, đó chính là chủ đề của cuốn sách này.\n\nChẳng có ai từ khi sinh ra đã có tài sản, đồ đạc gì trong tay. Vậy nên bất cứ ai khi mới chào đời đều là những người sống tối giản. Cứ mỗi lần bạn sở hữu trong tay những đồ dùng hơn mức cần thiết là một lần bạn lấy mất tự do của chính mình. Giá trị bản thân chúng ta không đo bằng những đồ dùng mà chúng ta sở hữu. Những đồ dùng này chỉ cho chúng ta một chút cảm giác hạnh phúc nhất thời mà thôi. Mang theo những đồ dùng hơn mức cần thiết sẽ lấy hết thời gian, năng lượng của bạn. Khi nhận ra được điều đó, tức là bạn đã bắt đầu trở thành một người sống tối giản.\n\nNhững người sống tối giản luôn cảm thấy vui vẻ, mới lạ mỗi ngày. Cái cảm giác này, tôi nghĩ bất cứ ai cũng có thể cảm nhận được, dù bạn có phải là một người sống tối giản hay không, bởi bất cứ ai.\n\nLối sống tối giản của người Nhật gồm có năm chương, trong đó, chương một, tác giả sẽ giới thiệu cho bạn lối sống tối giản là gì, đưa ra định nghĩa của anh về nó. Sau đó anh sẽ đưa ra lý do vì sao mình lại theo lối sống này sau nhiều năm sống trong căn phòng của bản thân.', 'loisongtoigiannguoinhat01.jpg', 0, 1, NULL, '2018-07-30 16:04:54', '2018-07-30 16:04:54');
 
 -- ----------------------------
 -- Table structure for m_promotion
@@ -294,7 +316,7 @@ CREATE TABLE `m_publishers`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 53 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 54 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of m_publishers
@@ -303,54 +325,7 @@ INSERT INTO `m_publishers` VALUES (1, 'Nhà Xuất Bản Lao Động', 'This is 
 INSERT INTO `m_publishers` VALUES (2, 'Nhà Xuất Bản Đà Nẵng', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
 INSERT INTO `m_publishers` VALUES (3, 'Nhà Xuất Bản Đại Học Quốc Gia Hà Nội', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
 INSERT INTO `m_publishers` VALUES (4, 'Nhà xuất bản trẻ', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (5, 'demo22222222', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (6, 'demo33333333', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (7, 'demo44444444', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (8, 'demo55555555', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (9, 'demo66666666', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (10, 'demo77777777', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (11, 'demo88888888', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (12, 'demo99999999', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (13, 'demo01', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (14, 'demo02', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (15, 'demo03', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (16, 'demo04', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (17, 'demo05', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (18, 'demo06', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (19, 'demo07', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (20, 'demo08', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (21, 'demo09', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (22, 'demo10', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (23, 'demo11', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (24, 'demo12', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (25, 'demo13', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (26, 'demo14', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (27, 'demo15', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (28, 'demo16', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (29, 'demo17', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (30, 'demo18', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (31, 'demo19', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (32, 'demo20', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (33, 'demo21', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (34, 'demo22', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (35, 'demo23', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (36, 'demo24', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (37, 'demo25', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (38, 'demo26', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (39, 'demo27', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (40, 'demo28', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (41, 'demo29', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (42, 'demo30', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (43, 'demo31', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (44, 'demo32', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (45, 'demo33', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (46, 'demo34', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (47, 'demo35', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (48, 'demo36', 'This is a publisher', 12, 0, '2018-07-16 14:01:51', '2018-07-16 14:01:51');
-INSERT INTO `m_publishers` VALUES (49, 'demo37', 'This is a publisher', 13, 0, '2018-07-17 15:11:50', '2018-07-17 15:11:50');
-INSERT INTO `m_publishers` VALUES (50, 'demo38', 'This is a publisher', 12, 0, '2018-07-17 15:13:38', '2018-07-17 15:13:38');
-INSERT INTO `m_publishers` VALUES (51, 'demo39', 'This is a publisher', 12, 0, '2018-07-17 15:14:18', '2018-07-17 15:14:18');
-INSERT INTO `m_publishers` VALUES (52, 'demo40', 'Demo', 12, 0, '2018-07-17 15:14:45', '2018-07-17 15:14:45');
+INSERT INTO `m_publishers` VALUES (53, 'Nhà Xuất Bản Thế Giới', 'Nhà Xuất Bản Thế Giới', 1, 0, '2018-07-30 15:53:30', '2018-07-30 15:53:30');
 
 -- ----------------------------
 -- Table structure for m_release_companys
@@ -365,7 +340,7 @@ CREATE TABLE `m_release_companys`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of m_release_companys
@@ -376,6 +351,10 @@ INSERT INTO `m_release_companys` VALUES (3, '	Nhà Sách Hồng Ân', NULL, 0, 3
 INSERT INTO `m_release_companys` VALUES (4, 'Nhà xuất bản trẻ', NULL, 0, 4, '2018-06-18 10:27:34', '2018-06-18 10:27:37');
 INSERT INTO `m_release_companys` VALUES (5, 'demo', 'demo', 0, 23, '2018-07-17 09:13:29', '2018-07-17 09:13:29');
 INSERT INTO `m_release_companys` VALUES (6, 'demo123', 'demo123', 1, 3, '2018-07-17 09:15:16', '2018-07-17 09:15:16');
+INSERT INTO `m_release_companys` VALUES (7, 'Minh Long', 'Demo', 0, 1, '2018-07-30 15:45:57', '2018-07-30 15:45:57');
+INSERT INTO `m_release_companys` VALUES (8, 'R.E.A.D Books', 'R.E.A.D Books', 0, 12, '2018-07-30 15:53:55', '2018-07-30 15:53:55');
+INSERT INTO `m_release_companys` VALUES (9, 'Skybooks', 'Skybooks', 0, 21, '2018-07-30 15:58:08', '2018-07-30 15:58:08');
+INSERT INTO `m_release_companys` VALUES (10, 'Thái Hà', 'Thái Hà', 0, 21, '2018-07-30 16:01:37', '2018-07-30 16:01:37');
 
 -- ----------------------------
 -- Table structure for m_roles
@@ -616,7 +595,7 @@ CREATE TABLE `users`  (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'nphoa', 'nphoa7777@gmail.com', '$2y$10$AWgAAhjc3k65Z2qFMs3ubuApPnyJmbyBBgNkAbrLCjVhHsaVVvqYO', 1, 0, NULL, 1, '2018-06-29 07:06:51', '2018-06-29 07:06:51');
+INSERT INTO `users` VALUES (1, 'Admin', 'nphoa7777@gmail.com', '$2y$10$AWgAAhjc3k65Z2qFMs3ubuApPnyJmbyBBgNkAbrLCjVhHsaVVvqYO', 1, 0, NULL, 1, '2018-06-29 07:06:51', '2018-06-29 07:06:51');
 INSERT INTO `users` VALUES (3, 'Demo7777', 'demo@gmail.com', '$2y$10$DZbJeJQCqyasVfQucLaJX.L6ip.Q/JZs87.zrwbXQaFY3/VSiwVAu', 42, 0, NULL, 2, '2018-07-23 16:15:54', '2018-07-23 16:15:54');
 INSERT INTO `users` VALUES (4, 'Demo1', 'demo1@gmail.com', '$2y$10$UNi1d.9gO9KAjYJy73g.6u0xF3sek5tSRWunsCyIo6YKxluL3gLg6', 123, 1, NULL, 2, '2018-07-24 10:02:17', '2018-07-24 10:02:17');
 INSERT INTO `users` VALUES (5, 'Demo2', 'demo2@gmail.com', '$2y$10$YVFvhwGN3Hr/Jd8L/KboeeZy0IgwDl4eHRjakD0Z95U1EKoP5E5WC', 213, 1, NULL, 2, '2018-07-24 10:02:56', '2018-07-24 10:02:56');
