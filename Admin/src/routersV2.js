@@ -21,6 +21,8 @@ import ReleaseCompanyAddContainer from '../src/Containers/ReleaseCompany/release
 import UsersContainer from '../src/Containers/User/users.Container';
 import UserAddContainer from '../src/Containers/User/userAdd.Container';
 import MyProfileComponent from '../src/Components/User/myProfile.Component';
+
+import DiscountProductComponent from '../src/Components/Product/discount.Component';
 const routersV2 = [
 	{
 		path: '/',
@@ -99,6 +101,10 @@ const routersV2 = [
 			{
 				path:'/user/myProfile',
 				component:MyProfileComponent
+			},
+			{
+				path:'/products/discount',
+				component:DiscountProductComponent
 			}
 			
 		]	

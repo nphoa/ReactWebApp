@@ -48,6 +48,16 @@ class Menu extends Component {
                   </ul>
                   {/* /nav-second-level */}
                 </li>
+                <li>
+                <a href="#"><i className="glyphicon glyphicon-shopping-cart nav_icon" />Chương trình áp dụng<span className="fa arrow" /></a>
+                <ul className="nav nav-second-level collapse">
+                  <li>
+                    <Link to ="/products/discount">Khuyến mãi</Link>
+                  </li>
+              
+                </ul>
+                {/* /nav-second-level */}
+              </li>
               </ul>
             </div>
             {/* //sidebar-collapse */}
