@@ -67,3 +67,5 @@ Route::get('getUserById','UserController@getUserById')->middleware('cors');
 Route::get('deleteUser','UserController@deleteUser')->middleware('cors');
 
 Route::get('roles','RoleController@getAll')->middleware('cors');
+
+Route::post('filterProdutToSearch','ProductController@filterProdutToSearch')->middleware('cors');

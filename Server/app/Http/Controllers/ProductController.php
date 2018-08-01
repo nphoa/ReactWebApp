@@ -73,4 +73,15 @@ class ProductController extends Controller
         $model = new Product();
         return response()->json(['status'=>'success','data'=>$model->deleteProduct($req->get('idProduct'))]);
     }
+    public function filterProdutToSearch(Request $req)
+    {
+        $model = new Product();
+        $objFilter = json_decode($req->get('filterProduct'));
+        
+        foreach ($objFilter as $key => $value) {
+            $arrayFilter[$key] = $value ;
+        }
+        $model->filterProduct($arrayFilter);
+         //dd($arrayFilter);
+    }
 }

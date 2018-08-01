@@ -214,4 +214,55 @@ class Product extends Model
         }
         return $result;
     }
+    public function filterProduct($objFilter)
+    {
+        dd($objFilter);
+        $result = null;
+        try {
+          
+            $query =  DB::table('m_products as product')
+                      ->leftJoin('m_product_details as productDetail','product.product_id','=','productDetail.id_product')
+                      ->leftJoin('m_publishers as publishers','productDetail.id_publisher','=','publishers.id')
+                      ->leftJoin('m_authors as authors','productDetail.id_author','=','authors.id')
+                      ->leftJoin('m_release_companys as releaseCompany','productDetail.id_release_Company','=','releaseCompany.id');
+
+            if(!empty($objFilter['productCode'])){
+                $query =  $query->where('product.product_code',$objFilter['productCode']);
+            }
+            if(!empty($objFilter['productName'])){
+               $query =  $query->where('product.product_name','like','%'.$objFilter['productName'].'%');
+            }
+
+            if(!empty($objFilter['categoryId']) || $objFilter['categoryId'] != 0 ){
+                $query =  $query->where('product.category_id',$objFilter['categoryId']);
+            }
+
+            if(!empty($objFilter['authorId']) || $objFilter['authorId'] != 0 ){
+                $query =  $query->where('productDetail.id_author',$objFilter['authorId']);
+            }
+
+            if(!empty($objFilter['publisherId']) || $objFilter['publisherId'] != 0 ){
+                $query =  $query->where('productDetail.id_publisher',$objFilter['publisherId']);
+            }
+
+            if(!empty($objFilter['companyReleaseId']) || $objFilter['companyReleaseId'] != 0 ){
+                $query =  $query->where('productDetail.id_release_Company',$objFilter['companyReleaseId']);
+            } n
+
+            $query = $query->select(
+                'product.product_code',
+                'product.product_name',
+                ''
+
+            )->get();
+
+            dd($query);
+      
+          
+    
+        } catch (Exception $e) {
+             $result = null;
+        }
+        return $result;
+    }
 }
