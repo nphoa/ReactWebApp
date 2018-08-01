@@ -34,3 +34,5 @@ export const DELETE_USER    = host.urlHost+'/deleteUser';
 export const LOGIN    = host.urlHost+'/login';
 
 export const GET_ALL_ROLE    = host.urlHost+'/roles';
+
+export const FILTER_PRODUCT_SEARCH = host.urlHost+'/filterProdutToSearch';

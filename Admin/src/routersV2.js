@@ -22,7 +22,7 @@ import UsersContainer from '../src/Containers/User/users.Container';
 import UserAddContainer from '../src/Containers/User/userAdd.Container';
 import MyProfileComponent from '../src/Components/User/myProfile.Component';
 
-import DiscountProductComponent from '../src/Components/Product/discount.Component';
+import DiscountProductContainer from '../src/Containers/discount.Container';
 const routersV2 = [
 	{
 		path: '/',
@@ -104,7 +104,7 @@ const routersV2 = [
 			},
 			{
 				path:'/products/discount',
-				component:DiscountProductComponent
+				component:DiscountProductContainer
 			}
 			
 		]	

@@ -14,36 +14,105 @@ class DiscountProductComponent extends Component {
         productCode:"",
         categoryId:"",
         authorId:"",
-        publisher:"",
+        publisherId:"",
         companyReleaseId:""
+      },
+      other:{
+        idCategoryChange:1
       }
     };
   }
   
-  componentWillMount(){
-     
+  componentDidMount(){
+     this.props.getAllCategory();
+     this.props.getAllAuthor(1);
+     this.props.getAllPublisher(1);
+     this.props.getAllReleaseCompany();
   }
- 
+  
   handleChange = (event) => {
-    // this.setState({
-    //   filter:{
-    //     [event.target.name]:event.target.value
-    //   }
-    // })
-
-    this.setState(prevState => ({
-       filter: {
-            ...prevState.filter,
-            [event.target.name]:event.target.value
-        }
-    }))
+    let someProperties = {...this.state.filter};
+    someProperties[event.target.name] = event.target.value;
+    this.setState({
+      filter:someProperties
+    });
   }
 
   handleSubmitFilter = (event) => {
     event.preventDefault();
     console.log(this.state.filter);
+    this.filterToServer(this.state.filter);
+    
   }
-  
+  async filterToServer(objFilter){
+    let fd = new FormData();
+    fd.append('filterProduct',JSON.stringify(objFilter));
+    let data = null;
+    await callApi(urls.FILTER_PRODUCT_SEARCH,'POST',fd).then((res)=>{
+      console.log(res.data);
+    });
+  }
+  showListCategory = (categories) => {
+    let result = null;
+    result  = categories.map((item,index)=>{
+        return (
+            <option value={item.category_id} key={index}>{item.category_name}</option>
+        )
+    });
+    return result;
+  }
+  showListCategoryChild = (idParent,categories) => {
+    let result = null;
+    let cate = categories.find(item => item.category_id == idParent);
+    if(cate != undefined) {
+        result  = cate.listChild.map((item,index)=>{
+            return (
+                <option value={item.category_id} key={index+1}>{item.category_name}</option>
+            )
+        });
+    }
+    return result;
+  }
+  onChangeCategory = (event) => {
+    this.setState({
+        other:{
+          idCategoryChange:event.target.value
+        }
+    });
+  }
+  showListAuthor = (authors) => {
+    let result = null;
+    if(authors != undefined) {
+      result  = authors.map((item,index)=>{
+        return (
+            <option value={item.id} key={index+1}>{item.name}</option>
+        )
+      });
+    }
+    return result;
+  }
+  showListPublisher = (publishers) => {
+    let result = null;
+    if(publishers!=null){
+      result  = publishers.map((item,index)=>{
+        return (
+            <option value={item.id} key={index+1}>{item.name}</option>
+        )
+      });
+    }
+    return result;
+  }
+  showListReleaseCompany = (releaseCompanys) => {
+    let result = null;
+     if(releaseCompanys!=null){
+      result  = releaseCompanys.map((item,index)=>{
+        return (
+            <option value={item.id} key={index+1}>{item.name}</option>
+        )
+      });
+     }
+    return result;
+  }
   render() {
     if(this.state.redirectProduct){
       return <Redirect to="/products"/>
@@ -76,53 +145,72 @@ class DiscountProductComponent extends Component {
                           <div className="form-group">
                               <label className="col-sm-4 control-label">Product Name</label>
                               <div className="col-sm-6">
-                                <input type="text" className="form-control" name="productName"/>
+                                <input type="text" className="form-control" name="productName"  onChange={this.handleChange}/>
                               </div>
                           </div>
 
-                          <div className="form-group">
-                              <label className="col-sm-4 control-label">Category Id</label>
-                              <div className="col-sm-3">
-                                <select type="text" className="form-control" name="categoryParentId">
-                                    <option>A</option>      
-                                </select>
-                              </div>
-                              <div className="col-sm-3">
-                                <select type="text" className="form-control" name="categoryId">
-                                    <option>A</option>      
-                                </select>
-                              </div>
-                          </div>
+                         
 
                         </div>
                         <div className="col-sm-6">
                           <div className="form-group">
                                 <label className="col-sm-4 control-label">Author</label>
                                 <div className="col-sm-6">
-                                  <select type="text" className="form-control" name="authorId">
-                                        <option>A</option>
+                                  <select type="text" className="form-control" name="authorId" onChange={this.handleChange}>
+                                  <option value={0} key={0}>Choose author !</option>
+                                  {this.showListAuthor(this.props.authors)}
                                   </select>
                                 </div>
                           </div>
                           <div className="form-group">
                                 <label className="col-sm-4 control-label">Publisher</label>
                                 <div className="col-sm-6">
-                                  <select type="text" className="form-control" name="publisherId">
-                                        <option>A</option>
+                                  <select type="text" className="form-control" name="publisherId" onChange={this.handleChange}>
+                                  <option value={0} key={0}>Choose publisher !</option>
+                                  {this.showListPublisher(this.props.publishers)}
                                   </select>
                                 </div>
                           </div>
                           <div className="form-group">
                                 <label className="col-sm-4 control-label">Company release</label>
                                 <div className="col-sm-6">
-                                  <select type="text" className="form-control" name="companyReleaseId">
-                                        <option>A</option>
+                                  <select type="text" className="form-control" name="companyReleaseId" onChange={this.handleChange}>
+                                  <option value={0}>Choose release company !</option>
+                                  {this.showListReleaseCompany(this.props.releaseCompanys)}
                                   </select>
                                 </div>
                           </div>
                         </div>
                     </div>
+                    <div className="row">
+                      <div className="col-sm-6">
+                          <div className="form-group">
+                            <label className="col-sm-4 control-label">Category Id</label>
+                            <div className="col-sm-6">
+                              <select type="text" className="form-control" name="categoryParentId" onChange={this.onChangeCategory}>
+                                  <option value={0}>Choose Category Parent !</option>
+                                  {this.showListCategory(this.props.categories)}
+                              </select>
+                            </div>
+                          </div>
+                      </div>
+                      <div className="col-sm-6">
+                          <div className="form-group">
+                              <label className="col-sm-4 control-label">Category Children</label>
+                              <div className="col-sm-6">
+                              <select type="text" className="form-control" name="categoryId" onChange={this.handleChange}>
+                                  <option value={0}>Choose Category Children !</option>
+                                  {this.showListCategoryChild(this.state.other.idCategoryChange,this.props.categories)}
+                              </select>
+                              </div>
+                          </div>
+                      </div>
                  
+
+
+                    
+
+                    </div>
                    
                 </div>
             </div>
